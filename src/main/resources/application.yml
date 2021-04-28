@@ -6,17 +6,13 @@ spring:
     username: root
     password: root
 
-content:
-  file-path: D:\workspace\hapcode-premium\src\main\java\top\hapleow\hapcodepremium\common\\
-  model:
-    file-name-suffix: .java
-    package-name: com.jbs.item
-    imports:
-      - java.util.List
-      - java.util.Map
-
-  api:
-    url: http://localhost:8080/hapcode/codingAll
+base-content:
+  root-path: D:\workspace\aiwoplatformat\sys-base\user-manage-server\src\main\java\
+model:
+  package-name: com.jbs.usermanage.model
+  imports:
+    - java.util.List
+    - java.util.Map
 
 
 

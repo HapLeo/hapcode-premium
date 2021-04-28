@@ -13,13 +13,19 @@ import java.util.List;
  */
 @Data
 @Component
-@ConfigurationProperties(prefix = "content")
+@ConfigurationProperties(prefix = "base-content")
 public class BaseContent implements IContent {
 
     /**
      * 文件路径
      */
-    private String filePath;
+    private String rootPath;
+
+    /**
+     * 包名
+     */
+    private String packageName;
+
 
     /**
      * 导入类

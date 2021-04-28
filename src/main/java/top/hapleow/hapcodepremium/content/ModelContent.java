@@ -20,10 +20,6 @@ import java.util.List;
 public class ModelContent extends AbstractContent {
 
 
-    private String packageName;
-
-
-
     private List<String> imports;
 
 }

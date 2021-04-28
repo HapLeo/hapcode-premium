@@ -40,7 +40,7 @@ public class BeetlGeneratorServiceImpl implements IBeetlGeneratorService {
 
         BaseContent baseContent = (BaseContent) content.getBaseContent();
 
-        String filePath = baseContent.getFilePath();
+        String filePath = baseContent.getRootPath();
 
         FileUtil.createFile(genContent(templateName, content), fileName, filePath);
     }
