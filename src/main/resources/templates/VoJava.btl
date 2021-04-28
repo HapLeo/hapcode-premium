@@ -1,0 +1,23 @@
+package @{context.packageName};
+
+import lombok.Data;
+<% var date = date(); %>
+/**
+ * @{context.bizChName}数据传输器
+ *
+ * @author @{context.author}
+ * @Date @{date,dateFormat="yyyy-MM-dd HH:mm:ss"}
+ */
+@Data
+public class @{context.bizEnBigName}Vo implements Serializable {
+
+<% for(item in context.table.fields!){ %>
+
+    /**
+     * @{item.comment!}
+     */
+    private @{item.javaType} @{item.propertyName};
+<% } %>
+
+
+}

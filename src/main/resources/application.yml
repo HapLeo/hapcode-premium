@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: hapcode-premium
+  datasource:
+    url: jdbc:mysql://localhost:3306/item?useUnicode=true&characterEncoding=UTF-8&useAffectedRows=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+
+content:
+  file-name: ItemCoupon.java
+  file-path: D:\workspace\hapcode-premium\src\main\java\top\hapleow\hapcodepremium\common\\
+  model:
+    package-name: com.jbs.item
+    imports:
+      - java.util.List
+      - java.util.Map
+
+  api:
+    url: http://localhost:8080/hapcode/codingAll
+
+
+
+

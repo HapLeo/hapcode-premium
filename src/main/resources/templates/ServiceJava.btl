@@ -1,0 +1,38 @@
+package @{context.packageName};
+
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
+import java.util.Map;
+
+<% var date = date(); %>
+/**
+ * @{context.bizChName}服务接口
+ *
+ * @author @{context.author}
+ * @Date @{date,dateFormat="yyyy-MM-dd HH:mm:ss"}
+ */
+public interface I@{context.bizEnBigName}Service extends IService<@{context.bizEnBigName}> {
+
+
+    /**
+     * 新增@{context.bizChName}
+     */
+    void addItem(@{context.bizEnBigName} @{context.bizEnName});
+
+    /**
+     * 删除@{context.bizChName}
+     */
+    void delItem(Integer id);
+
+    /**
+     * 修改@{context.bizChName}
+     */
+    void editItem(@{context.bizEnBigName} @{context.bizEnName});
+
+    /**
+     * 获取@{context.bizChName}列表
+     */
+    List<@{context.bizEnBigName}Vo> selectListByPage(Page<@{context.bizEnBigName}Vo> page,@{context.bizEnBigName}Dto dto);
+}

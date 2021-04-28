@@ -1,0 +1,37 @@
+package @{content.packageName};
+
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+<% for(import in content.imports!){ %>
+import @{import};
+<% } %>
+
+<% var date = date(); %>
+/**
+ * @{content.baseContent.bizChName}
+ *
+ * @author @{content.baseContent.author}
+ * @Date @{date,dateFormat="yyyy-MM-dd HH:mm:ss"}
+ */
+@Data
+@EqualsAndHashCode(callSuper = false)
+public class @{content.baseContent.bizEnBigName} extends Model<@{content.baseContent.bizEnBigName}>{
+
+<% for(item in content.baseContent.table.fields!){ %>
+
+    <%{ %>
+
+    /**
+     * @{item.comment!}
+     */
+    private @{item.javaType} @{item.propertyName};
+    <%}%>
+<% } %>
+
+
+
+}

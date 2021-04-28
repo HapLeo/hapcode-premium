@@ -1,0 +1,18 @@
+package @{model.packageName};
+
+<% for(import in model.imports!){ %>
+import @{import};
+<% } %>
+
+<% var date = date(); %>
+/**
+ * @{context.bizChName}条件包装器
+ *
+ * @author Longzhong
+ * @Date @{date,dateFormat="yyyy-MM-dd HH:mm:ss"}
+ */
+public class @{context.bizEnBigName}ConditionWrapper {
+
+
+
+}

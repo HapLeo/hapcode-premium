@@ -1,0 +1,93 @@
+package @{context.packageName};
+
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
+
+<% var date = date(); %>
+/**
+ * @{context.bizChName}服务实现类
+ *
+ * @author @{context.author}
+ * @Date @{date,dateFormat="yyyy-MM-dd HH:mm:ss"}
+ */
+ @Service
+public class @{context.bizEnBigName}ServiceImpl extends ServiceImpl<@{context.bizEnBigName}Mapper, @{context.bizEnBigName}> implements I@{context.bizEnBigName}Service {
+
+
+    /**
+     * 获取@{context.bizChName}列表
+     */
+    public List<@{context.bizEnBigName}Vo> selectListByPage(Page<@{context.bizEnBigName}Vo> page,@{context.bizEnBigName}Dto dto) {
+
+        List<@{context.bizEnBigName}Vo> list = baseMapper.selectListByPage(page, dto);
+        list.forEach(AbstractVo::wrap);
+        return list;
+    }
+
+    /**
+     * 新增@{context.bizChName}
+     *
+     * @param @{context.bizEnName}
+     */
+    @Override
+    public void addItem(@{context.bizEnBigName} @{context.bizEnName}) {
+
+        validBeforeAdd(@{context.bizEnName});
+        baseMapper.insert(@{context.bizEnName});
+    }
+
+    /**
+     * 删除@{context.bizChName}
+     *
+     * @param id
+     */
+    @Override
+    public void delItem(Integer id) {
+        baseMapper.deleteById(id);
+    }
+
+    /**
+     * 修改@{context.bizChName}
+     *
+     * @param @{context.bizEnName}
+     */
+    @Override
+    public void editItem(@{context.bizEnBigName} @{context.bizEnName}) {
+
+        validBeforeEdit(@{context.bizEnName});
+        baseMapper.updateById(@{context.bizEnName});
+    }
+
+        /**
+         * 新增之前验证
+         *
+         * @param @{context.bizEnName}
+         */
+        private void validBeforeAdd(@{context.bizEnBigName} @{context.bizEnName}) {
+
+            validBefore(@{context.bizEnName});
+        }
+
+        /**
+         * 修改之前验证
+         *
+         * @param @{context.bizEnName}
+         */
+        private void validBeforeEdit(@{context.bizEnBigName} @{context.bizEnName}) {
+
+            validBefore(@{context.bizEnName});
+        }
+
+        /**
+         * 新增、修改之前的通用验证
+         *
+         * @param @{context.bizEnName}
+         */
+        private void validBefore(@{context.bizEnBigName} @{context.bizEnName}) {
+            // TODO 做一些必要的验证
+        }
+}

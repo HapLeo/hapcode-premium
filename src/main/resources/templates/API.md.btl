@@ -1,0 +1,55 @@
+
+
+**简要描述：**
+
+- @{context.dto.desc!}
+
+
+
+
+**请求地址：**
+- `@{context.dto.url!}`
+
+
+**请求方式：**
+- @{context.dto.reqMethod!}
+
+
+**入参列表：**
+
+
+|参数名|必选|类型|说明|
+|:----|:---|:----- |-----   |
+<% for(item in context.dtoFieldList!){ %>
+| @{item.propertyName} |否| @{item.javaType} | @{item.comment} |
+<% } %>
+
+
+
+**入参示例：**
+```json
+
+@{context.dto.requestStr!}
+
+```
+
+
+
+**回参列表: **
+
+|参数名|类型|说明|
+|:----|:----- |-----   |
+<% for(item in context.responseList!){ %>
+| @{item.propertyName} |@{item.javaType} | @{item.comment} |
+<% } %>
+
+
+
+
+**返回示例: **
+
+```json
+
+@{context.dto.responseStr!}
+
+```

@@ -1,0 +1,23 @@
+package @{context.packageName};
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.apache.ibatis.annotations.Param;
+import java.util.List;
+import java.util.Map;
+
+<% var date = date(); %>
+/**
+ * @{context.bizChName}Mapper
+ *
+ * @author @{context.author}
+ * @Date @{date,dateFormat="yyyy-MM-dd HH:mm:ss"}
+ */
+public interface @{context.bizEnBigName}Mapper extends BaseMapper<@{context.bizEnBigName}> {
+
+
+    /**
+     * 获取@{context.bizChName}列表
+     */
+    List<@{context.bizEnBigName}Vo> selectListByPage(@Param("page") Page<@{context.bizEnBigName}Vo> page,@Param("dto") @{context.bizEnBigName}Dto dto);
+}
