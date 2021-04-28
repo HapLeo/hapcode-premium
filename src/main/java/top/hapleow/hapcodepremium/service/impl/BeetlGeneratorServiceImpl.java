@@ -36,14 +36,15 @@ public class BeetlGeneratorServiceImpl implements IBeetlGeneratorService {
 
 
     @Override
-    public void writeToFile(String templateName, AbstractContent content) {
+    public void writeToFile(String templateName, String fileName, AbstractContent content) {
 
         BaseContent baseContent = (BaseContent) content.getBaseContent();
-        String fileName = baseContent.getFileName();
+
         String filePath = baseContent.getFilePath();
 
         FileUtil.createFile(genContent(templateName, content), fileName, filePath);
     }
+
 
     @Override
     public String genContent(String templateName, AbstractContent content) {
@@ -90,7 +91,10 @@ public class BeetlGeneratorServiceImpl implements IBeetlGeneratorService {
             baseContent.setTable(javaTable);
         }
 
-        writeToFile(templateName, content);
+        String bizEnBigName = StringUtil.toCamelCase("_" + tableName);
+        String fileName = templateName.replaceFirst("Model", bizEnBigName).replace(".btl","");
+
+        writeToFile(templateName, fileName, content);
         return genContent(templateName, content);
     }
 
@@ -108,5 +112,6 @@ public class BeetlGeneratorServiceImpl implements IBeetlGeneratorService {
             coding(tempName.getName(), tableName);
         }
     }
+
 
 }

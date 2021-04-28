@@ -15,7 +15,7 @@ public interface IBeetlGeneratorService {
      *
      * @param templateName
      */
-    void writeToFile(String templateName, AbstractContent content);
+    void writeToFile(String templateName, String fileName, AbstractContent content);
 
     /**
      * 生成内容

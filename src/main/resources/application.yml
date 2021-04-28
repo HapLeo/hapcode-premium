@@ -7,9 +7,9 @@ spring:
     password: root
 
 content:
-  file-name: ItemCoupon.java
   file-path: D:\workspace\hapcode-premium\src\main\java\top\hapleow\hapcodepremium\common\\
   model:
+    file-name-suffix: .java
     package-name: com.jbs.item
     imports:
       - java.util.List

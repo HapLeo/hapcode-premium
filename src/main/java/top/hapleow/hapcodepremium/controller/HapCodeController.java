@@ -19,7 +19,8 @@ public class HapCodeController {
     @RequestMapping("/coding")
     public String coding(CodingDto dto) {
 
-        return generatorService.coding(dto.getTemplateName(), dto.getTableName());
+        generatorService.coding(dto.getTemplateName(), dto.getTableName());
+        return "SUCCESS";
     }
 
     @RequestMapping("/codingAll")
