@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="@{content.namespacePrefix}.@{content.packageName}.@{content.bizEnBigName}Mapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="@{content.namespacePrefix}.model.@{content.bizEnBigName}">
+    <% for(item in content.table.fields!){ %>
+        <% if(item.key == "PRI"){ %>
+        <id column="@{item.field}" property="@{item.propertyName}"/>
+        <% }else{ %>
+        <result column="@{item.field}" property="@{item.propertyName}"/>
+        <%}%>
+    <% } %>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+    select
+    <% for(item in content.table.fields!){ %>
+        <% if(item.key == "PRI"){ %>
+        @{item.field} AS @{item.propertyName}
+        <% flag = true; %>
+        <% }else{ %>
+        ,@{item.field} AS @{item.propertyName}
+        <%}%>
+    <% } %>
+    </sql>
+
+</mapper>

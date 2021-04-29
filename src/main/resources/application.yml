@@ -50,9 +50,10 @@ dao-java:
     - java.util.List
     - java.util.Map
 
-dao-xml:
+daoxml:
   package-name: mapper
   file-type: resources
+  namespace-prefix: com.jbs.item
   imports:
     - java.util.List
     - java.util.Map

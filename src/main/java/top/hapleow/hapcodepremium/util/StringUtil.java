@@ -2,6 +2,8 @@ package top.hapleow.hapcodepremium.util;
 
 import lombok.Data;
 
+import java.util.Objects;
+
 @Data
 public class StringUtil {
 
@@ -35,22 +37,20 @@ public class StringUtil {
      * @param field
      * @return
      */
-    public static String toCamelCase(String field) {
+    public static String toCamelCaseWithFirstUp(String field) {
 
-        if (isEmpty(field)) {
-            return field;
-        }
-        String[] fieldLatters = field.split("_");
-        StringBuilder result = new StringBuilder();
-        for (String fieldLatter : fieldLatters) {
+        String camelCase = toCamelCase(field);
 
-            if (isEmpty(fieldLatter)) {
-                continue;
-            }
-            String latter = fieldLatter.replace(fieldLatter.charAt(0), (char) (fieldLatter.charAt(0) - 32));
-            result.append(latter);
+        if (camelCase != null && Objects.equals(camelCase, "")) {
+            return camelCase;
         }
-        return result.toString();
+
+        char c = field.charAt(0);
+        if (c >= 97 && c <= 122) {
+            char c1 = (char) (c - 32);
+            camelCase = camelCase.replaceFirst(StringUtil.valueOf(c), StringUtil.valueOf(c1));
+        }
+        return camelCase;
     }
 
     /**
@@ -59,22 +59,21 @@ public class StringUtil {
      * @param field
      * @return
      */
-    public static String toCamelCaseWithoutFirst(String field) {
+    public static String toCamelCase(String field) {
 
         if (isEmpty(field)) {
             return field;
         }
+
+        field = field.toLowerCase();
+
         String[] fieldLatters = field.split("_");
         if (fieldLatters.length == 0) {
             return field;
         }
-        String firsttLatter = fieldLatters[0];
-        char c = firsttLatter.charAt(0);
-        if (c >= 65 && c < 97) {
-            char c1 = (char) (c + 32);
-            firsttLatter = firsttLatter.replaceFirst(StringUtil.valueOf(c), StringUtil.valueOf(c1));
-        }
-        StringBuilder result = new StringBuilder(firsttLatter);
+
+        String firstLatter = fieldLatters[0];
+        StringBuilder result = new StringBuilder(firstLatter);
         for (int i = 1; i < fieldLatters.length; i++) {
             String fieldLatter = fieldLatters[i];
             if (isEmpty(fieldLatter)) {

@@ -62,8 +62,8 @@ public abstract class AbstractContent {
         String name = table.getName();
         String comment = table.getComment();
 
-        bizEnBigName = StringUtil.toCamelCase(name);
-        bizEnName = StringUtil.toCamelCaseWithoutFirst(name);
+        bizEnBigName = StringUtil.toCamelCaseWithFirstUp(name);
+        bizEnName = StringUtil.toCamelCase(name);
 
         this.bizChName = comment;
 

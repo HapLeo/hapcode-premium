@@ -8,6 +8,7 @@ import top.hapleow.hapcodepremium.exception.BizException;
 import top.hapleow.hapcodepremium.model.JavaTable;
 import top.hapleow.hapcodepremium.mysql.constance.MysqlConst;
 import top.hapleow.hapcodepremium.service.IDBService;
+import top.hapleow.hapcodepremium.util.StringUtil;
 
 import java.util.Map;
 
@@ -36,7 +37,7 @@ public class DBServiceImpl implements IDBService {
 
         Object name = tableMap.get("Name");
         Object comment = tableMap.get("Comment");
-        String nameStr = name == null ? "" : (String) name;
+        String nameStr = name == null ? "" : StringUtil.toCamelCase((String) name);
         String commentStr = comment == null ? "" : (String) comment;
         return new JavaTable(nameStr, commentStr);
     }
