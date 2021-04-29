@@ -9,6 +9,7 @@ spring:
 base-content:
   root-path: D:\workspace\aiwoplatformat\beauty-business\item-business-server\src\main\
   author: wuyulin
+  namespace-prefix: com.jbs.item
 
 model:
   package-name: com.jbs.item.model
@@ -43,17 +44,16 @@ service-impl:
     - java.util.List
     - java.util.Map
 
-dao-java:
-  package-name: com.jbs.item.dto
+model-mapper:
+  package-name: com.jbs.item.mapper
   file-type: java
   imports:
-    - java.util.List
-    - java.util.Map
+    - import java.util.List
+    - import java.util.Map
 
-daoxml:
+model-mapper-xml:
   package-name: mapper
   file-type: resources
-  namespace-prefix: com.jbs.item
   imports:
     - java.util.List
     - java.util.Map

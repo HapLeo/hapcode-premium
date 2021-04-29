@@ -71,6 +71,9 @@ public class BeetlGeneratorServiceImpl implements IBeetlGeneratorService {
     public String coding(String templateName, String tableName) {
 
         String preName = templateName.split("\\.")[0];
+        if (templateName.contains(".xml.")) {
+            preName += "Xml";
+        }
         AbstractContent content = null;
         try {
             content = (AbstractContent) applicationContext.getBean(preName + "Content");

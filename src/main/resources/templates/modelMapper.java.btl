@@ -1,0 +1,17 @@
+package @{content.packageName};
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import @{content.baseContent.namespacePrefix}.model.@{content.bizEnBigName};
+
+
+<% var date = date(); %>
+/**
+ * @{content.bizChName}Mapper
+ *
+ * @author @{content.author}
+ * @Date @{date,dateFormat="yyyy-MM-dd HH:mm:ss"}
+ */
+public interface @{content.bizEnBigName}Mapper extends BaseMapper<@{content.bizEnBigName}> {
+
+
+}

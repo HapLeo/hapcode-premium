@@ -22,4 +22,9 @@ public class BaseContent {
      */
     private String author;
 
+    /**
+     * 包名前缀
+     */
+    private String namespacePrefix;
+
 }

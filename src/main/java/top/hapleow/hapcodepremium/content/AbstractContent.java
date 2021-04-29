@@ -50,6 +50,13 @@ public abstract class AbstractContent {
      */
     private String bizEnName;
 
+
+    /**
+     * 包名前缀（例如：com.jbs.item,用于组合出model的全限定名）
+     */
+    private String namespacePrefix;
+
+
     /**
      * 表
      */

@@ -9,9 +9,8 @@ import org.springframework.stereotype.Component;
  */
 @Data
 @Component
-@ConfigurationProperties(prefix = "model-mapper")
-public class ModelMapperContent extends AbstractContent {
-
+@ConfigurationProperties(prefix = "model-mapper-xml")
+public class ModelMapperXmlContent extends AbstractContent {
 
 
 
