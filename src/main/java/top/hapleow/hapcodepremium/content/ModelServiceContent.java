@@ -9,7 +9,8 @@ import org.springframework.stereotype.Component;
  */
 @Data
 @Component
-@ConfigurationProperties(prefix = "model-dto")
-public class ModelDTOContent extends AbstractContent {
+@ConfigurationProperties(prefix = "model-service")
+public class ModelServiceContent extends AbstractContent {
+
 
 }

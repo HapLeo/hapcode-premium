@@ -15,7 +15,7 @@ model:
   package-name: com.jbs.item.model
   file-type: java
 
-dto:
+model-dto:
   root-path: D:\workspace\aiwoplatformat\beauty-business\item-business-client\src\main\
   package-name: com.jbs.item.dto
   file-type: java
@@ -30,7 +30,7 @@ controller:
     - java.util.List
     - java.util.Map
 
-iservice:
+model-service:
   package-name: com.jbs.item.service
   file-type: java
   imports:

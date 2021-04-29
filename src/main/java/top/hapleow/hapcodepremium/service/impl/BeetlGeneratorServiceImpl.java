@@ -74,6 +74,9 @@ public class BeetlGeneratorServiceImpl implements IBeetlGeneratorService {
         if (templateName.contains(".xml.")) {
             preName += "Xml";
         }
+        if (templateName.startsWith("I")) {
+            preName = preName.replaceFirst("I", "");
+        }
         AbstractContent content = null;
         try {
             content = (AbstractContent) applicationContext.getBean(preName + "Content");

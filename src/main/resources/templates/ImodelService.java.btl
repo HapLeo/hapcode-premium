@@ -1,38 +1,32 @@
-package @{context.packageName};
+package @{content.packageName};
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
-
-import java.util.List;
-import java.util.Map;
+import @{content.baseContent.namespacePrefix}.model.@{content.bizEnBigName};
 
 <% var date = date(); %>
 /**
- * @{context.bizChName}服务接口
+ * @{content.bizChName}服务接口
  *
- * @author @{context.author}
+ * @author @{content.author}
  * @Date @{date,dateFormat="yyyy-MM-dd HH:mm:ss"}
  */
-public interface I@{context.bizEnBigName}Service extends IService<@{context.bizEnBigName}> {
+public interface I@{content.bizEnBigName}Service extends IService<@{content.bizEnBigName}> {
 
 
     /**
-     * 新增@{context.bizChName}
+     * 新增@{content.bizChName}
      */
-    void addItem(@{context.bizEnBigName} @{context.bizEnName});
+    void addItem(@{content.bizEnBigName} @{content.bizEnName});
 
     /**
-     * 删除@{context.bizChName}
+     * 删除@{content.bizChName}
      */
     void delItem(Integer id);
 
     /**
-     * 修改@{context.bizChName}
+     * 修改@{content.bizChName}
      */
-    void editItem(@{context.bizEnBigName} @{context.bizEnName});
+    void editItem(@{content.bizEnBigName} @{content.bizEnName});
 
-    /**
-     * 获取@{context.bizChName}列表
-     */
-    List<@{context.bizEnBigName}Vo> selectListByPage(Page<@{context.bizEnBigName}Vo> page,@{context.bizEnBigName}Dto dto);
+
 }
