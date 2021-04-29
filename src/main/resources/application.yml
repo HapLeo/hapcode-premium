@@ -37,7 +37,7 @@ model-service:
     - java.util.List
     - java.util.Map
 
-service-impl:
+model-service-impl:
   package-name: com.jbs.item.service.impl
   file-type: java
   imports:

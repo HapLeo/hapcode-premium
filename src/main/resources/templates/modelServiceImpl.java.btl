@@ -1,47 +1,37 @@
-package @{context.packageName};
+package @{content.packageName};
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import @{content.baseContent.namespacePrefix}.mapper.@{content.bizEnBigName}Mapper;
+import @{content.baseContent.namespacePrefix}.model.@{content.bizEnBigName};
+import @{content.baseContent.namespacePrefix}.service.I@{content.bizEnBigName}Service;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Map;
 
 <% var date = date(); %>
 /**
- * @{context.bizChName}服务实现类
+ * @{content.bizChName}服务实现类
  *
- * @author @{context.author}
+ * @author @{content.author}
  * @Date @{date,dateFormat="yyyy-MM-dd HH:mm:ss"}
  */
  @Service
-public class @{context.bizEnBigName}ServiceImpl extends ServiceImpl<@{context.bizEnBigName}Mapper, @{context.bizEnBigName}> implements I@{context.bizEnBigName}Service {
+public class @{content.bizEnBigName}ServiceImpl extends ServiceImpl<@{content.bizEnBigName}Mapper, @{content.bizEnBigName}> implements I@{content.bizEnBigName}Service {
 
 
-    /**
-     * 获取@{context.bizChName}列表
-     */
-    public List<@{context.bizEnBigName}Vo> selectListByPage(Page<@{context.bizEnBigName}Vo> page,@{context.bizEnBigName}Dto dto) {
-
-        List<@{context.bizEnBigName}Vo> list = baseMapper.selectListByPage(page, dto);
-        list.forEach(AbstractVo::wrap);
-        return list;
-    }
 
     /**
-     * 新增@{context.bizChName}
+     * 新增@{content.bizChName}
      *
-     * @param @{context.bizEnName}
+     * @param @{content.bizEnName}
      */
     @Override
-    public void addItem(@{context.bizEnBigName} @{context.bizEnName}) {
+    public void addItem(@{content.bizEnBigName} @{content.bizEnName}) {
 
-        validBeforeAdd(@{context.bizEnName});
-        baseMapper.insert(@{context.bizEnName});
+        validBeforeAdd(@{content.bizEnName});
+        baseMapper.insert(@{content.bizEnName});
     }
 
     /**
-     * 删除@{context.bizChName}
+     * 删除@{content.bizChName}
      *
      * @param id
      */
@@ -51,43 +41,43 @@ public class @{context.bizEnBigName}ServiceImpl extends ServiceImpl<@{context.bi
     }
 
     /**
-     * 修改@{context.bizChName}
+     * 修改@{content.bizChName}
      *
-     * @param @{context.bizEnName}
+     * @param @{content.bizEnName}
      */
     @Override
-    public void editItem(@{context.bizEnBigName} @{context.bizEnName}) {
+    public void editItem(@{content.bizEnBigName} @{content.bizEnName}) {
 
-        validBeforeEdit(@{context.bizEnName});
-        baseMapper.updateById(@{context.bizEnName});
+        validBeforeEdit(@{content.bizEnName});
+        baseMapper.updateById(@{content.bizEnName});
     }
 
-        /**
-         * 新增之前验证
-         *
-         * @param @{context.bizEnName}
-         */
-        private void validBeforeAdd(@{context.bizEnBigName} @{context.bizEnName}) {
+    /**
+     * 新增之前验证
+     *
+     * @param @{content.bizEnName}
+     */
+    private void validBeforeAdd(@{content.bizEnBigName} @{content.bizEnName}) {
 
-            validBefore(@{context.bizEnName});
-        }
+        validBefore(@{content.bizEnName});
+    }
 
-        /**
-         * 修改之前验证
-         *
-         * @param @{context.bizEnName}
-         */
-        private void validBeforeEdit(@{context.bizEnBigName} @{context.bizEnName}) {
+    /**
+     * 修改之前验证
+     *
+     * @param @{content.bizEnName}
+     */
+    private void validBeforeEdit(@{content.bizEnBigName} @{content.bizEnName}) {
 
-            validBefore(@{context.bizEnName});
-        }
+        validBefore(@{content.bizEnName});
+    }
 
-        /**
-         * 新增、修改之前的通用验证
-         *
-         * @param @{context.bizEnName}
-         */
-        private void validBefore(@{context.bizEnBigName} @{context.bizEnName}) {
-            // TODO 做一些必要的验证
-        }
+    /**
+     * 新增、修改之前的通用验证
+     *
+     * @param @{content.bizEnName}
+     */
+    private void validBefore(@{content.bizEnBigName} @{content.bizEnName}) {
+        // TODO 做一些必要的验证
+    }
 }
