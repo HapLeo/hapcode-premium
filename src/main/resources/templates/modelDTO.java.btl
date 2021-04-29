@@ -1,6 +1,8 @@
 package @{content.packageName};
 
 
+import java.io.Serializable;
+
 <% var date = date(); %>
 /**
  * @{content.bizChName}数据传输器

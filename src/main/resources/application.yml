@@ -20,29 +20,22 @@ model-dto:
   package-name: com.jbs.item.dto
   file-type: java
   imports:
-    - java.util.List
-    - java.util.Map
+    - import com.jbs.common.output.Result
 
-controller:
-  package-name: mapper
+model-controller:
+  package-name: com.jbs.item.controller
   file-type: java
   imports:
-    - java.util.List
-    - java.util.Map
 
 model-service:
   package-name: com.jbs.item.service
   file-type: java
   imports:
-    - java.util.List
-    - java.util.Map
 
 model-service-impl:
   package-name: com.jbs.item.service.impl
   file-type: java
   imports:
-    - java.util.List
-    - java.util.Map
 
 model-mapper:
   package-name: com.jbs.item.mapper

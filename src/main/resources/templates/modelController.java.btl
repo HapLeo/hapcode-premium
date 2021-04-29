@@ -1,104 +1,70 @@
-package @{context.packageName};
+package @{content.packageName};
 
-import com.baomidou.mybatisplus.core.metadata.OrderItem;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}DTO;
+import @{content.baseContent.namespacePrefix}.model.@{content.bizEnBigName};
+import @{content.baseContent.namespacePrefix}.service.I@{content.bizEnBigName}Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-import java.util.Map;
 
 <% var date = date(); %>
 /**
- * @{context.bizChName}控制器
+ * @{content.bizChName}控制器
  *
- * @author @{context.author}
+ * @author @{content.author}
  * @Date @{date,dateFormat="yyyy-MM-dd HH:mm:ss"}
  */
-@Controller
-@RequestMapping("/@{context.bizEnName}")
-public class @{context.bizEnBigName}Controller extends BaseController {
+@RestController
+@RequestMapping("/@{content.bizEnName}")
+public class @{content.bizEnBigName}Controller {
 
-    private String PREFIX = "/@{context.bizModulePath}@{context.bizEnName}/";
 
     @Autowired
-    private I@{context.bizEnBigName}Service @{context.bizEnName}Service;
+    private I@{content.bizEnBigName}Service @{content.bizEnName}Service;
 
 
     /**
-     * 跳转到@{context.bizChName}首页
-     */
-    @RequestMapping("")
-    public String index() {
-        return PREFIX + "@{context.bizEnName}.html";
-    }
-
-    /**
-     * 跳转到添加@{context.bizChName}
-     */
-    @RequestMapping("/toAdd")
-    public String toAdd() {
-        return PREFIX + "@{context.bizEnName}_add.html";
-    }
-
-    /**
-     * 跳转到修改@{context.bizChName}
-     */
-    @RequestMapping("/toEdit/{id}")
-    public String toEdit(@PathVariable("id") Integer id, Model model) {
-
-        model.addAttribute("item", @{context.bizEnName}Service.getById(id));
-        return PREFIX + "@{context.bizEnName}_edit.html";
-    }
-
-    /**
-     * 新增@{context.bizChName}
+     * 新增@{content.bizChName}
      */
     @RequestMapping(value = "/add")
     @ResponseBody
-    public Object add(@{context.bizEnBigName} @{context.bizEnName}) {
-        @{context.bizEnName}Service.addItem(@{context.bizEnName});
-        return SUCCESS_TIP;
+    public Object add(@{content.bizEnBigName} @{content.bizEnName}) {
+        @{content.bizEnName}Service.addItem(@{content.bizEnName});
+        return Result.successWithMessage("操作成功！");
     }
 
     /**
-     * 删除@{context.bizChName}
+     * 删除@{content.bizChName}
      */
     @RequestMapping(value = "/delete")
     @ResponseBody
     public Object delete(@RequestParam Integer id) {
-        @{context.bizEnName}Service.delItem(id);
-        return SUCCESS_TIP;
+        @{content.bizEnName}Service.delItem(id);
+        return Result.successWithMessage("操作成功！");
     }
 
     /**
-     * 修改@{context.bizChName}
+     * 修改@{content.bizChName}
      */
     @RequestMapping(value = "/edit")
     @ResponseBody
-    public Object edit(@{context.bizEnBigName} @{context.bizEnName}) {
-        @{context.bizEnName}Service.editItem(@{context.bizEnName});
-        return SUCCESS_TIP;
+    public Result edit(@{content.bizEnBigName} @{content.bizEnName}) {
+        @{content.bizEnName}Service.editItem(@{content.bizEnName});
+        return Result.successWithMessage("操作成功！");
     }
 
     /**
-     * 获取@{context.bizChName}列表
+     * 获取@{content.bizChName}列表
      */
     @RequestMapping(value = "/list")
     @ResponseBody
-    public Object list(@{context.bizEnBigName}Dto dto) {
+    public Result list(@{content.bizEnBigName}DTO dto) {
 
-        Page<@{context.bizEnBigName}Vo> page = PageFactory.defaultPage();
-        if (page.getOrders().size() == 0) {
-            page.setOrders(OrderItem.descs(@{context.bizEnBigName}.PRIMARY_KEY_COLUMN));
-        }
-        page.setRecords(@{context.bizEnName}Service.selectListByPage(page, dto));
-        return super.packForAPP(page);
+
+        return null;
     }
 
 }
