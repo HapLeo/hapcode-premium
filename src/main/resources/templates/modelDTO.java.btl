@@ -1,0 +1,18 @@
+package @{content.packageName};
+
+
+<% var date = date(); %>
+/**
+ * @{content.bizChName}数据传输器
+ *
+ * @author @{content.baseContent.author}
+ * @Date @{date,dateFormat="yyyy-MM-dd HH:mm:ss"}
+ */
+
+public class @{content.bizEnBigName}DTO implements Serializable {
+
+private static final long serialVersionUID = 1L;
+
+
+
+}

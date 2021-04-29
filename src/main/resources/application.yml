@@ -7,13 +7,52 @@ spring:
     password: root
 
 base-content:
-  root-path: D:\workspace\aiwoplatformat\sys-base\user-manage-server\src\main\java\
+  root-path: D:\workspace\aiwoplatformat\beauty-business\item-business-server\src\main\
+  author: wuyulin
+
 model:
-  package-name: com.jbs.usermanage.model
+  package-name: com.jbs.item.model
+  file-type: java
+
+dto:
+  root-path: D:\workspace\aiwoplatformat\beauty-business\item-business-client\src\main\
+  package-name: com.jbs.item.dto
+  file-type: java
   imports:
     - java.util.List
     - java.util.Map
 
+controller:
+  package-name: mapper
+  file-type: java
+  imports:
+    - java.util.List
+    - java.util.Map
 
+iservice:
+  package-name: com.jbs.item.service
+  file-type: java
+  imports:
+    - java.util.List
+    - java.util.Map
 
+service-impl:
+  package-name: com.jbs.item.service.impl
+  file-type: java
+  imports:
+    - java.util.List
+    - java.util.Map
 
+dao-java:
+  package-name: com.jbs.item.dto
+  file-type: java
+  imports:
+    - java.util.List
+    - java.util.Map
+
+dao-xml:
+  package-name: mapper
+  file-type: resources
+  imports:
+    - java.util.List
+    - java.util.Map

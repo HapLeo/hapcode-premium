@@ -16,10 +16,11 @@ import java.util.List;
  */
 @Data
 @Component
-@ConfigurationProperties(prefix = "content.model")
+@ConfigurationProperties(prefix = "model")
 public class ModelContent extends AbstractContent {
 
 
-    private List<String> imports;
+
+
 
 }

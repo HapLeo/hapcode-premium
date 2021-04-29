@@ -5,21 +5,11 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
- * 基础内容
+ * API的内容对象
  */
 @Data
 @Component
-@ConfigurationProperties(prefix = "base-content")
-public class BaseContent {
-
-    /**
-     * 文件路径
-     */
-    private String rootPath;
-
-    /**
-     * 作者
-     */
-    private String author;
+@ConfigurationProperties(prefix = "dto")
+public class ModelDTOContent extends AbstractContent {
 
 }

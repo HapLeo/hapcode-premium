@@ -11,8 +11,6 @@ import org.springframework.util.ResourceUtils;
 import top.hapleow.hapcodepremium.common.Const;
 import top.hapleow.hapcodepremium.common.FileUtil;
 import top.hapleow.hapcodepremium.content.AbstractContent;
-import top.hapleow.hapcodepremium.content.BaseContent;
-import top.hapleow.hapcodepremium.content.IContent;
 import top.hapleow.hapcodepremium.model.JavaTable;
 import top.hapleow.hapcodepremium.service.IBeetlGeneratorService;
 import top.hapleow.hapcodepremium.service.IFieldService;
@@ -38,10 +36,7 @@ public class BeetlGeneratorServiceImpl implements IBeetlGeneratorService {
     @Override
     public void writeToFile(String templateName, String fileName, AbstractContent content) {
 
-        BaseContent baseContent = (BaseContent) content.getBaseContent();
-
-        String filePath = baseContent.getRootPath();
-
+        String filePath = content.getFilePath();
         FileUtil.createFile(genContent(templateName, content), fileName, filePath);
     }
 
@@ -78,21 +73,19 @@ public class BeetlGeneratorServiceImpl implements IBeetlGeneratorService {
         String preName = templateName.split("\\.")[0];
         AbstractContent content = null;
         try {
-            content = (AbstractContent) applicationContext.getBean(StringUtil.toCamelCaseWithoutFirst(preName) + "Content");
+            content = (AbstractContent) applicationContext.getBean(preName + "Content");
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        BaseContent baseContent = (BaseContent) content.getBaseContent();
-
         JavaTable javaTable = tableService.getByTableName(tableName);
         if (javaTable != null) {
-            baseContent.setTable(javaTable);
+            content.setTable(javaTable);
         }
 
         String bizEnBigName = StringUtil.toCamelCase("_" + tableName);
-        String fileName = templateName.replaceFirst("Model", bizEnBigName).replace(".btl","");
+        String fileName = templateName.replaceFirst("model", bizEnBigName).replace(".btl", "");
 
         writeToFile(templateName, fileName, content);
         return genContent(templateName, content);
