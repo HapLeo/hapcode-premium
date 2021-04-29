@@ -22,6 +22,21 @@ model-dto:
   imports:
     - import com.jbs.common.output.Result
 
+model-client:
+  root-path: D:\workspace\aiwoplatformat\beauty-business\item-business-client\src\main\
+  package-name: com.jbs.item.client
+  file-type: java
+  feign-client-server: item-server
+  imports:
+    - com.jbs.common.output.Result
+
+model-client-fallback-factory:
+  root-path: D:\workspace\aiwoplatformat\beauty-business\item-business-client\src\main\
+  package-name: com.jbs.item.factory
+  file-type: java
+  imports:
+    - com.jbs.common.output.Result
+
 model-controller:
   package-name: com.jbs.item.controller
   file-type: java

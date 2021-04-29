@@ -1,0 +1,56 @@
+package @{content.packageName};
+
+import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}DTO;
+import com.jbs.common.config.FeignMultipartSupportConfig;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+<% for(import in content.imports!){ %>
+import @{import};
+<% } %>
+
+<% var date = date(); %>
+/**
+ * @{content.bizChName}客户端
+ *
+ * @author @{content.author}
+ * @Date @{date,dateFormat="yyyy-MM-dd HH:mm:ss"}
+ */
+@FeignClient(value = "@{content.feignClientServer}", configuration = FeignMultipartSupportConfig.class, fallbackFactory = @{content.bizEnBigName}ClientFallbackFactory.class)
+public interface @{content.bizEnBigName}Client {
+
+    /**
+     * 新增@{content.bizChName}
+     */
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @ResponseBody
+    Result add(@{content.bizEnBigName}DTO @{content.bizEnName});
+
+    /**
+     * 删除@{content.bizChName}
+     */
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @ResponseBody
+    Result delete(@RequestParam Integer id);
+
+    /**
+     * 修改@{content.bizChName}
+     */
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    @ResponseBody
+    Result edit(@{content.bizEnBigName}DTO @{content.bizEnName});
+
+    /**
+     * 获取@{content.bizChName}列表
+     */
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @ResponseBody
+    Result list(@{content.bizEnBigName}DTO dto);
+
+
+
+
+}

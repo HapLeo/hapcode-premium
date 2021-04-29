@@ -1,6 +1,6 @@
 package @{model.packageName};
 
-<% for(import in model.imports!){ %>
+<% for(import in content.imports!){ %>
 import @{import};
 <% } %>
 

@@ -3,6 +3,10 @@ package @{content.packageName};
 
 import java.io.Serializable;
 
+<% for(import in content.imports!){ %>
+import @{import};
+<% } %>
+
 <% var date = date(); %>
 /**
  * @{content.bizChName}数据传输器

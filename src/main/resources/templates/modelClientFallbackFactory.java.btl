@@ -1,0 +1,45 @@
+package @{content.packageName};
+
+import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}DTO;
+
+<% for(import in content.imports!){ %>
+import @{import};
+<% } %>
+
+<% var date = date(); %>
+/**
+ * @{content.bizChName} 客户端fallback
+ *
+ * @author @{content.author}
+ * @Date @{date,dateFormat="yyyy-MM-dd HH:mm:ss"}
+ */
+@Component
+public class @{content.bizEnBigName}ClientFallbackFactory implements FallbackFactory<@{content.bizEnBigName}Client> {
+
+    @Override
+    public @{content.bizEnBigName}Client create(Throwable throwable) {
+        return new @{content.bizEnBigName}Client() {
+
+
+            @Override
+            public Result add(@{content.bizEnBigName}DTO @{content.bizEnName}) {
+                return new Result(ExceptionEnum.CIRCUIT_COMMON_MSG);
+            }
+
+            @Override
+            public Result delete(@RequestParam Integer id) {
+                return new Result(ExceptionEnum.CIRCUIT_COMMON_MSG);
+            }
+
+            @Override
+            public Result edit(@{content.bizEnBigName}DTO @{content.bizEnName}) {
+                return new Result(ExceptionEnum.CIRCUIT_COMMON_MSG);
+            }
+
+            @Override
+            publilc Result list(@{content.bizEnBigName}DTO dto){
+                return new Result(ExceptionEnum.CIRCUIT_COMMON_MSG);
+            }
+        };
+    }
+}

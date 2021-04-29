@@ -3,6 +3,9 @@ package @{content.packageName};
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import @{content.baseContent.namespacePrefix}.model.@{content.bizEnBigName};
 
+<% for(import in content.imports!){ %>
+import @{import};
+<% } %>
 
 <% var date = date(); %>
 /**

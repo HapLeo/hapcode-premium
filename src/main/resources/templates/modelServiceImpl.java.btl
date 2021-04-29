@@ -6,6 +6,10 @@ import @{content.baseContent.namespacePrefix}.model.@{content.bizEnBigName};
 import @{content.baseContent.namespacePrefix}.service.I@{content.bizEnBigName}Service;
 import org.springframework.stereotype.Service;
 
+<% for(import in content.imports!){ %>
+import @{import};
+<% } %>
+
 <% var date = date(); %>
 /**
  * @{content.bizChName}服务实现类

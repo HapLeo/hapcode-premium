@@ -1,6 +1,11 @@
 package @{context.packageName};
 
 import lombok.Data;
+
+<% for(import in content.imports!){ %>
+import @{import};
+<% } %>
+
 <% var date = date(); %>
 /**
  * @{context.bizChName}数据传输器
@@ -8,6 +13,7 @@ import lombok.Data;
  * @author @{context.author}
  * @Date @{date,dateFormat="yyyy-MM-dd HH:mm:ss"}
  */
+
 @Data
 public class @{context.bizEnBigName}Vo implements Serializable {
 

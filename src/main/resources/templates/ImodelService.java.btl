@@ -3,6 +3,10 @@ package @{content.packageName};
 import com.baomidou.mybatisplus.extension.service.IService;
 import @{content.baseContent.namespacePrefix}.model.@{content.bizEnBigName};
 
+<% for(import in content.imports!){ %>
+import @{import};
+<% } %>
+
 <% var date = date(); %>
 /**
  * @{content.bizChName}服务接口
