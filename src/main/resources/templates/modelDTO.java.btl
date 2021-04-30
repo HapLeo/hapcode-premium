@@ -7,6 +7,9 @@ import java.io.Serializable;
 import @{import};
 <% } %>
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 <% var date = date(); %>
 /**
  * @{content.bizChName}数据传输器
@@ -14,10 +17,25 @@ import @{import};
  * @author @{content.baseContent.author}
  * @Date @{date,dateFormat="yyyy-MM-dd HH:mm:ss"}
  */
-
+@Data
+@EqualsAndHashCode(callSuper = false)
 public class @{content.bizEnBigName}DTO implements Serializable {
 
-private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
+
+
+<% for(item in content.table.fields!){ %>
+
+    <%{ %>
+
+    /**
+     * @{item.comment!}
+     */
+    private @{item.javaType} @{item.propertyName};
+    <%}%>
+<% } %>
+
+
 
 
 

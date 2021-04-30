@@ -1,6 +1,11 @@
 package @{content.packageName};
 
+import com.jbs.common.exception.ExceptionEnum;
+import @{content.baseContent.namespacePrefix}.client.@{content.bizEnBigName}Client;
 import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}DTO;
+import feign.hystrix.FallbackFactory;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestParam;
 
 <% for(import in content.imports!){ %>
 import @{import};
@@ -22,7 +27,7 @@ public class @{content.bizEnBigName}ClientFallbackFactory implements FallbackFac
 
 
             @Override
-            public Result add(@{content.bizEnBigName}DTO @{content.bizEnName}) {
+            public Result insert(@{content.bizEnBigName}DTO @{content.bizEnName}) {
                 return new Result(ExceptionEnum.CIRCUIT_COMMON_MSG);
             }
 
@@ -32,12 +37,12 @@ public class @{content.bizEnBigName}ClientFallbackFactory implements FallbackFac
             }
 
             @Override
-            public Result edit(@{content.bizEnBigName}DTO @{content.bizEnName}) {
+            public Result update(@{content.bizEnBigName}DTO @{content.bizEnName}) {
                 return new Result(ExceptionEnum.CIRCUIT_COMMON_MSG);
             }
 
             @Override
-            publilc Result list(@{content.bizEnBigName}DTO dto){
+            public Result list(@{content.bizEnBigName}DTO dto){
                 return new Result(ExceptionEnum.CIRCUIT_COMMON_MSG);
             }
         };

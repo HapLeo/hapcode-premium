@@ -31,8 +31,8 @@ public class @{content.bizEnBigName}Controller {
      */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public Result add(@{content.bizEnBigName} @{content.bizEnName}) {
-        @{content.bizEnName}Service.addItem(@{content.bizEnName});
+    public Result insert(@{content.bizEnBigName}DTO @{content.bizEnName}) {
+        @{content.bizEnName}Service.insert(@{content.bizEnName});
         return Result.successWithMessage("操作成功！");
     }
 
@@ -42,17 +42,17 @@ public class @{content.bizEnBigName}Controller {
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
     public Result delete(@RequestParam Integer id) {
-        @{content.bizEnName}Service.delItem(id);
+        @{content.bizEnName}Service.delete(id);
         return Result.successWithMessage("操作成功！");
     }
 
     /**
      * 修改@{content.bizChName}
      */
-    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
-    public Result edit(@{content.bizEnBigName} @{content.bizEnName}) {
-        @{content.bizEnName}Service.editItem(@{content.bizEnName});
+    public Result update(@{content.bizEnBigName}DTO @{content.bizEnName}) {
+        @{content.bizEnName}Service.update(@{content.bizEnName});
         return Result.successWithMessage("操作成功！");
     }
 
@@ -63,8 +63,7 @@ public class @{content.bizEnBigName}Controller {
     @ResponseBody
     public Result list(@{content.bizEnBigName}DTO dto) {
 
-
-        return null;
+        return Result.successWithData(@{content.bizEnName}Service.list(dto));
     }
 
 }

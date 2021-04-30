@@ -3,8 +3,11 @@ package @{content.packageName};
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import @{content.baseContent.namespacePrefix}.mapper.@{content.bizEnBigName}Mapper;
 import @{content.baseContent.namespacePrefix}.model.@{content.bizEnBigName};
+import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}DTO;
 import @{content.baseContent.namespacePrefix}.service.I@{content.bizEnBigName}Service;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 <% for(import in content.imports!){ %>
 import @{import};
@@ -28,10 +31,11 @@ public class @{content.bizEnBigName}ServiceImpl extends ServiceImpl<@{content.bi
      * @param @{content.bizEnName}
      */
     @Override
-    public void addItem(@{content.bizEnBigName} @{content.bizEnName}) {
+    public void insert(@{content.bizEnBigName}DTO @{content.bizEnName}) {
 
-        validBeforeAdd(@{content.bizEnName});
-        baseMapper.insert(@{content.bizEnName});
+        insertCheck(@{content.bizEnName});
+        @{content.bizEnBigName} insertItem = new @{content.bizEnBigName}();
+        insertItem.insert();
     }
 
     /**
@@ -40,8 +44,12 @@ public class @{content.bizEnBigName}ServiceImpl extends ServiceImpl<@{content.bi
      * @param id
      */
     @Override
-    public void delItem(Integer id) {
-        baseMapper.deleteById(id);
+    public void delete(Integer id) {
+
+        @{content.bizEnBigName} updateItem = new @{content.bizEnBigName}();
+        updateItem.setId(id);
+        updateItem.setDelete(true);
+        updateItem.updateById();
     }
 
     /**
@@ -50,10 +58,24 @@ public class @{content.bizEnBigName}ServiceImpl extends ServiceImpl<@{content.bi
      * @param @{content.bizEnName}
      */
     @Override
-    public void editItem(@{content.bizEnBigName} @{content.bizEnName}) {
+    public void update(@{content.bizEnBigName}DTO @{content.bizEnName}) {
 
-        validBeforeEdit(@{content.bizEnName});
-        baseMapper.updateById(@{content.bizEnName});
+        updateCheck(@{content.bizEnName});
+
+        @{content.bizEnBigName} updateItem = new @{content.bizEnBigName}();
+        updateItem.setId(@{content.bizEnName}.getId());
+        updateItem.updateById();
+    }
+
+    /**
+     * 查询@{content.bizChName}
+     *
+     * @param dto
+     */
+    @Override
+    public List<@{content.bizEnBigName}> list(@{content.bizEnBigName}DTO dto) {
+
+        return baseMapper.list(dto);
     }
 
     /**
@@ -61,9 +83,12 @@ public class @{content.bizEnBigName}ServiceImpl extends ServiceImpl<@{content.bi
      *
      * @param @{content.bizEnName}
      */
-    private void validBeforeAdd(@{content.bizEnBigName} @{content.bizEnName}) {
+    private void insertCheck(@{content.bizEnBigName}DTO @{content.bizEnName}) {
 
-        validBefore(@{content.bizEnName});
+        commonCheck(@{content.bizEnName});
+
+        @{content.bizEnBigName} insertItem = new @{content.bizEnBigName}();
+        insertItem.insert();
     }
 
     /**
@@ -71,9 +96,9 @@ public class @{content.bizEnBigName}ServiceImpl extends ServiceImpl<@{content.bi
      *
      * @param @{content.bizEnName}
      */
-    private void validBeforeEdit(@{content.bizEnBigName} @{content.bizEnName}) {
+    private void updateCheck(@{content.bizEnBigName}DTO @{content.bizEnName}) {
 
-        validBefore(@{content.bizEnName});
+        commonCheck(@{content.bizEnName});
     }
 
     /**
@@ -81,7 +106,7 @@ public class @{content.bizEnBigName}ServiceImpl extends ServiceImpl<@{content.bi
      *
      * @param @{content.bizEnName}
      */
-    private void validBefore(@{content.bizEnBigName} @{content.bizEnName}) {
+    private void commonCheck(@{content.bizEnBigName}DTO @{content.bizEnName}) {
         // TODO 做一些必要的验证
     }
 }

@@ -4,6 +4,7 @@ import lombok.Data;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 @Data
 public class JavaTypeConverter {
@@ -25,6 +26,8 @@ public class JavaTypeConverter {
         types.put("date", "LocalDate");
         types.put("datetime", "LocalDateTime");
 
+        types.put("boolean", "boolean");
+
     }
 
 
@@ -36,8 +39,13 @@ public class JavaTypeConverter {
      */
     public static String convert(String type) {
 
+        type = type.toLowerCase().split(" ")[0];
+
         for (String key : types.keySet()) {
-            if (key.contains(type.toLowerCase())) {
+            if (Objects.equals(key, type)) {
+                return types.get(key);
+            }
+            if (key.contains(type)) {
                 return types.get(key);
             }
         }

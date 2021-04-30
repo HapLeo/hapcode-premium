@@ -34,6 +34,8 @@ public class JavaTable implements Serializable {
 
     public JavaTable(String name, String comment) {
         this.name = name;
-        this.comment = comment;
+        if (comment != null && comment.endsWith("表")) {
+            this.comment = comment.substring(0, comment.length() - 1);
+        }
     }
 }

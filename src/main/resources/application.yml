@@ -20,7 +20,6 @@ model-dto:
   package-name: com.jbs.item.dto
   file-type: java
   imports:
-    - import com.jbs.common.output.Result
 
 model-client:
   root-path: D:\workspace\aiwoplatformat\beauty-business\item-business-client\src\main\
@@ -38,9 +37,10 @@ model-client-fallback-factory:
     - com.jbs.common.output.Result
 
 model-controller:
-  package-name: com.jbs.item.controller
+  package-name: com.jbs.item.web
   file-type: java
   imports:
+    - com.jbs.common.output.Result
 
 model-service:
   package-name: com.jbs.item.service
@@ -56,8 +56,6 @@ model-mapper:
   package-name: com.jbs.item.mapper
   file-type: java
   imports:
-    - import java.util.List
-    - import java.util.Map
 
 model-mapper-xml:
   package-name: mapper

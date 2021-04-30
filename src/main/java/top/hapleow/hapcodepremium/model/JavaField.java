@@ -58,7 +58,13 @@ public class JavaField {
         this.type = type;
         this.comment = comment;
         this.nullable = nullable;
-        this.propertyName = StringUtil.toCamelCase(field);
-        this.javaType = JavaTypeConverter.convert(type);
+
+        if (field.startsWith("is_")) {
+            this.propertyName = StringUtil.toCamelCase(field.substring(3));
+            this.javaType = "boolean";
+        } else {
+            this.propertyName = StringUtil.toCamelCase(field);
+            this.javaType = JavaTypeConverter.convert(type);
+        }
     }
 }

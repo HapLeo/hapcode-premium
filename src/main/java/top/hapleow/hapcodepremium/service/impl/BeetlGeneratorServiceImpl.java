@@ -82,7 +82,9 @@ public class BeetlGeneratorServiceImpl implements IBeetlGeneratorService {
             content = (AbstractContent) applicationContext.getBean(preName + "Content");
 
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            System.out.println("未找到配置内容：" + preName + "Content");
+            return null;
         }
 
         JavaTable javaTable = tableService.getByTableName(tableName);

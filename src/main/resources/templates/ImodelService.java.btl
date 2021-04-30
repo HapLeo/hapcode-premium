@@ -2,6 +2,9 @@ package @{content.packageName};
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import @{content.baseContent.namespacePrefix}.model.@{content.bizEnBigName};
+import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}DTO;
+
+import java.util.List;
 
 <% for(import in content.imports!){ %>
 import @{import};
@@ -20,17 +23,22 @@ public interface I@{content.bizEnBigName}Service extends IService<@{content.bizE
     /**
      * 新增@{content.bizChName}
      */
-    void addItem(@{content.bizEnBigName} @{content.bizEnName});
+    void insert(@{content.bizEnBigName}DTO @{content.bizEnName});
 
     /**
      * 删除@{content.bizChName}
      */
-    void delItem(Integer id);
+    void delete(Integer id);
 
     /**
      * 修改@{content.bizChName}
      */
-    void editItem(@{content.bizEnBigName} @{content.bizEnName});
+    void update(@{content.bizEnBigName}DTO @{content.bizEnName});
+
+    /**
+     * 查询@{content.bizChName}
+     */
+    List<@{content.bizEnBigName}> list(@{content.bizEnBigName}DTO dto);
 
 
 }
