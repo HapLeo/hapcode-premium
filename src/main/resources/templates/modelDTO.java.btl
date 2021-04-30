@@ -29,7 +29,7 @@ public class @{content.bizEnBigName}DTO implements Serializable {
     <%{ %>
 
     /**
-     * @{item.comment!}
+     * @desc @{item.comment!}
      */
     private @{item.javaType} @{item.propertyName};
     <%}%>
