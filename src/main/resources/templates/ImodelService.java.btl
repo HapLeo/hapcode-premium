@@ -23,7 +23,7 @@ public interface I@{content.bizEnBigName}Service extends IService<@{content.bizE
     /**
      * 新增@{content.bizChName}
      */
-    void insert(@{content.bizEnBigName}DTO @{content.bizEnName});
+    void insert(@{content.bizEnBigName}DTO dto);
 
     /**
      * 删除@{content.bizChName}
@@ -33,7 +33,7 @@ public interface I@{content.bizEnBigName}Service extends IService<@{content.bizE
     /**
      * 修改@{content.bizChName}
      */
-    void update(@{content.bizEnBigName}DTO @{content.bizEnName});
+    void update(@{content.bizEnBigName}DTO dto);
 
     /**
      * 查询@{content.bizChName}

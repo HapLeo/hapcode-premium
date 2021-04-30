@@ -28,7 +28,7 @@ public interface @{content.bizEnBigName}Client {
      */
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     @ResponseBody
-    Result insert(@{content.bizEnBigName}DTO @{content.bizEnName});
+    Result insert(@{content.bizEnBigName}DTO dto);
 
     /**
      * 删除@{content.bizChName}
@@ -42,7 +42,7 @@ public interface @{content.bizEnBigName}Client {
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
-    Result update(@{content.bizEnBigName}DTO @{content.bizEnName});
+    Result update(@{content.bizEnBigName}DTO dto);
 
     /**
      * 获取@{content.bizChName}列表

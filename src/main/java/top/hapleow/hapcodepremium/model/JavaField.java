@@ -61,7 +61,7 @@ public class JavaField {
 
         if (field.startsWith("is_")) {
             this.propertyName = StringUtil.toCamelCase(field.substring(3));
-            this.javaType = "boolean";
+            this.javaType = "Boolean";
         } else {
             this.propertyName = StringUtil.toCamelCase(field);
             this.javaType = JavaTypeConverter.convert(type);

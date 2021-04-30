@@ -22,11 +22,12 @@ public class JavaTypeConverter {
         types.put("tinyint", "Integer");
         types.put("int", "Integer");
         types.put("long", "Long");
+        types.put("bigint", "Long");
 
         types.put("date", "LocalDate");
         types.put("datetime", "LocalDateTime");
 
-        types.put("boolean", "boolean");
+        types.put("boolean", "Boolean");
 
     }
 

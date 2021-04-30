@@ -14,12 +14,15 @@ base-content:
 model:
   package-name: com.jbs.item.model
   file-type: java
+  imports:
+    - java.time.LocalDateTime
 
 model-dto:
   root-path: D:\workspace\aiwoplatformat\beauty-business\item-business-client\src\main\
   package-name: com.jbs.item.dto
   file-type: java
   imports:
+    - java.time.LocalDateTime
 
 model-client:
   root-path: D:\workspace\aiwoplatformat\beauty-business\item-business-client\src\main\
@@ -60,6 +63,3 @@ model-mapper:
 model-mapper-xml:
   package-name: mapper
   file-type: resources
-  imports:
-    - java.util.List
-    - java.util.Map
