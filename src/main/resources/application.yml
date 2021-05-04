@@ -17,7 +17,23 @@ model:
   imports:
     - java.time.LocalDateTime
 
-model-dto:
+model-insert-dto:
+  root-path: D:\workspace\aiwoplatformat\beauty-business\item-business-client\src\main\
+  package-name: com.jbs.item.dto
+  file-type: java
+  imports:
+    - java.time.LocalDateTime
+
+
+model-update-dto:
+  root-path: D:\workspace\aiwoplatformat\beauty-business\item-business-client\src\main\
+  package-name: com.jbs.item.dto
+  file-type: java
+  imports:
+    - java.time.LocalDateTime
+
+
+model-list-dto:
   root-path: D:\workspace\aiwoplatformat\beauty-business\item-business-client\src\main\
   package-name: com.jbs.item.dto
   file-type: java

@@ -3,7 +3,9 @@ package @{content.packageName};
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import @{content.baseContent.namespacePrefix}.mapper.@{content.bizEnBigName}Mapper;
 import @{content.baseContent.namespacePrefix}.model.@{content.bizEnBigName};
-import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}DTO;
+import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}InsertDTO;
+import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}UpdateDTO;
+import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}ListDTO;
 import @{content.baseContent.namespacePrefix}.service.I@{content.bizEnBigName}Service;
 import org.springframework.stereotype.Service;
 
@@ -28,10 +30,10 @@ public class @{content.bizEnBigName}ServiceImpl extends ServiceImpl<@{content.bi
     /**
      * 新增@{content.bizChName}
      *
-     * @param @{content.bizEnName}
+     * @param dto
      */
     @Override
-    public void insert(@{content.bizEnBigName}DTO dto) {
+    public void insert(@{content.bizEnBigName}InsertDTO dto) {
 
         insertCheck(dto);
         @{content.bizEnBigName} insertItem = new @{content.bizEnBigName}();
@@ -55,15 +57,15 @@ public class @{content.bizEnBigName}ServiceImpl extends ServiceImpl<@{content.bi
     /**
      * 修改@{content.bizChName}
      *
-     * @param @{content.bizEnName}
+     * @param dto
      */
     @Override
-    public void update(@{content.bizEnBigName}DTO dto) {
+    public void update(@{content.bizEnBigName}UpdateDTO dto) {
 
         updateCheck(dto);
 
         @{content.bizEnBigName} updateItem = new @{content.bizEnBigName}();
-        updateItem.setId(@{content.bizEnName}.getId());
+        updateItem.setId(dto.getId());
         updateItem.updateById();
     }
 
@@ -73,7 +75,7 @@ public class @{content.bizEnBigName}ServiceImpl extends ServiceImpl<@{content.bi
      * @param dto
      */
     @Override
-    public List<@{content.bizEnBigName}> list(@{content.bizEnBigName}DTO dto) {
+    public List<@{content.bizEnBigName}> list(@{content.bizEnBigName}ListDTO dto) {
 
         return baseMapper.list(dto);
     }
@@ -81,32 +83,19 @@ public class @{content.bizEnBigName}ServiceImpl extends ServiceImpl<@{content.bi
     /**
      * 新增之前验证
      *
-     * @param @{content.bizEnName}
+     * @param dto
      */
-    private void insertCheck(@{content.bizEnBigName}DTO dto) {
+    private void insertCheck(@{content.bizEnBigName}InsertDTO dto) {
 
-        commonCheck(dto);
 
-        @{content.bizEnBigName} insertItem = new @{content.bizEnBigName}();
-        insertItem.insert();
     }
 
     /**
      * 修改之前验证
      *
-     * @param @{content.bizEnName}
+     * @param dto
      */
-    private void updateCheck(@{content.bizEnBigName}DTO dto) {
+    private void updateCheck(@{content.bizEnBigName}UpdateDTO dto) {
 
-        commonCheck(@{content.bizEnName});
-    }
-
-    /**
-     * 新增、修改之前的通用验证
-     *
-     * @param @{content.bizEnName}
-     */
-    private void commonCheck(@{content.bizEnBigName}DTO dto) {
-        // TODO 做一些必要的验证
     }
 }

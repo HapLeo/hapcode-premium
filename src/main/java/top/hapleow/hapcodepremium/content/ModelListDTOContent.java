@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  */
 @Data
 @Component
-@ConfigurationProperties(prefix = "model-dto")
-public class ModelDTOContent extends AbstractContent {
+@ConfigurationProperties(prefix = "model-list-dto")
+public class ModelListDTOContent extends AbstractContent {
 
 }

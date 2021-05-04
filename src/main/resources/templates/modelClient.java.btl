@@ -1,6 +1,8 @@
 package @{content.packageName};
 
-import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}DTO;
+import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}InsertDTO;
+import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}UpdateDTO;
+import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}ListDTO;
 import com.jbs.common.config.FeignMultipartSupportConfig;
 import @{content.baseContent.namespacePrefix}.factory.@{content.bizEnBigName}ClientFallbackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -28,7 +30,7 @@ public interface @{content.bizEnBigName}Client {
      */
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     @ResponseBody
-    Result insert(@{content.bizEnBigName}DTO dto);
+    Result insert(@{content.bizEnBigName}InsertDTO dto);
 
     /**
      * 删除@{content.bizChName}
@@ -42,14 +44,14 @@ public interface @{content.bizEnBigName}Client {
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
-    Result update(@{content.bizEnBigName}DTO dto);
+    Result update(@{content.bizEnBigName}UpdateDTO dto);
 
     /**
      * 获取@{content.bizChName}列表
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    Result list(@{content.bizEnBigName}DTO dto);
+    Result list(@{content.bizEnBigName}ListDTO dto);
 
 
 

@@ -1,6 +1,8 @@
 package @{content.packageName};
 
-import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}DTO;
+import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}InsertDTO;
+import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}UpdateDTO;
+import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}ListDTO;
 import @{content.baseContent.namespacePrefix}.model.@{content.bizEnBigName};
 import @{content.baseContent.namespacePrefix}.service.I@{content.bizEnBigName}Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +33,7 @@ public class @{content.bizEnBigName}Controller {
      */
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     @ResponseBody
-    public Result insert(@{content.bizEnBigName}DTO dto) {
+    public Result insert(@{content.bizEnBigName}InsertDTO dto) {
         @{content.bizEnName}Service.insert(dto);
         return Result.successWithMessage("操作成功！");
     }
@@ -51,7 +53,7 @@ public class @{content.bizEnBigName}Controller {
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
-    public Result update(@{content.bizEnBigName}DTO dto) {
+    public Result update(@{content.bizEnBigName}UpdateDTO dto) {
         @{content.bizEnName}Service.update(dto);
         return Result.successWithMessage("操作成功！");
     }
@@ -61,7 +63,7 @@ public class @{content.bizEnBigName}Controller {
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public Result list(@{content.bizEnBigName}DTO dto) {
+    public Result list(@{content.bizEnBigName}ListDTO dto) {
 
         return Result.successWithData(@{content.bizEnName}Service.list(dto));
     }
