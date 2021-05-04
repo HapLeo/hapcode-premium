@@ -11,6 +11,7 @@ import org.springframework.util.ResourceUtils;
 import top.hapleow.hapcodepremium.common.Const;
 import top.hapleow.hapcodepremium.common.FileUtil;
 import top.hapleow.hapcodepremium.content.AbstractContent;
+import top.hapleow.hapcodepremium.dto.CodingDTO.CodingDto;
 import top.hapleow.hapcodepremium.model.JavaTable;
 import top.hapleow.hapcodepremium.service.IBeetlGeneratorService;
 import top.hapleow.hapcodepremium.service.IFieldService;
@@ -19,6 +20,7 @@ import top.hapleow.hapcodepremium.util.StringUtil;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 @Service
 public class BeetlGeneratorServiceImpl implements IBeetlGeneratorService {
@@ -67,8 +69,7 @@ public class BeetlGeneratorServiceImpl implements IBeetlGeneratorService {
         return text;
     }
 
-    @Override
-    public String coding(String templateName, String tableName) {
+    private String codingOne(String templateName, String tableName) {
 
         String preName = templateName.split("\\.")[0];
         if (templateName.contains(".xml.")) {
@@ -100,7 +101,7 @@ public class BeetlGeneratorServiceImpl implements IBeetlGeneratorService {
     }
 
     @Override
-    public void codingAll(String tableName) {
+    public void codingAll(CodingDto dto) {
 
         File file = null;
         try {
@@ -110,9 +111,20 @@ public class BeetlGeneratorServiceImpl implements IBeetlGeneratorService {
         }
         File[] files = file.listFiles();
         for (File tempName : files) {
-            coding(tempName.getName(), tableName);
+            dto.getTableNames().forEach(item -> codingOne(tempName.getName(), item));
         }
     }
 
+    @Override
+    public void coding(CodingDto dto) {
 
+        List<String> tableNames = dto.getTableNames();
+        List<String> templateNames = dto.getTemplateNames();
+
+        for (String tableName : tableNames) {
+            for (String templateName : templateNames) {
+                codingOne(templateName, tableName);
+            }
+        }
+    }
 }

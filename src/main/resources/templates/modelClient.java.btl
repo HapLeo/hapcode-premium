@@ -6,10 +6,7 @@ import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}ListDTO
 import com.jbs.common.config.FeignMultipartSupportConfig;
 import @{content.baseContent.namespacePrefix}.factory.@{content.bizEnBigName}ClientFallbackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 <% for(import in content.imports!){ %>
 import @{import};
@@ -30,7 +27,7 @@ public interface @{content.bizEnBigName}Client {
      */
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     @ResponseBody
-    Result insert(@{content.bizEnBigName}InsertDTO dto);
+    Result insert(@RequestBody @{content.bizEnBigName}InsertDTO dto);
 
     /**
      * 删除@{content.bizChName}
@@ -44,14 +41,14 @@ public interface @{content.bizEnBigName}Client {
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
-    Result update(@{content.bizEnBigName}UpdateDTO dto);
+    Result update(@RequestBody @{content.bizEnBigName}UpdateDTO dto);
 
     /**
      * 获取@{content.bizChName}列表
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    Result list(@{content.bizEnBigName}ListDTO dto);
+    Result list(@RequestBody @{content.bizEnBigName}ListDTO dto);
 
 
 

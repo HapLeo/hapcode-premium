@@ -33,7 +33,7 @@ public class @{content.bizEnBigName}Controller {
      */
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     @ResponseBody
-    public Result insert(@{content.bizEnBigName}InsertDTO dto) {
+    public Result insert(@RequestBody @{content.bizEnBigName}InsertDTO dto) {
         @{content.bizEnName}Service.insert(dto);
         return Result.successWithMessage("操作成功！");
     }
@@ -53,7 +53,7 @@ public class @{content.bizEnBigName}Controller {
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
-    public Result update(@{content.bizEnBigName}UpdateDTO dto) {
+    public Result update(@RequestBody @{content.bizEnBigName}UpdateDTO dto) {
         @{content.bizEnName}Service.update(dto);
         return Result.successWithMessage("操作成功！");
     }
@@ -63,7 +63,7 @@ public class @{content.bizEnBigName}Controller {
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public Result list(@{content.bizEnBigName}ListDTO dto) {
+    public Result list(@RequestBody @{content.bizEnBigName}ListDTO dto) {
 
         return Result.successWithData(@{content.bizEnName}Service.list(dto));
     }

@@ -1,6 +1,7 @@
 package top.hapleow.hapcodepremium.service;
 
 import top.hapleow.hapcodepremium.content.AbstractContent;
+import top.hapleow.hapcodepremium.dto.CodingDTO.CodingDto;
 
 /**
  * Beetl生成器服务
@@ -23,21 +24,18 @@ public interface IBeetlGeneratorService {
      */
     String genContent(String templateName, AbstractContent content);
 
-
-    /**
-     * 编辑单个文件
-     *
-     * @param templateName
-     * @param tableName
-     * @return
-     */
-    String coding(String templateName, String tableName);
-
     /**
      * 生成所有文件
      *
      * @return
+     * @param dto
      */
-    void codingAll(String tableName);
+    void codingAll(CodingDto dto);
 
+    /**
+     * 根据指定模板列表和数据库表列表生成
+     *
+     * @param dto
+     */
+    void coding(CodingDto dto);
 }

@@ -2,12 +2,14 @@ package top.hapleow.hapcodepremium.dto.CodingDTO;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class CodingDto {
 
-    private String templateName;
+    private List<String> templateNames;
 
 
-    private String tableName;
+    private List<String> tableNames;
 
 }
