@@ -2,7 +2,7 @@ package @{content.packageName};
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import @{content.baseContent.namespacePrefix}.model.@{content.bizEnBigName};
-import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}DTO;
+import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}ListDTO;
 
 import java.util.List;
 
@@ -19,5 +19,5 @@ import @{import};
  */
 public interface @{content.bizEnBigName}Mapper extends BaseMapper<@{content.bizEnBigName}> {
 
-       List<@{content.bizEnBigName}> list(@{content.bizEnBigName}DTO dto);
+       List<@{content.bizEnBigName}> list(@{content.bizEnBigName}ListDTO dto);
 }
