@@ -34,7 +34,7 @@ public class @{content.bizEnBigName}ClientFallbackFactory implements FallbackFac
             }
 
             @Override
-            public Result delete(@RequestParam Integer id) {
+            public Result delete(Integer id) {
                 return new Result(ExceptionEnum.CIRCUIT_COMMON_MSG);
             }
 
