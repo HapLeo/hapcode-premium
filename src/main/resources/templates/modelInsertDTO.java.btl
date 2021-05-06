@@ -26,7 +26,7 @@ public class @{content.bizEnBigName}InsertDTO implements Serializable {
 
 
 <% for(item in content.table.fields!){ %>
-     <% if(item.propertyName == "createTime" || item.propertyName == "updateTime" || item.propertyName == "delete") { continue; }%>
+     <% if(item.propertyName == "createTime" || item.propertyName == "updateTime" || item.propertyName == "deleted") { continue; }%>
 
     /**
      * @desc @{item.comment!}

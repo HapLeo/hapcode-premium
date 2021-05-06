@@ -1,0 +1,37 @@
+
+### 优惠券全量生成
+POST http://localhost:8080/hapcode/coding
+Content-Type: application/json
+
+{
+  "tableNames":["item_coupon","item_coupon_plan","item_coupon_got","item_coupon_plan_detail","item_coupon_history","item_coupon_goods_size"],
+  "templateNames":[
+    "model.java.btl",
+    "modelInsertDTO.java.btl",
+    "modelUpdateDTO.java.btl",
+    "modelListDTO.java.btl",
+    "modelVO.java.btl",
+    "modelClient.java.btl",
+    "modelClientFallbackFactory.java.btl",
+    "modelController.java.btl",
+    "ImodelService.java.btl",
+    "modelServiceImpl.java.btl",
+    "modelMapper.java.btl",
+    "modelMapper.xml.btl"
+  ]
+}
+
+
+### 优惠券生成VO
+POST http://localhost:8080/hapcode/coding
+Content-Type: application/json
+
+{
+  "tableNames":["item_coupon","item_coupon_plan","item_coupon_got","item_coupon_plan_detail","item_coupon_history","item_coupon_goods_size"],
+  "templateNames":[
+    "modelVO.java.btl"
+  ]
+}
+
+###
+

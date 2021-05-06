@@ -40,6 +40,13 @@ model-list-dto:
   imports:
     - java.time.LocalDateTime
 
+
+model-vo:
+  root-path: D:\workspace\aiwoplatformat\beauty-business\item-business-client\src\main\
+  package-name: com.jbs.item.vo
+  file-type: java
+  imports:
+
 model-client:
   root-path: D:\workspace\aiwoplatformat\beauty-business\item-business-client\src\main\
   package-name: com.jbs.item.client
