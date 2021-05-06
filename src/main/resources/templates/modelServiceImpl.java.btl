@@ -50,7 +50,7 @@ public class @{content.bizEnBigName}ServiceImpl extends ServiceImpl<@{content.bi
 
         @{content.bizEnBigName} updateItem = new @{content.bizEnBigName}();
         updateItem.setId(id);
-        updateItem.setDelete(true);
+        updateItem.setDeleted(true);
         updateItem.updateById();
     }
 
