@@ -2,9 +2,12 @@ package @{content.packageName};
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 import java.time.LocalDateTime;
 <% for(import in content.imports!){ %>
@@ -20,6 +23,7 @@ import @{import};
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
 public class @{content.bizEnBigName} extends Model<@{content.bizEnBigName}>{
 
 <% for(item in content.table.fields!){ %>
@@ -29,6 +33,15 @@ public class @{content.bizEnBigName} extends Model<@{content.bizEnBigName}>{
      */
     @TableId(type = IdType.AUTO)
     private @{item.javaType} @{item.propertyName};
+    <%}else if(item.propertyName == "deleted"){ %>
+
+    /**
+     * @{item.comment!}
+     */
+    @TableField("is_deleted")
+    @TableLogic(value = "0", delval = "1")
+    private @{item.javaType} @{item.propertyName};
+
     <%}else{ %>
 
     /**

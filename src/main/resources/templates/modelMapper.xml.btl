@@ -3,7 +3,7 @@
 <mapper namespace="@{content.baseContent.namespacePrefix}.mapper.@{content.bizEnBigName}Mapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="@{content.baseContent.namespacePrefix}.model.@{content.bizEnBigName}">
+    <resultMap id="BaseResultMap" type="@{content.baseContent.namespacePrefix}.vo.@{content.bizEnBigName}VO">
     <% for(item in content.table.fields!){ %>
         <% if(item.key == "PRI"){ %>
         <id column="@{item.field}" property="@{item.propertyName}"/>
@@ -27,7 +27,6 @@
     </sql>
 
     <select id="list" resultMap="BaseResultMap">
-        select
         <include refid="Base_Column_List" />
         from @{content.table.name} t1
         where 1=1

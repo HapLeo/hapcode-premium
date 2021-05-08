@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import lombok.experimental.Accessors;
+
 <% for(import in content.imports!){ %>
 import @{import};
 <% } %>
@@ -17,6 +19,7 @@ import @{import};
  */
 
 @Data
+@Accessors(chain = true)
 public class @{content.bizEnBigName}VO implements Serializable {
 
     private static final long serialVersionUID = 1L;

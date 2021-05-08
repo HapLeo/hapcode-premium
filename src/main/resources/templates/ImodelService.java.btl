@@ -5,6 +5,7 @@ import @{content.baseContent.namespacePrefix}.model.@{content.bizEnBigName};
 import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}InsertDTO;
 import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}UpdateDTO;
 import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}ListDTO;
+import @{content.baseContent.namespacePrefix}.vo.@{content.bizEnBigName}VO;
 
 import java.util.List;
 
@@ -40,7 +41,7 @@ public interface I@{content.bizEnBigName}Service extends IService<@{content.bizE
     /**
      * 查询@{content.bizChName}
      */
-    List<@{content.bizEnBigName}> list(@{content.bizEnBigName}ListDTO dto);
+    List<@{content.bizEnBigName}VO> list(@{content.bizEnBigName}ListDTO dto, Page<@{content.bizEnBigName}VO> page);
 
 
 }

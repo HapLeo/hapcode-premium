@@ -6,6 +6,7 @@ import @{content.baseContent.namespacePrefix}.model.@{content.bizEnBigName};
 import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}InsertDTO;
 import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}UpdateDTO;
 import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}ListDTO;
+import @{content.baseContent.namespacePrefix}.vo.@{content.bizEnBigName}VO;
 import @{content.baseContent.namespacePrefix}.service.I@{content.bizEnBigName}Service;
 import org.springframework.stereotype.Service;
 
@@ -75,7 +76,7 @@ public class @{content.bizEnBigName}ServiceImpl extends ServiceImpl<@{content.bi
      * @param dto
      */
     @Override
-    public List<@{content.bizEnBigName}> list(@{content.bizEnBigName}ListDTO dto) {
+    public List<@{content.bizEnBigName}VO> list(@{content.bizEnBigName}ListDTO dto) {
 
         return baseMapper.list(dto);
     }

@@ -1,8 +1,10 @@
 package @{content.packageName};
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}InsertDTO;
 import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}UpdateDTO;
 import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}ListDTO;
+import @{content.baseContent.namespacePrefix}.vo.@{content.bizEnBigName}VO;
 import @{content.baseContent.namespacePrefix}.model.@{content.bizEnBigName};
 import @{content.baseContent.namespacePrefix}.service.I@{content.bizEnBigName}Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,7 +69,9 @@ public class @{content.bizEnBigName}Controller {
     @ResponseBody
     public Result list(@RequestBody @Valid @{content.bizEnBigName}ListDTO dto) {
 
-        return Result.successWithData(@{content.bizEnName}Service.list(dto));
+        Page<@{content.bizEnBigName}VO> page = new Page<>();
+        page.setRecords(@{content.bizEnName}Service.list(dto, page));
+        return Result.successWithData(page);
     }
 
 }

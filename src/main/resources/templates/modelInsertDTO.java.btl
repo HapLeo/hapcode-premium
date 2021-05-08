@@ -10,6 +10,7 @@ import @{import};
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 <% var date = date(); %>
 /**
@@ -19,6 +20,7 @@ import lombok.EqualsAndHashCode;
  * @Date @{date,dateFormat="yyyy-MM-dd HH:mm:ss"}
  */
 @Data
+@Accessors(chain = true)
 @EqualsAndHashCode(callSuper = false)
 public class @{content.bizEnBigName}InsertDTO implements Serializable {
 
