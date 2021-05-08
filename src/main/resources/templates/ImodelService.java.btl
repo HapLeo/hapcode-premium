@@ -1,5 +1,6 @@
 package @{content.packageName};
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import @{content.baseContent.namespacePrefix}.model.@{content.bizEnBigName};
 import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}InsertDTO;

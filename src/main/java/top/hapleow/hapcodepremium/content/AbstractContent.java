@@ -36,6 +36,11 @@ public abstract class AbstractContent {
     private List<String> imports;
 
     /**
+     * 继承类或接口
+     */
+    private String extendsType;
+
+    /**
      * 业务中文名
      */
     private String bizChName;

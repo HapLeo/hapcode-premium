@@ -1,5 +1,6 @@
 package @{content.packageName};
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import @{content.baseContent.namespacePrefix}.mapper.@{content.bizEnBigName}Mapper;
 import @{content.baseContent.namespacePrefix}.model.@{content.bizEnBigName};
@@ -76,9 +77,9 @@ public class @{content.bizEnBigName}ServiceImpl extends ServiceImpl<@{content.bi
      * @param dto
      */
     @Override
-    public List<@{content.bizEnBigName}VO> list(@{content.bizEnBigName}ListDTO dto) {
+    public List<@{content.bizEnBigName}VO> list(@{content.bizEnBigName}ListDTO dto, Page<@{content.bizEnBigName}VO> page) {
 
-        return baseMapper.list(dto);
+        return baseMapper.list(dto, page);
     }
 
     /**

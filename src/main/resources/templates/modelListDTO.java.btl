@@ -1,7 +1,6 @@
 package @{content.packageName};
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import java.io.Serializable;
 import javax.validation.constraints.NotNull;
 
 <% for(import in content.imports!){ %>
@@ -22,9 +21,7 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 @EqualsAndHashCode(callSuper = false)
-public class @{content.bizEnBigName}ListDTO implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class @{content.bizEnBigName}ListDTO <%if(content.extendsType != null){%> extends @{content.extendsType}<%}%> {
 
 
 <% for(item in content.table.fields!){ %>

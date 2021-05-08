@@ -39,6 +39,8 @@ model-list-dto:
   file-type: java
   imports:
     - java.time.LocalDateTime
+    - com.jbs.common.model.BaseQueryForm
+  extends-type: BaseQueryForm
 
 
 model-vo:
