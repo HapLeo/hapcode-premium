@@ -1,16 +1,17 @@
 package @{content.packageName};
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import java.io.Serializable;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
+
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 <% for(import in content.imports!){ %>
 import @{import};
 <% } %>
-
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
 
 <% var date = date(); %>
 /**
