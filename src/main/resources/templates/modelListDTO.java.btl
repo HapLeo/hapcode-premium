@@ -14,7 +14,7 @@ import @{import};
 
 <% var date = date(); %>
 /**
- * @{content.bizChName}新增数据传输器
+ * @{content.bizChName}列表数据传输器
  *
  * @author @{content.baseContent.author}
  * @Date @{date,dateFormat="yyyy-MM-dd HH:mm:ss"}
