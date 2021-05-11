@@ -20,10 +20,10 @@
     <% for(item in content.table.fields!){ %>
         <% if(item.propertyName == "createTime" || item.propertyName == "updateTime" || item.propertyName == "deleted") { continue; }%>
         <% if(item.key == "PRI"){ %>
-        @{item.field}
+        t1.@{item.field}
         <% flag = true; %>
         <% }else{ %>
-        ,@{item.field}
+        ,t1.@{item.field}
         <%}%>
     <% } %>
     </sql>
