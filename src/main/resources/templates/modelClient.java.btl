@@ -26,28 +26,24 @@ public interface @{content.bizEnBigName}Client {
      * 新增@{content.bizChName}
      */
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
-    @ResponseBody
     Result insert(@RequestBody @{content.bizEnBigName}InsertDTO dto);
 
     /**
      * 删除@{content.bizChName}
      */
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    @ResponseBody
     Result delete(@RequestParam Integer id);
 
     /**
      * 修改@{content.bizChName}
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    @ResponseBody
     Result update(@RequestBody @{content.bizEnBigName}UpdateDTO dto);
 
     /**
      * 获取@{content.bizChName}列表
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    @ResponseBody
     Result list(@RequestBody @{content.bizEnBigName}ListDTO dto);
 
 

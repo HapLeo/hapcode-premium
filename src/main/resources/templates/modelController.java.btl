@@ -36,7 +36,6 @@ public class @{content.bizEnBigName}Controller {
      * 新增@{content.bizChName}
      */
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
-    @ResponseBody
     public Result insert(@RequestBody @Valid @{content.bizEnBigName}InsertDTO dto) {
         @{content.bizEnName}Service.insert(dto);
         return Result.successWithMessage("操作成功！");
@@ -46,7 +45,6 @@ public class @{content.bizEnBigName}Controller {
      * 删除@{content.bizChName}
      */
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    @ResponseBody
     public Result delete(@RequestParam Integer id) {
         @{content.bizEnName}Service.delete(id);
         return Result.successWithMessage("操作成功！");
@@ -56,7 +54,6 @@ public class @{content.bizEnBigName}Controller {
      * 修改@{content.bizChName}
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    @ResponseBody
     public Result update(@RequestBody @Valid @{content.bizEnBigName}UpdateDTO dto) {
         @{content.bizEnName}Service.update(dto);
         return Result.successWithMessage("操作成功！");
@@ -66,7 +63,6 @@ public class @{content.bizEnBigName}Controller {
      * 获取@{content.bizChName}列表
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    @ResponseBody
     public Result list(@RequestBody @Valid @{content.bizEnBigName}ListDTO dto) {
 
         Page<@{content.bizEnBigName}VO> page = new Page<>();
