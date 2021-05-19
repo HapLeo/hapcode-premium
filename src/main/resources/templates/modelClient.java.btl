@@ -46,7 +46,11 @@ public interface @{content.bizEnBigName}Client {
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     Result list(@RequestBody @{content.bizEnBigName}ListDTO dto);
 
-
+    /**
+     * 查看@{content.bizChName}明细
+     */
+    @RequestMapping(value = "/detail", method = RequestMethod.GET)
+    public Result detail(Integer id);
 
 
 }

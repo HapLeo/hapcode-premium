@@ -70,4 +70,13 @@ public class @{content.bizEnBigName}Controller {
         return Result.successWithData(page);
     }
 
+    /**
+     * 查看@{content.bizChName}明细
+     */
+    @RequestMapping(value = "/detail", method = RequestMethod.GET)
+    public Result detail(Integer id) {
+
+        return Result.successWithData(itemCouponPreferentialUserService.getById(id));
+    }
+
 }

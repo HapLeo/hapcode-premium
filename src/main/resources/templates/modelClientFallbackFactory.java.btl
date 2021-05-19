@@ -47,6 +47,11 @@ public class @{content.bizEnBigName}ClientFallbackFactory implements FallbackFac
             public Result list(@{content.bizEnBigName}ListDTO dto) {
                 return new Result(ExceptionEnum.CIRCUIT_COMMON_MSG);
             }
+
+            @Override
+            public Result detail(Integer id) {
+                return new Result(ExceptionEnum.CIRCUIT_COMMON_MSG);
+            }
         };
     }
 }
