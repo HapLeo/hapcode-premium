@@ -76,7 +76,7 @@ public class @{content.bizEnBigName}Controller {
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
     public Result detail(Integer id) {
 
-        return Result.successWithData(itemCouponPreferentialUserService.getById(id));
+        return Result.successWithData(@{content.bizEnName}Service.getById(id));
     }
 
 }

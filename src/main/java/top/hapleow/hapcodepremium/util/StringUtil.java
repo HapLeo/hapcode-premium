@@ -48,6 +48,7 @@ public class StringUtil {
         char c = field.charAt(0);
         if (c >= 97 && c <= 122) {
             char c1 = (char) (c - 32);
+            assert camelCase != null;
             camelCase = camelCase.replaceFirst(StringUtil.valueOf(c), StringUtil.valueOf(c1));
         }
         return camelCase;
@@ -79,8 +80,11 @@ public class StringUtil {
             if (isEmpty(fieldLatter)) {
                 continue;
             }
-            String latter = fieldLatter.replace(fieldLatter.charAt(0), (char) (fieldLatter.charAt(0) - 32));
-            result.append(latter);
+            String part = fieldLatter.substring(0, 1).toUpperCase();
+            if (fieldLatter.length() > 1) {
+                part += fieldLatter.substring(1);
+            }
+            result.append(part);
         }
         return result.toString();
     }

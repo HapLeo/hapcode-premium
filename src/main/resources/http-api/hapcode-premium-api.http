@@ -4,7 +4,7 @@ POST http://localhost:8080/hapcode/coding
 Content-Type: application/json
 
 {
-  "tableNames":["item_coupon_preferential_use_record"],
+  "tableNames":["item_coupon_preferential_user_record"],
   "templateNames":[
     "model.java.btl",
     "modelInsertDTO.java.btl",
