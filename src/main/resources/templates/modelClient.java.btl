@@ -25,31 +25,31 @@ public interface @{content.bizEnBigName}Client {
     /**
      * 新增@{content.bizChName}
      */
-    @RequestMapping(value = "/insert", method = RequestMethod.POST)
+    @RequestMapping(value = "/@{content.bizEnName}/insert", method = RequestMethod.POST)
     Result insert(@RequestBody @{content.bizEnBigName}InsertDTO dto);
 
     /**
      * 删除@{content.bizChName}
      */
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/@{content.bizEnName}/delete", method = RequestMethod.POST)
     Result delete(@RequestParam Integer id);
 
     /**
      * 修改@{content.bizChName}
      */
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/@{content.bizEnName}/update", method = RequestMethod.POST)
     Result update(@RequestBody @{content.bizEnBigName}UpdateDTO dto);
 
     /**
      * 获取@{content.bizChName}分页列表
      */
-    @RequestMapping(value = "/listPage", method = RequestMethod.GET)
+    @RequestMapping(value = "/@{content.bizEnName}/listPage", method = RequestMethod.GET)
     Result listPage(@RequestBody @{content.bizEnBigName}ListDTO dto);
 
     /**
      * 查看@{content.bizChName}明细
      */
-    @RequestMapping(value = "/detail", method = RequestMethod.GET)
+    @RequestMapping(value = "/@{content.bizEnName}/detail", method = RequestMethod.GET)
     public Result detail(Integer id);
 
 
