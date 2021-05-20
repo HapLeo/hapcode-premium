@@ -77,9 +77,9 @@ public class @{content.bizEnBigName}ServiceImpl extends ServiceImpl<@{content.bi
      * @param dto
      */
     @Override
-    public List<@{content.bizEnBigName}VO> list(@{content.bizEnBigName}ListDTO dto, Page<@{content.bizEnBigName}VO> page) {
+    public List<@{content.bizEnBigName}VO> listPage(@{content.bizEnBigName}ListDTO dto, Page<@{content.bizEnBigName}VO> page) {
 
-        return baseMapper.list(dto, page);
+        return baseMapper.listPage(dto, page);
     }
 
     /**

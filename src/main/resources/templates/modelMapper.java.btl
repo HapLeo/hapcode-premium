@@ -22,5 +22,5 @@ import @{import};
  */
 public interface @{content.bizEnBigName}Mapper extends BaseMapper<@{content.bizEnBigName}> {
 
-       List<@{content.bizEnBigName}VO> list(@{content.bizEnBigName}ListDTO dto, Page<@{content.bizEnBigName}VO> page);
+       List<@{content.bizEnBigName}VO> listPage(@{content.bizEnBigName}ListDTO dto, Page<@{content.bizEnBigName}VO> page);
 }

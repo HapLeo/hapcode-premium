@@ -28,7 +28,7 @@
     <% } %>
     </sql>
 
-    <select id="list" resultMap="BaseResultMap">
+    <select id="listPage" resultMap="BaseResultMap">
         <include refid="Base_Column_List"/>
         from @{content.table.name} t1
         where t1.is_deleted = 0

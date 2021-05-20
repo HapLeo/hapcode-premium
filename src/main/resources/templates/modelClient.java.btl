@@ -41,10 +41,10 @@ public interface @{content.bizEnBigName}Client {
     Result update(@RequestBody @{content.bizEnBigName}UpdateDTO dto);
 
     /**
-     * 获取@{content.bizChName}列表
+     * 获取@{content.bizChName}分页列表
      */
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    Result list(@RequestBody @{content.bizEnBigName}ListDTO dto);
+    @RequestMapping(value = "/listPage", method = RequestMethod.GET)
+    Result listPage(@RequestBody @{content.bizEnBigName}ListDTO dto);
 
     /**
      * 查看@{content.bizChName}明细

@@ -62,11 +62,11 @@ public class @{content.bizEnBigName}Controller {
     /**
      * 获取@{content.bizChName}列表
      */
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public Result list(@RequestBody @Valid @{content.bizEnBigName}ListDTO dto) {
+    @RequestMapping(value = "/listPage", method = RequestMethod.POST)
+    public Result listPage(@RequestBody @Valid @{content.bizEnBigName}ListDTO dto) {
 
         Page<@{content.bizEnBigName}VO> page = new Page<>();
-        page.setRecords(@{content.bizEnName}Service.list(dto, page));
+        page.setRecords(@{content.bizEnName}Service.listPage(dto, page));
         return Result.successWithData(page);
     }
 

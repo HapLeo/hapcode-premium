@@ -44,7 +44,7 @@ public class @{content.bizEnBigName}ClientFallbackFactory implements FallbackFac
             }
 
             @Override
-            public Result list(@{content.bizEnBigName}ListDTO dto) {
+            public Result listPage(@{content.bizEnBigName}ListDTO dto) {
                 return new Result(ExceptionEnum.CIRCUIT_COMMON_MSG);
             }
 

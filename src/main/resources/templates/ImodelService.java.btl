@@ -42,7 +42,7 @@ public interface I@{content.bizEnBigName}Service extends IService<@{content.bizE
     /**
      * 查询@{content.bizChName}
      */
-    List<@{content.bizEnBigName}VO> list(@{content.bizEnBigName}ListDTO dto, Page<@{content.bizEnBigName}VO> page);
+    List<@{content.bizEnBigName}VO> listPage(@{content.bizEnBigName}ListDTO dto, Page<@{content.bizEnBigName}VO> page);
 
 
 }
