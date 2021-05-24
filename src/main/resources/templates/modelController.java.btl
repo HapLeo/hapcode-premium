@@ -65,7 +65,7 @@ public class @{content.bizEnBigName}Controller {
     @RequestMapping(value = "/listPage", method = RequestMethod.POST)
     public Result listPage(@RequestBody @Valid @{content.bizEnBigName}ListDTO dto) {
 
-        Page<@{content.bizEnBigName}VO> page = new Page<>(dto.getCurrent(), dto.getPageSize());
+        Page<@{content.bizEnBigName}VO> page = new Page<>(dto.getCurrPage(), dto.getPageSize());
         page.setRecords(@{content.bizEnName}Service.listPage(dto, page));
         return Result.successWithData(page);
     }
