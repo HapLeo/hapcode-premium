@@ -32,7 +32,7 @@ public interface @{content.bizEnBigName}Client {
      * 删除@{content.bizChName}
      */
     @RequestMapping(value = "/@{content.bizEnName}/delete", method = RequestMethod.POST)
-    Result delete(@RequestParam Integer id);
+    Result delete(@RequestParam(value = "id") Integer id);
 
     /**
      * 修改@{content.bizChName}
