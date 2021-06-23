@@ -7,7 +7,7 @@ spring:
     password: root
 
 base-content:
-  root-path: D:\workspace\aiwoplatformat\beauty-business\item-business-server\src\main\
+  root-path: D:\20210406\workspace\aiwoplatformat\beauty-business\item-business-server\src\main\
   author: wuyulin
   namespace-prefix: com.jbs.item
 
@@ -18,7 +18,7 @@ model:
     - java.time.LocalDateTime
 
 model-insert-dto:
-  root-path: D:\workspace\aiwoplatformat\beauty-business\item-business-client\src\main\
+  root-path: D:\20210406\workspace\aiwoplatformat\beauty-business\item-business-client\src\main\
   package-name: com.jbs.item.dto
   file-type: java
   imports:
@@ -26,7 +26,7 @@ model-insert-dto:
 
 
 model-update-dto:
-  root-path: D:\workspace\aiwoplatformat\beauty-business\item-business-client\src\main\
+  root-path: D:\20210406\workspace\aiwoplatformat\beauty-business\item-business-client\src\main\
   package-name: com.jbs.item.dto
   file-type: java
   imports:
@@ -34,7 +34,7 @@ model-update-dto:
 
 
 model-list-dto:
-  root-path: D:\workspace\aiwoplatformat\beauty-business\item-business-client\src\main\
+  root-path: D:\20210406\workspace\aiwoplatformat\beauty-business\item-business-client\src\main\
   package-name: com.jbs.item.dto
   file-type: java
   imports:
@@ -44,13 +44,13 @@ model-list-dto:
 
 
 model-vo:
-  root-path: D:\workspace\aiwoplatformat\beauty-business\item-business-client\src\main\
+  root-path: D:\20210406\workspace\aiwoplatformat\beauty-business\item-business-client\src\main\
   package-name: com.jbs.item.vo
   file-type: java
   imports:
 
 model-client:
-  root-path: D:\workspace\aiwoplatformat\beauty-business\item-business-client\src\main\
+  root-path: D:\20210406\workspace\aiwoplatformat\beauty-business\item-business-client\src\main\
   package-name: com.jbs.item.client
   file-type: java
   feign-client-server: item-server
@@ -58,7 +58,7 @@ model-client:
     - com.jbs.common.output.Result
 
 model-client-fallback-factory:
-  root-path: D:\workspace\aiwoplatformat\beauty-business\item-business-client\src\main\
+  root-path: D:\20210406\workspace\aiwoplatformat\beauty-business\item-business-client\src\main\
   package-name: com.jbs.item.factory
   file-type: java
   imports:

@@ -41,6 +41,7 @@ public class JavaTypeConverter {
     public static String convert(String type) {
 
         type = type.toLowerCase().split(" ")[0];
+        type = type.split("\\(")[0];
 
         for (String key : types.keySet()) {
             if (Objects.equals(key, type)) {
