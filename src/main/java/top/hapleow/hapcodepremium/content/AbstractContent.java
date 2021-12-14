@@ -90,7 +90,7 @@ public abstract class AbstractContent {
 
         String packagePath = packageName.replace(".", File.separator);
 
-        return rootPath + fileType + File.separator + packagePath + File.separator;
+        return rootPath + File.separator + fileType + File.separator + packagePath + File.separator;
     }
 
 

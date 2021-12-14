@@ -2,40 +2,40 @@ spring:
   application:
     name: hapcode-premium
   datasource:
-    url: jdbc:mysql://localhost:3306/item?useUnicode=true&characterEncoding=UTF-8&useAffectedRows=true&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://47.114.106.209:13306/order?useUnicode=true&characterEncoding=UTF-8&useAffectedRows=true&serverTimezone=Asia/Shanghai
     username: root
-    password: root
+    password: jbs-api-test-mysql
 
 base-content:
-  root-path: D:\20210406\workspace\aiwoplatformat\beauty-business\item-business-server\src\main\
+  root-path: D:\20210406\workspace\aiwoplatformat\beauty-business\order-business-server\src\main
   author: wuyulin
-  namespace-prefix: com.jbs.item
+  namespace-prefix: com.jbs.order
 
 model:
-  package-name: com.jbs.item.model
+  package-name: com.jbs.order.model
   file-type: java
   imports:
     - java.time.LocalDateTime
 
 model-insert-dto:
-  root-path: D:\20210406\workspace\aiwoplatformat\beauty-business\item-business-client\src\main\
-  package-name: com.jbs.item.dto
+  root-path: D:\20210406\workspace\aiwoplatformat\beauty-business\order-business-client\src\main\
+  package-name: com.jbs.order.dto
   file-type: java
   imports:
     - java.time.LocalDateTime
 
 
 model-update-dto:
-  root-path: D:\20210406\workspace\aiwoplatformat\beauty-business\item-business-client\src\main\
-  package-name: com.jbs.item.dto
+  root-path: D:\20210406\workspace\aiwoplatformat\beauty-business\order-business-client\src\main\
+  package-name: com.jbs.order.dto
   file-type: java
   imports:
     - java.time.LocalDateTime
 
 
 model-list-dto:
-  root-path: D:\20210406\workspace\aiwoplatformat\beauty-business\item-business-client\src\main\
-  package-name: com.jbs.item.dto
+  root-path: D:\20210406\workspace\aiwoplatformat\beauty-business\order-business-client\src\main\
+  package-name: com.jbs.order.dto
   file-type: java
   imports:
     - java.time.LocalDateTime
@@ -44,44 +44,44 @@ model-list-dto:
 
 
 model-vo:
-  root-path: D:\20210406\workspace\aiwoplatformat\beauty-business\item-business-client\src\main\
-  package-name: com.jbs.item.vo
+  root-path: D:\20210406\workspace\aiwoplatformat\beauty-business\order-business-client\src\main\
+  package-name: com.jbs.order.vo
   file-type: java
   imports:
 
 model-client:
-  root-path: D:\20210406\workspace\aiwoplatformat\beauty-business\item-business-client\src\main\
-  package-name: com.jbs.item.client
+  root-path: D:\20210406\workspace\aiwoplatformat\beauty-business\order-business-client\src\main\
+  package-name: com.jbs.order.client
   file-type: java
-  feign-client-server: item-server
+  feign-client-server: order-server
   imports:
     - com.jbs.common.output.Result
 
 model-client-fallback-factory:
-  root-path: D:\20210406\workspace\aiwoplatformat\beauty-business\item-business-client\src\main\
-  package-name: com.jbs.item.factory
+  root-path: D:\20210406\workspace\aiwoplatformat\beauty-business\order-business-client\src\main\
+  package-name: com.jbs.order.factory
   file-type: java
   imports:
     - com.jbs.common.output.Result
 
 model-controller:
-  package-name: com.jbs.item.web
+  package-name: com.jbs.order.web
   file-type: java
   imports:
     - com.jbs.common.output.Result
 
 model-service:
-  package-name: com.jbs.item.service
+  package-name: com.jbs.order.service
   file-type: java
   imports:
 
 model-service-impl:
-  package-name: com.jbs.item.service.impl
+  package-name: com.jbs.order.service.impl
   file-type: java
   imports:
 
 model-mapper:
-  package-name: com.jbs.item.mapper
+  package-name: com.jbs.order.mapper
   file-type: java
   imports:
 
