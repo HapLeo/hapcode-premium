@@ -9,6 +9,7 @@ import top.hapleow.hapcodepremium.service.IBeetlGeneratorService;
 
 /**
  * 生成器控制类
+ * AAA
  */
 @RestController
 @RequestMapping("/hapcode")
