@@ -4,38 +4,29 @@ POST http://localhost:8080/hapcode/coding
 Content-Type: application/json
 
 {
-  "tableNames":["item_coupon_preferential_user_record"],
+  "tableNames":["order_export_log"],
   "templateNames":[
-    "model.java.btl",
-    "modelInsertDTO.java.btl",
-    "modelUpdateDTO.java.btl",
-    "modelListDTO.java.btl",
-    "modelVO.java.btl",
-    "modelClient.java.btl",
-    "modelClientFallbackFactory.java.btl",
-    "modelController.java.btl",
-    "ImodelService.java.btl",
-    "modelServiceImpl.java.btl",
-    "modelMapper.java.btl",
-    "modelMapper.xml.btl"
+    "modelInsertDTO.java.btl"
   ]
 }
+
+
 
 ### 优惠券全量生成
 POST http://localhost:8080/hapcode/coding
 Content-Type: application/json
 
 {
-  "tableNames":["activity"],
+  "tableNames":["order_export_log"],
   "templateNames":[
     "model.java.btl",
     "modelInsertDTO.java.btl",
     "modelUpdateDTO.java.btl",
     "modelListDTO.java.btl",
+    "modelController.java.btl",
     "modelVO.java.btl",
     "modelClient.java.btl",
     "modelClientFallbackFactory.java.btl",
-    "modelController.java.btl",
     "ImodelService.java.btl",
     "modelServiceImpl.java.btl",
     "modelMapper.java.btl",
