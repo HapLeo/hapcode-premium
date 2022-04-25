@@ -3,7 +3,6 @@ package @{content.packageName};
 import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}InsertDTO;
 import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}UpdateDTO;
 import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}ListDTO;
-import com.jbs.common.config.FeignMultipartSupportConfig;
 import @{content.baseContent.namespacePrefix}.factory.@{content.bizEnBigName}ClientFallbackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
@@ -19,38 +18,38 @@ import @{import};
  * @author @{content.author}
  * @Date @{date,dateFormat="yyyy-MM-dd HH:mm:ss"}
  */
-@FeignClient(value = "@{content.feignClientServer}", configuration = FeignMultipartSupportConfig.class, fallbackFactory = @{content.bizEnBigName}ClientFallbackFactory.class)
+@FeignClient(value = "@{content.feignClientServer}", contextId = "@{content.bizEnName}Client", fallbackFactory = @{content.bizEnBigName}ClientFallbackFactory.class)
 public interface @{content.bizEnBigName}Client {
 
     /**
      * 新增@{content.bizChName}
      */
-    @RequestMapping(value = "/@{content.bizEnName}/insert", method = RequestMethod.POST)
+    @PostMapping("/@{content.bizEnName}/insert")
     Result insert(@RequestBody @{content.bizEnBigName}InsertDTO dto);
 
     /**
      * 删除@{content.bizChName}
      */
-    @RequestMapping(value = "/@{content.bizEnName}/delete", method = RequestMethod.POST)
-    Result delete(@RequestParam(value = "id") Integer id);
+    @PostMapping("/@{content.bizEnName}/delete")
+    Result delete(@RequestParam(value = "id") Long id);
 
     /**
      * 修改@{content.bizChName}
      */
-    @RequestMapping(value = "/@{content.bizEnName}/update", method = RequestMethod.POST)
+    @PostMapping("/@{content.bizEnName}/update")
     Result update(@RequestBody @{content.bizEnBigName}UpdateDTO dto);
 
     /**
      * 获取@{content.bizChName}分页列表
      */
-    @RequestMapping(value = "/@{content.bizEnName}/listPage", method = RequestMethod.GET)
+    @PostMapping("/@{content.bizEnName}/listPage")
     Result listPage(@RequestBody @{content.bizEnBigName}ListDTO dto);
 
     /**
      * 查看@{content.bizChName}明细
      */
-    @RequestMapping(value = "/@{content.bizEnName}/detail", method = RequestMethod.GET)
-    public Result detail(Integer id);
+    @GetMapping("/@{content.bizEnName}/detail")
+    Result detail(Long id);
 
 
 }

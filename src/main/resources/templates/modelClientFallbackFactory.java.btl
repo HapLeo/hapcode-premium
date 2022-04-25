@@ -1,13 +1,12 @@
 package @{content.packageName};
 
-import com.jbs.common.exception.ExceptionEnum;
+import com.jbs.aiwocommon.exception.DefaultServerException;
 import @{content.baseContent.namespacePrefix}.client.@{content.bizEnBigName}Client;
 import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}InsertDTO;
 import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}UpdateDTO;
 import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}ListDTO;
 import feign.hystrix.FallbackFactory;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestParam;
 
 <% for(import in content.imports!){ %>
 import @{import};
@@ -24,33 +23,33 @@ import @{import};
 public class @{content.bizEnBigName}ClientFallbackFactory implements FallbackFactory<@{content.bizEnBigName}Client> {
 
     @Override
-    public @{content.bizEnBigName}Client create(Throwable throwable) {
+    public @{content.bizEnBigName}Client create(Throwable cause) {
         return new @{content.bizEnBigName}Client() {
 
 
             @Override
             public Result insert(@{content.bizEnBigName}InsertDTO dto) {
-                return new Result(ExceptionEnum.CIRCUIT_COMMON_MSG);
+                throw new DefaultServerException(cause.getMessage());
             }
 
             @Override
-            public Result delete(Integer id) {
-                return new Result(ExceptionEnum.CIRCUIT_COMMON_MSG);
+            public Result delete(Long id) {
+                throw new DefaultServerException(cause.getMessage());
             }
 
             @Override
             public Result update(@{content.bizEnBigName}UpdateDTO dto) {
-                return new Result(ExceptionEnum.CIRCUIT_COMMON_MSG);
+                throw new DefaultServerException(cause.getMessage());
             }
 
             @Override
             public Result listPage(@{content.bizEnBigName}ListDTO dto) {
-                return new Result(ExceptionEnum.CIRCUIT_COMMON_MSG);
+                throw new DefaultServerException(cause.getMessage());
             }
 
             @Override
-            public Result detail(Integer id) {
-                return new Result(ExceptionEnum.CIRCUIT_COMMON_MSG);
+            public Result detail(Long id) {
+                throw new DefaultServerException(cause.getMessage());
             }
         };
     }

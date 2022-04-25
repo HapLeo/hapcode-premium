@@ -4,9 +4,9 @@ POST http://localhost:8080/hapcode/coding
 Content-Type: application/json
 
 {
-  "tableNames":["order_export_log"],
+  "tableNames":["sys_company","sys_user","sys_supplier"],
   "templateNames":[
-    "modelInsertDTO.java.btl"
+    "model.java.btl"
   ]
 }
 
@@ -17,7 +17,7 @@ POST http://localhost:8080/hapcode/coding
 Content-Type: application/json
 
 {
-  "tableNames":["order_export_log"],
+  "tableNames":["company_customer"],
   "templateNames":[
     "model.java.btl",
     "modelInsertDTO.java.btl",
@@ -35,12 +35,12 @@ Content-Type: application/json
 }
 
 
-### 优惠券生成VO
+### 优惠券生成VO ,"sys_user","sys_supplier"
 POST http://localhost:8080/hapcode/coding
 Content-Type: application/json
 
 {
-  "tableNames":["item_coupon_plan","item_coupon_plan_detail","item_coupon_goods_size"],
+  "tableNames":["sys_company"],
   "templateNames":[
     "modelMapper.xml.btl"
   ]

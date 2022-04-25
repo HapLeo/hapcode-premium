@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -28,25 +29,19 @@ public class @{content.bizEnBigName} extends Model<@{content.bizEnBigName}>{
 
 <% for(item in content.table.fields!){ %>
     <%if(item.key == "PRI"){ %>
-    /**
-     * @{item.comment!}
-     */
     @TableId(type = IdType.AUTO)
+    @ApiModelProperty(value = "@{item.comment!}")
     private @{item.javaType} @{item.propertyName};
     <%}else if(item.propertyName == "deleted"){ %>
 
-    /**
-     * @{item.comment!}
-     */
     @TableField("is_deleted")
+    @ApiModelProperty(value = "@{item.comment!}")
     @TableLogic(value = "0", delval = "1")
     private @{item.javaType} @{item.propertyName};
 
     <%}else{ %>
 
-    /**
-     * @{item.comment!}
-     */
+    @ApiModelProperty(value = "@{item.comment!}")
     private @{item.javaType} @{item.propertyName};
     <%}%>
 <% } %>

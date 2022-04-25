@@ -3,7 +3,7 @@ package @{content.packageName};
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
-import @{content.baseContent.namespacePrefix}.model.@{content.bizEnBigName};
+import @{content.baseContent.namespacePrefix}.app.model.@{content.bizEnBigName};
 import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}ListDTO;
 import @{content.baseContent.namespacePrefix}.vo.@{content.bizEnBigName}VO;
 
@@ -22,5 +22,5 @@ import @{import};
  */
 public interface @{content.bizEnBigName}Mapper extends BaseMapper<@{content.bizEnBigName}> {
 
-       List<@{content.bizEnBigName}VO> listPage(@{content.bizEnBigName}ListDTO dto, Page<@{content.bizEnBigName}VO> page);
+       List<@{content.bizEnBigName}> listPage(@{content.bizEnBigName}ListDTO dto, Page<@{content.bizEnBigName}> page);
 }

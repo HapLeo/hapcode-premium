@@ -1,12 +1,13 @@
 package @{content.packageName};
 
+import com.jbs.aiwocommon.util.MyBeanUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import @{content.baseContent.namespacePrefix}.client.@{content.bizEnBigName}Client;
 import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}InsertDTO;
 import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}UpdateDTO;
 import @{content.baseContent.namespacePrefix}.dto.@{content.bizEnBigName}ListDTO;
 import @{content.baseContent.namespacePrefix}.vo.@{content.bizEnBigName}VO;
-import @{content.baseContent.namespacePrefix}.model.@{content.bizEnBigName};
-import @{content.baseContent.namespacePrefix}.service.I@{content.bizEnBigName}Service;
+import @{content.baseContent.namespacePrefix}.app.service.I@{content.bizEnBigName}Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,60 +24,53 @@ import @{import};
  * @author @{content.author}
  * @Date @{date,dateFormat="yyyy-MM-dd HH:mm:ss"}
  */
+@Api(tags = "@{content.bizChName}管理")
 @RestController
-@RequestMapping("/@{content.bizEnName}")
-public class @{content.bizEnBigName}Controller {
+public class @{content.bizEnBigName}Controller implements @{content.bizEnBigName}Client {
 
 
     @Autowired
     private I@{content.bizEnBigName}Service @{content.bizEnName}Service;
 
 
-    /**
-     * 新增@{content.bizChName}
-     */
-    @RequestMapping(value = "/insert", method = RequestMethod.POST)
+    @ApiOperation(value = "新增@{content.bizChName}")
+    @Override
     public Result insert(@RequestBody @Valid @{content.bizEnBigName}InsertDTO dto) {
         @{content.bizEnName}Service.insert(dto);
-        return Result.successWithMessage("操作成功！");
+        return Result.success();
     }
 
-    /**
-     * 删除@{content.bizChName}
-     */
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public Result delete(@RequestParam Integer id) {
+
+    @ApiOperation(value = "删除@{content.bizChName}")
+    @Override
+    public Result delete(@RequestParam Long id) {
         @{content.bizEnName}Service.delete(id);
-        return Result.successWithMessage("操作成功！");
+        return Result.success();
     }
 
-    /**
-     * 修改@{content.bizChName}
-     */
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
+
+    @ApiOperation(value = "修改@{content.bizChName}")
+    @Override
     public Result update(@RequestBody @Valid @{content.bizEnBigName}UpdateDTO dto) {
         @{content.bizEnName}Service.update(dto);
-        return Result.successWithMessage("操作成功！");
+        return Result.success();
     }
 
-    /**
-     * 获取@{content.bizChName}列表
-     */
-    @RequestMapping(value = "/listPage", method = RequestMethod.POST)
-    public Result listPage(@RequestBody @Valid @{content.bizEnBigName}ListDTO dto) {
 
-        Page<@{content.bizEnBigName}VO> page = new Page<>(dto.getCurrPage(), dto.getPageSize());
-        page.setRecords(@{content.bizEnName}Service.listPage(dto, page));
-        return Result.successWithData(page);
+    @ApiOperation(value = "获取@{content.bizChName}列表")
+    @Override
+    public Result<List<@{content.bizEnBigName}VO>> listPage(@RequestBody @Valid @{content.bizEnBigName}ListDTO dto) {
+
+
+        //page.setRecords(@{content.bizEnName}Service.listPage(dto, page));
+        return Result.success();
     }
 
-    /**
-     * 查看@{content.bizChName}明细
-     */
-    @RequestMapping(value = "/detail", method = RequestMethod.GET)
-    public Result detail(Integer id) {
+    @ApiOperation(value = "查看@{content.bizChName}明细")
+    @Override
+    public Result<@{content.bizEnBigName}VO> detail(Long id) {
 
-        return Result.successWithData(@{content.bizEnName}Service.getById(id));
+        return Result.success(MyBeanUtils.copyBean(@{content.bizEnName}Service.getById(id),@{content.bizEnBigName}.class));
     }
 
 }
