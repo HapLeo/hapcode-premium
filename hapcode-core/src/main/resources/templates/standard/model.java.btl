@@ -5,10 +5,9 @@ import @{import};
 <% } %>
 
 /**
- * @{content.table.comment!}
- *
  * @author @{content.author!}
- * @Date @{date(),"yyyy-MM-dd"}
+ * @desc {content.table.comment!}
+ * @date @{date(),"yyyy-MM-dd"}
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

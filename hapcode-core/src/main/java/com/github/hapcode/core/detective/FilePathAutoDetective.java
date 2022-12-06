@@ -1,6 +1,6 @@
 package com.github.hapcode.core.detective;
 
-import cn.hutool.core.io.FileUtil;
+import com.github.hapcode.core.util.FileUtil;
 
 import java.io.File;
 import java.util.List;
@@ -23,7 +23,8 @@ public class FilePathAutoDetective {
      */
     public File detectPath(String rootPath, String... tags) {
 
-        return FileUtil.loopFiles(rootPath, pathname -> match(pathname, tags)).stream().filter(File::isDirectory).findFirst().orElse(null);
+        List<File> fileList = FileUtil.listDirectory(rootPath);
+        return fileList.stream().filter(item -> match(item, tags)).findFirst().orElse(null);
     }
 
     /**
@@ -35,7 +36,8 @@ public class FilePathAutoDetective {
      */
     public File detectRealFile(String rootPath, String... tags) {
 
-        return FileUtil.loopFiles(rootPath, pathname -> match(pathname, tags)).stream().filter(File::isFile).findFirst().orElse(null);
+        List<File> fileList = FileUtil.listRealFile(rootPath);
+        return fileList.stream().filter(item -> match(item, tags)).findFirst().orElse(null);
     }
 
     /**
@@ -47,7 +49,8 @@ public class FilePathAutoDetective {
      */
     public List<File> detectRealFileList(String rootPath, String... tags) {
 
-        return FileUtil.loopFiles(rootPath, pathname -> match(pathname, tags)).stream().filter(File::isFile).collect(Collectors.toList());
+        List<File> fileList = FileUtil.listRealFile(rootPath);
+        return fileList.stream().filter(item -> match(item, tags)).collect(Collectors.toList());
     }
 
 

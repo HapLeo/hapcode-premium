@@ -86,6 +86,10 @@ public class CodeGenerator {
 
         if (templateName == null) return null;
 
+        int i = templateName.lastIndexOf("\\");
+        if (i > 0) {
+            templateName = templateName.substring(i + 1);
+        }
         // model模板单独处理
         if (templateName.startsWith("model.")) {
             return new String[]{"model", "java"};

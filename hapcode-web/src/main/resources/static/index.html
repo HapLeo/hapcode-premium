@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>My-Code-Generator</title>
+</head>
+<body>
+
+<div id="form" align="center">
+    <table>
+        <tr>
+            <td><label>rootPath:</label></td>
+            <td><input id="rootPath" value="D:\20210406\ideaSpace\aiwo-plat-etl"/>
+            </td>
+        </tr>
+        <tr>
+            <td><label>tableName:</label></td>
+            <td><select id="tableName"></select></td>
+        </tr>
+        <tr>
+            <td><label>templateName:</label></td>
+            <td>
+                <div id="templateBox">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><label></label></td>
+            <td>
+                <button id="submit">提交</button>
+            </td>
+        </tr>
+    </table>
+
+</div>
+</body>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#submit").click(function () {
+            var rootPath = $("#rootPath").val();
+            var tableName = $("#tableName").val();
+            var templates = [];
+            $(".templateName").each(function (index, item) {
+                console.log(item);
+                var checked = $(item).prop('checked');
+                if (checked) {
+                    var template = {};
+                    template.templateName = $(item).val();
+                    var tags = $(item).parent().find("input[name='tags']").val();
+                    console.log(tags);
+                    if (tags == null || tags == '') {
+                        tags = [];
+                    } else {
+                        tags = tags.split(",");
+                    }
+                    template.tags = tags;
+                    templates.push(template);
+                }
+            });
+
+            var obj = {};
+            obj.rootPath = rootPath;
+            obj.tableName = tableName;
+            obj.templates = templates;
+            $.ajax({
+                type: 'post',
+                contentType: "application/json;charset=utf-8",
+                url: 'http://localhost:8080/codeGen',
+                data: JSON.stringify(obj),
+                success: function (resp) {
+                    alert(resp, 500);
+                }
+            });
+        });
+
+        $.ajax({
+            type: 'get',
+            contentType: "application/json;charset=utf-8",
+            url: 'http://localhost:8080/listTables',
+            success: function (resp) {
+                for (let i = 0; i < resp.length; i++) {
+                    var item = resp[i];
+                    var name = item.Name;
+                    var comment = item.Comment;
+                    var show = name + "-" + comment;
+                    console.log(show);
+                    $("#tableName").append("<option value='" + name + "'>" + show + "</option>");
+                }
+            },
+            failure: function (resp) {
+                alert(resp);
+            }
+        });
+        $.ajax({
+            type: 'get',
+            contentType: "application/json;charset=utf-8",
+            url: 'http://localhost:8080/listTemplates',
+            success: function (resp) {
+                if (resp.length === 0) {
+                    $("#templateBox").html("<option>模板不存在！</option>");
+                    return;
+                }
+                for (let i = 0; i < resp.length; i++) {
+                    var template = resp[i];
+                    var tagHtml = '&nbsp;&nbsp;&nbsp;&nbsp;<input style="width: auto;" name="tags" placeholder="tags"/>';
+                    $("#templateBox").append('<div><input style="text-align:left" class="templateName" type="checkbox" name="templateName" value="' + template + '"/>' + template + tagHtml + "</br></div>");
+                }
+            }
+        });
+    });
+</script>
+<style>
+    input, select {
+        width: 600px;
+        margin-bottom: 10px;
+    }
+
+    label {
+        width: 50px;
+        text-align: left
+    }
+
+    #templateBox input {
+        width: 100px;
+    }
+</style>
+</html>

@@ -8,7 +8,7 @@ import @{import};
  * @{content.table.comment!}
  *
  * @author @{content.author!}
- * @Date @{date(),"yyyy-MM-dd"}
+ * @date @{date(),"yyyy-MM-dd"}
  */
 @Data
 public class @{content.modelName} {

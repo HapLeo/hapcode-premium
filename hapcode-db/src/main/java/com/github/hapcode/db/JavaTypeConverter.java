@@ -1,4 +1,4 @@
-package com.github.hapcode.core.util;
+package com.github.hapcode.db;
 
 import lombok.Data;
 
