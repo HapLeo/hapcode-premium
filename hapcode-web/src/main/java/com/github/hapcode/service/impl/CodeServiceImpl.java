@@ -31,12 +31,15 @@ public class CodeServiceImpl implements ICodeGenService {
     @Override
     public void codGen(CodeGenCmd codeGenCmd) {
 
-        TableInfo table = tableInfoService.listColumns(codeGenCmd.getTableName());
-        Map<String, Object> tableContent = new HashMap<>();
-        tableContent.put("table", table);
-        for (TemplateCmd template : codeGenCmd.getTemplates()) {
-            codeGenerator.execute(codeGenCmd.getRootPath(), StrUtil.upperFirst(StrUtil.toCamelCase(codeGenCmd.getTableName())), template.getTemplateName(), tableContent, template.getTags());
+        for (String tableName : codeGenCmd.getTableNames()) {
+            TableInfo table = tableInfoService.listColumns(tableName);
+            Map<String, Object> tableContent = new HashMap<>();
+            tableContent.put("table", table);
+            for (TemplateCmd template : codeGenCmd.getTemplates()) {
+                codeGenerator.execute(codeGenCmd.getRootPath(), StrUtil.upperFirst(StrUtil.toCamelCase(tableName)), template.getTemplateName(), tableContent, template.getTags());
+            }
         }
+
     }
 
     @Override

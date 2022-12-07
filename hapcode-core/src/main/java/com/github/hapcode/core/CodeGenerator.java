@@ -47,6 +47,7 @@ public class CodeGenerator {
 
         // 设置模板变量
         content.put("modelName", modelName);
+        content.put("modelNameLowerFirst", StrUtil.lowerFirst(modelName));
 
         // 执行模板引擎，获取生成内容
         String str = render(content, templatePath);

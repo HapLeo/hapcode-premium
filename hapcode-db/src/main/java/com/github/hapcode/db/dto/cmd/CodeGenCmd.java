@@ -12,7 +12,7 @@ public class CodeGenCmd {
 
     private String rootPath;
 
-    private String tableName;
+    private String[] tableNames;
 
     private TemplateCmd[] templates;
 }

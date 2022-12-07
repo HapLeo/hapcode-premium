@@ -10,11 +10,11 @@ import @{import};
  * @date @{date(),"yyyy-MM-dd"}
  */
 @RestController
-@RequestMapping("/@{content.modelName}")
+@RequestMapping("/@{content.modelNameLowerFirst}")
 public class @{content.modelName}Controller {
 
 
     @Autowired
-    private I@{content.modelName}Service @{content.modelName}Service;
+    private I@{content.modelName}Service service;
 
 }
