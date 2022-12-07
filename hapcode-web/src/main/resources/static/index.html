@@ -31,6 +31,7 @@
             </td>
         </tr>
     </table>
+    <label>响应：</label><div id="msg"></div>
 
 </div>
 </body>
@@ -69,7 +70,9 @@
                 url: 'http://localhost:8080/codeGen',
                 data: JSON.stringify(obj),
                 success: function (resp) {
-                    alert(resp, 500);
+                },
+                complete: function (resp){
+                    $("#msg").html(JSON.stringify(resp));
                 }
             });
         });
