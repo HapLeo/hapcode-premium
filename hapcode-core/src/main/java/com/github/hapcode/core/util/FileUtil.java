@@ -1,6 +1,10 @@
 package com.github.hapcode.core.util;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,26 +19,12 @@ public class FileUtil {
 
     public static List<File> listFile(String rootPath) {
 
-        File rootFile = new File(rootPath);
-        List<File> fileList = new ArrayList<>();
-        fileList.add(rootFile);
-        listFile(rootFile, fileList);
-        return fileList;
-    }
-
-
-    private static void listFile(File rootPath, List<File> fileList) {
-
-        if (rootPath.isDirectory()) {
-            File[] files = rootPath.listFiles();
-            if (files == null || files.length == 0) {
-                return;
-            }
-            for (File file : files) {
-                fileList.add(file);
-                listFile(file.getAbsoluteFile(), fileList);
-            }
+        try {
+            return Files.walk(Paths.get(rootPath)).map(Path::toFile).collect(Collectors.toList());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        return new ArrayList<>();
     }
 
 
