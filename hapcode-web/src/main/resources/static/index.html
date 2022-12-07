@@ -73,6 +73,9 @@
                 },
                 complete: function (resp){
                     $("#msg").html(JSON.stringify(resp));
+                    setInterval(function () {
+                        $("#msg").html("");
+                    },2000);
                 }
             });
         });
