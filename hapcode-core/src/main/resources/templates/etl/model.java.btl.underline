@@ -1,0 +1,27 @@
+package @{content.packageName};
+
+<% for(import in content.imports!){ %>
+import @{import};
+<% } %>
+
+/**
+ * @{content.table.comment!}
+ *
+ * @author @{content.author!}
+ * @date @{date(),"yyyy-MM-dd"}
+ */
+@Data
+public class @{content.modelName} {
+
+
+<% for(item in content.table.fields!){ %>
+
+    /**
+     * @{item.comment!}
+     */
+    private String @{item.field};
+<% } %>
+
+
+
+}

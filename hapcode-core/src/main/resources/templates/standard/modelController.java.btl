@@ -1,0 +1,20 @@
+package @{content.packageName};
+
+<% for(import in content.imports!){ %>
+import @{import};
+<% } %>
+
+/**
+ * @author @{content.author!}
+ * @desc @{content.table.comment!} 控制器
+ * @date @{date(),"yyyy-MM-dd"}
+ */
+@RestController
+@RequestMapping("/@{content.modelNameLowerFirst}")
+public class @{content.modelName}Controller {
+
+
+    @Autowired
+    private I@{content.modelName}Service service;
+
+}
