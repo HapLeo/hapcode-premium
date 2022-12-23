@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hapcode-premium
+  namespace: default
+  labels:
+    app: hapcode-premium
+spec:
+  containers:
+    - name: hapcode-premium
+      image: 'hapcode-premium:1.0.1'
+      env:
+        - name: MASTER
+          value: 'true'
+      ports:
+        - containerPort: 8080
+      resources:
+        limits:
+          cpu: '0.1'
