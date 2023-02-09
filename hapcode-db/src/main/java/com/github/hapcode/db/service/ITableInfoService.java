@@ -16,4 +16,7 @@ public interface ITableInfoService {
 
 
     TableInfo listColumns(String tableName);
+
+
+    String getDatabaseName();
 }

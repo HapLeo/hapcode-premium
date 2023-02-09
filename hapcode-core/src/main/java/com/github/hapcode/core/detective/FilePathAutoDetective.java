@@ -83,7 +83,7 @@ public class FilePathAutoDetective {
         if (!absolutePath.endsWith(".java")) {
             return null;
         }
-        String clazzName = absolutePath.replaceAll("\\\\", "\\.").split("\\.java")[1];
+        String clazzName = file.getAbsolutePath().replaceAll(File.separator, ".").split(".java")[1];
         if (clazzName.startsWith(".")) {
             clazzName = clazzName.substring(1);
         }

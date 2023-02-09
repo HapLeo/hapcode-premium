@@ -22,7 +22,7 @@ public class TableInfoServiceImpl implements ITableInfoService {
 
     public static final String LIST_TABLES_SQL = "show table status WHERE 1=1";
     public static final String LIST_FIELDS_SQL = "show full fields from %s";
-    public static final String TABLE_DETAIL_SQL = "select table_name as name,TABLE_COMMENT as comment from information_schema.`TABLES` where table_name = ? ";
+    public static final String TABLE_DETAIL_SQL = "select table_name as name,TABLE_COMMENT as comment from information_schema.`TABLES` where table_schema = ? and table_name = ? ";
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -37,7 +37,8 @@ public class TableInfoServiceImpl implements ITableInfoService {
     @Override
     public TableInfo listColumns(String tableName) {
 
-        Map<String, Object> tableBaseInfo = jdbcTemplate.queryForMap(TABLE_DETAIL_SQL, tableName);
+        String databaseName = getDatabaseName();
+        Map<String, Object> tableBaseInfo = jdbcTemplate.queryForMap(TABLE_DETAIL_SQL, databaseName, tableName);
         TableInfo tableInfo = new TableInfo();
         tableInfo.setName(String.valueOf(tableBaseInfo.get("name")));
         tableInfo.setComment(String.valueOf(tableBaseInfo.get("comment")));
@@ -49,5 +50,12 @@ public class TableInfoServiceImpl implements ITableInfoService {
         tableInfo.setFields(tableColumns);
         tableInfo.repair();
         return tableInfo;
+    }
+
+
+    @Override
+    public String getDatabaseName() {
+        Map<String, Object> dbnameMap = jdbcTemplate.queryForMap("select database() as databaseName");
+        return (String) dbnameMap.get("databaseName");
     }
 }

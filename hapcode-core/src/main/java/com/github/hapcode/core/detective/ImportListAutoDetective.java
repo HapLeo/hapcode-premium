@@ -91,7 +91,7 @@ public class ImportListAutoDetective {
         for (File file : fileList) {
 
             // 读取每个文件的全限定名
-            String clazzName = file.getAbsolutePath().replaceAll("\\\\", "\\.").split("\\.java")[1];
+            String clazzName = file.getAbsolutePath().replaceAll(File.separator, ".").split(".java")[1];
             if (clazzName.startsWith(".")) {
                 clazzName = clazzName.substring(1);
             }
