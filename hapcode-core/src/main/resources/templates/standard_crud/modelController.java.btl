@@ -1,0 +1,64 @@
+package @{content.packageName};
+
+<% for(import in content.imports!){ %>
+import @{import};
+<% } %>
+
+/**
+ * @author @{content.author!}
+ * @desc @{content.table.comment!} 控制器
+ * @date @{date(),"yyyy-MM-dd"}
+ */
+@RestController
+@RequestMapping("/@{content.modelNameLowerFirst}")
+public class @{content.modelName}Controller {
+
+
+    @Autowired
+    private I@{content.modelName}Service service;
+
+
+
+    /**
+     * 根据ID查询
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping("/getById")
+    public Result<@{content.modelName}> getById(@RequestParam Long id) {
+
+        return Result.successWithData(service.getById(id));
+    }
+
+
+    /**
+     * 根据ID删除
+     *
+     * @param id
+     * @return
+     */
+    @PostMapping("/delById")
+    public Result delById(@RequestParam Long id) {
+
+        service.updateById(new @{content.modelName}().setId(id).setDel("y"));
+        return Result.success();
+    }
+
+
+    /**
+     * 根据ID更新
+     *
+     * @param @{content.modelNameLowerFirst}
+     * @return
+     */
+    @PostMapping("/updateById")
+    public Result updateById(@RequestBody @{content.modelName} @{content.modelNameLowerFirst}) {
+
+        service.updateById(@{content.modelNameLowerFirst});
+        return Result.success();
+    }
+
+
+
+}
