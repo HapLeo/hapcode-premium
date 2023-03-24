@@ -89,7 +89,10 @@ public class ImportListAutoDetective {
 
         List<File> fileList = filePathAutoDetective.detectRealFileList(rootPath, ".java");
         for (File file : fileList) {
-
+            String absolutePath = file.getAbsolutePath();
+            if (absolutePath.contains("target") || absolutePath.contains(".mvn")) {
+                continue;
+            }
             // 读取每个文件的全限定名
             String clazzName = file.getAbsolutePath().replaceAll(File.separator, ".").split(".java")[1];
             if (clazzName.startsWith(".")) {

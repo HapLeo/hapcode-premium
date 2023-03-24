@@ -41,7 +41,7 @@ public class @{content.modelName}Controller {
     @PostMapping("/delById")
     public Result delById(@RequestParam Long id) {
 
-        service.updateById(new @{content.modelName}().setId(id).setDel("y"));
+        service.updateById(new @{content.modelName}().setId(id).setDel(1));
         return Result.success();
     }
 
