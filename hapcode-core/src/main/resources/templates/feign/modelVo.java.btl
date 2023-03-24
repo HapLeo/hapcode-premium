@@ -1,0 +1,28 @@
+package @{content.packageName};
+
+<% for(import in content.imports!){ %>
+import @{import};
+<% } %>
+
+/**
+ * @author @{content.author!}
+ * @desc @{content.table.comment!}视图对象
+ * @date @{date(),"yyyy-MM-dd"}
+ */
+@Data
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+public class @{content.modelName}Vo {
+
+
+<% for(item in content.table.fields!){ %>
+
+    /**
+     * @{item.comment!}
+     */
+    private @{item.javaType} @{item.propertyName};
+    <%}%>
+
+
+
+}

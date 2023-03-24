@@ -1,0 +1,41 @@
+package @{content.packageName};
+
+<% for(import in content.imports!){ %>
+import @{import};
+<% } %>
+
+/**
+ * @author @{content.author!}
+ * @desc @{content.table.comment!}降级工厂
+ * @date @{date(),"yyyy-MM-dd"}
+ */
+@Slf4j
+@Component
+public class @{content.modelName}ClientFallBackFactory implements FallbackFactory<@{content.modelName}Client> {
+
+
+    @Override
+    public @{content.modelName}Client create(Throwable throwable) {
+
+
+        return new @{content.modelName}Client() {
+            @Override
+            public Result getById(Long id) {
+                log.error("熔断降级:{}", throwable);
+                return Result.failure("服务暂不可用，请稍后重试...");
+            }
+
+            @Override
+            public Result delById(Long id) {
+                log.error("熔断降级:{}", throwable);
+                return Result.failure("服务暂不可用，请稍后重试...");
+            }
+
+            @Override
+            public Result updateById(@RequestBody @{content.modelName}Vo @{content.modelNameLowerFirst}) {
+                log.error("熔断降级:{}", throwable);
+                return Result.failure("服务暂不可用，请稍后重试...");
+            }
+        };
+    }
+}

@@ -1,0 +1,45 @@
+package @{content.packageName};
+
+<% for(import in content.imports!){ %>
+import @{import};
+<% } %>
+
+/**
+ * @author @{content.author!}
+ * @desc @{content.table.comment!} 远程调用客户端
+ * @date @{date(),"yyyy-MM-dd"}
+ */
+@FeignClient(value = "spring.application.name", contextId = "@{content.modelNameLowerFirst}Client", fallbackFactory = @{content.modelName}ClientFallBackFactory.class)
+public interface @{content.modelName}Client {
+
+
+    /**
+     * 根据ID查询
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping("/@{content.modelNameLowerFirst}/getById")
+    Result<@{content.modelName}Vo> getById(@RequestParam Long id);
+
+
+    /**
+     * 根据ID删除
+     *
+     * @param id
+     * @return
+     */
+    @PostMapping("/@{content.modelNameLowerFirst}/delById")
+    Result delById(@RequestParam Long id);
+
+
+    /**
+     * 根据ID更新
+     *
+     * @param @{content.modelNameLowerFirst}
+     * @return
+     */
+    @PostMapping("/@{content.modelNameLowerFirst}/updateById")
+    Result updateById(@RequestBody @{content.modelName}Vo @{content.modelNameLowerFirst});
+
+}

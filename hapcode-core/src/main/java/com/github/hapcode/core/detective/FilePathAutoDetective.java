@@ -1,6 +1,7 @@
 package com.github.hapcode.core.detective;
 
 import com.github.hapcode.core.util.FileUtil;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.util.List;
@@ -88,6 +89,12 @@ public class FilePathAutoDetective {
             clazzName = clazzName.substring(1);
         }
 
-        return clazzName.substring(0, clazzName.lastIndexOf("."));
+        try{
+            return clazzName.substring(0, clazzName.lastIndexOf("."));
+        }catch (Exception e){
+            System.out.println(absolutePath);
+            e.printStackTrace();
+        }
+        return null;
     }
 }
