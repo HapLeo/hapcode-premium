@@ -42,10 +42,11 @@ public class CodeServiceImpl implements ICodeGenService {
                 OneTemplateParam oneTemplateParam = new OneTemplateParam();
                 modelTemplates.add(oneTemplateParam);
                 oneTemplateParam.setModelName(StrUtil.upperFirst(StrUtil.toCamelCase(tableName)));
-                oneTemplateParam.setTemplateName(template.getTemplateName());
+                oneTemplateParam.setTemplateClassPath(template.getTemplateName());
                 oneTemplateParam.setTags(template.getTags());
                 oneTemplateParam.setContent(content);
             }
+
             codeGenerator.executeOneModelTemplates(codeGenCmd.getRootPath(), modelTemplates);
         }
 

@@ -19,9 +19,9 @@ public class OneTemplateParam {
 
 
     /**
-     * 模板名称
+     * 模板classpath
      */
-    private String templateName;
+    private String templateClassPath;
 
     /**
      * 模版中需要填充的内容

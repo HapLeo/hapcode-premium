@@ -6,6 +6,9 @@ import com.github.hapcode.core.config.GroupTemplateConfig;
 import com.github.hapcode.core.detective.FilePathAutoDetective;
 import com.github.hapcode.core.detective.ImportListAutoDetective;
 import com.github.hapcode.core.util.ClassNameAnalyzer;
+import com.github.hapcode.core.util.FileUtil;
+import com.github.hapcode.core.util.TagUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.beetl.core.Template;
 
 import java.io.File;
@@ -13,6 +16,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -21,6 +25,7 @@ import java.util.Set;
  * @description
  * @date 2022/12/1
  */
+@Slf4j
 public class CodeGenerator {
 
     public static void executeOneModelTemplates(String rootPath, Set<OneTemplateParam> oneTemplateParams) {
@@ -43,11 +48,11 @@ public class CodeGenerator {
     public static void executeOneTemplate(String rootPath, OneTemplateParam oneTemplateParam) {
 
         Map<String, Object> content = new HashMap<>(oneTemplateParam.getContent());
-        String templateName = oneTemplateParam.getTemplateName();
+        String templateClassPath = oneTemplateParam.getTemplateClassPath();
         String modelName = oneTemplateParam.getModelName();
         String[] tags = oneTemplateParam.getTags();
 
-        String templatePath = "/templates/" + templateName;
+        String templatePath = "/templates/" + templateClassPath;
 
         // 从模板拼接文件名
         String fileName = getFileName(modelName, templatePath);
@@ -64,16 +69,21 @@ public class CodeGenerator {
         Set<String> imports = ImportListAutoDetective.getImportClasses(clazzSet, rootPath, fileName);
         content.put("imports", imports);
 
+        String[] defaultTags = TagUtil.getTemplateTags(templateClassPath);
         // 如果没有指定tags，则分析模板默认的tags
         if (tags == null || tags.length == 0) {
-            tags = getTemplateTags(templateName);
+            tags = defaultTags;
         }
         // 自动探测需要生成到的目录
-        File file = FilePathAutoDetective.detectPath(rootPath, tags);
-        if (file == null)
-            throw new RuntimeException(templateName + "未找到合适的文件夹，请指定更多tags或更精确的rootPath以便更精确的匹配目标文件夹！");
-        File serviceFile = new File(file.getAbsolutePath() + File.separator + fileName);
+        List<File> fileList = FileUtil.listDirectory(rootPath);
+        File file = FilePathAutoDetective.detectPath(fileList, tags);
 
+        // 不允许创建新目录，抛出异常
+        if (file == null) {
+            throw new RuntimeException(templateClassPath + "未找到合适的文件夹，请指定更多tags或更精确的rootPath以便更精确的匹配目标文件夹！");
+        }
+        File serviceFile = new File(file.getAbsolutePath() + File.separator + fileName);
+        log.info("--------------- 生成文件到目录：{}", serviceFile);
         String pkg = FilePathAutoDetective.calClassPackage(serviceFile);
         content.put("packageName", pkg);
 
@@ -82,28 +92,9 @@ public class CodeGenerator {
 
         // 将内容写入类文件中
         writeAndFlush(newContent, serviceFile);
+
     }
 
-    /**
-     * 获取模板默认的tags
-     *
-     * @param templateName
-     * @return
-     */
-    private static String[] getTemplateTags(String templateName) {
-
-        if (templateName == null) return null;
-
-        int i = templateName.lastIndexOf(File.separator);
-        if (i > 0) {
-            templateName = templateName.substring(i + 1);
-        }
-        // model模板单独处理
-        if (templateName.startsWith("model.")) {
-            return new String[]{"model", "java"};
-        }
-        return StrUtil.toUnderlineCase(templateName).replace(".btl", "").replace("model", "").replace("imodel", "").replace("_", ".").split("\\.");
-    }
 
     /**
      * 从模板名称获取文件名称

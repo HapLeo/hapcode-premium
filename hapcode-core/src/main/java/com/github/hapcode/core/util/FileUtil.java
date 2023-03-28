@@ -1,5 +1,7 @@
 package com.github.hapcode.core.util;
 
+import com.github.hapcode.core.detective.FilePathAutoDetective;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -7,6 +9,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -37,7 +40,16 @@ public class FileUtil {
      */
     public static List<File> listDirectory(String rootPath) {
         List<File> fileList = listFile(rootPath);
-        return fileList.stream().filter(File::isDirectory).collect(Collectors.toList());
+        fileList = fileList.stream().filter(File::isDirectory).collect(Collectors.toList());
+        fileList.sort((o1, o2) -> o1.getAbsolutePath().length() > o2.getAbsolutePath().length() ? -1 : 1);
+        fileList = fileList.stream().filter(file -> {
+            String absolutePath = file.getAbsolutePath();
+            for (String execludePath : FilePathAutoDetective.execludePaths) {
+                if (absolutePath.contains(execludePath)) return false;
+            }
+            return true;
+        }).collect(Collectors.toList());
+        return fileList;
     }
 
     /**

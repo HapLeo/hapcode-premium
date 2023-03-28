@@ -1,8 +1,10 @@
 package com.github.hapcode.core.detective;
 
 import com.github.hapcode.core.util.FileUtil;
+import com.github.hapcode.core.util.TagUtil;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,22 +21,22 @@ public class FilePathAutoDetective {
     /**
      * 黑名单目录
      */
-    private static Set<String> execludePaths = new HashSet<>();
+    public static Set<String> execludePaths = new HashSet<>();
 
     static {
         execludePaths.add(File.separator + "src" + File.separator + "test");
+        execludePaths.add(File.separator + "target" + File.separator + "classes");
     }
 
     /**
      * 侦测rootPath路径下包含所有tags的一个目录（src/main下的java目录）
      *
-     * @param rootPath
+     * @param fileList
      * @param tags
      * @return
      */
-    public static File detectPath(String rootPath, String... tags) {
+    public static File detectPath(List<File> fileList, String... tags) {
 
-        List<File> fileList = FileUtil.listDirectory(rootPath);
         return fileList.stream().filter(item -> match(item, tags)).findFirst().orElse(null);
     }
 
@@ -74,16 +76,21 @@ public class FilePathAutoDetective {
      */
     public static boolean match(File file, String... tags) {
 
-        String absolutePath = file.getAbsolutePath();
-        for (String execludePath : execludePaths) {
-            if (absolutePath.contains(execludePath)) {
-                return false;
+        for (int i = 0; i < tags.length; i++) {
+            if ("xml".equals(tags[i])) {
+                tags[i] = "resource";
             }
         }
+
+        String absolutePath = file.getAbsolutePath();
         for (String tag : tags) {
             if (!file.getAbsolutePath().contains(tag)) {
                 return false;
             }
+        }
+        List<String> list = Arrays.asList(tags);
+        if (list.contains("i") && list.contains("service") && absolutePath.contains(File.separator + "impl")) {
+            return false;
         }
         return true;
     }
@@ -114,4 +121,5 @@ public class FilePathAutoDetective {
         }
         return null;
     }
+
 }
