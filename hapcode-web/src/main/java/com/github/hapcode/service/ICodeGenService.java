@@ -1,6 +1,6 @@
 package com.github.hapcode.service;
 
-import com.github.hapcode.core.cmd.CodeGenCmd;
+import com.github.hapcode.cmd.CodeGenCmd;
 
 import java.util.List;
 

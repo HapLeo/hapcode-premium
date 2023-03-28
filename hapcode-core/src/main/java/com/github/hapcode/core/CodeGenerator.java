@@ -121,7 +121,7 @@ public class CodeGenerator {
      * @param str
      * @param serviceFile
      */
-    public void writeAndFlush(String str, File serviceFile) {
+    private void writeAndFlush(String str, File serviceFile) {
         try {
             serviceFile.createNewFile();
             try (FileOutputStream fileOutputStream = new FileOutputStream(serviceFile)) {
@@ -140,7 +140,7 @@ public class CodeGenerator {
      * @return
      * @throws IOException
      */
-    public String render(Map<String, Object> content, String fileClassPath) {
+    private String render(Map<String, Object> content, String fileClassPath) {
 
         //初始化代码
         Template t = GroupTemplateConfig.groupTemplate().getTemplate(fileClassPath);

@@ -1,4 +1,4 @@
-package com.github.hapcode.core.cmd;
+package com.github.hapcode.cmd;
 
 import lombok.Data;
 
