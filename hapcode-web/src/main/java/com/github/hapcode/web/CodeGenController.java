@@ -1,6 +1,6 @@
 package com.github.hapcode.web;
 
-import com.github.hapcode.db.dto.cmd.CodeGenCmd;
+import com.github.hapcode.core.cmd.CodeGenCmd;
 import com.github.hapcode.db.service.ITableInfoService;
 import com.github.hapcode.service.ICodeGenService;
 import org.springframework.beans.factory.annotation.Autowired;

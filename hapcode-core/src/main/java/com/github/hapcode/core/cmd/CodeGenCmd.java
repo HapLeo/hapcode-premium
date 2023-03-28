@@ -1,4 +1,4 @@
-package com.github.hapcode.db.dto.cmd;
+package com.github.hapcode.core.cmd;
 
 import lombok.Data;
 
