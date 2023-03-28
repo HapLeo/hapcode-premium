@@ -5,7 +5,6 @@ import cn.hutool.core.util.ObjectUtil;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * @author wuyulin
@@ -15,32 +14,23 @@ import java.util.stream.Collectors;
  */
 public class ImportListAutoDetective {
 
-    private FilePathAutoDetective filePathAutoDetective = new FilePathAutoDetective();
 
-    private static Properties importsTemplate;
-
-    static {
-        importsTemplate = getImportTemplateItems();
-    }
+    private static Properties importsTemplate = new Properties();
 
     /**
-     * 获取指定字符串中大写字母开头的字符串集合
-     * 用于从生成的类内容中搜索所有类名称，便于后续导入
+     * 获取导入模板的项目表
      *
-     * @param str
      * @return
      */
-    public Set<String> findClassNames(String str) {
-
-        String regExp = "@|\\{|\\}|\\(|\\)|\\<|\\*|\r|\n|\\>|\\/|\\;|\\,|\\.";
-        str = str.replaceAll(regExp, " ");
-        String[] l1 = str.split(" ");
-        Set<String> shortSet = new HashSet<>(Arrays.asList(l1));
-        Set<String> collect = shortSet.stream().filter(ObjectUtil::isNotEmpty).filter(item -> {
-            char c = item.charAt(0);
-            return c >= 65 && c <= 90;
-        }).collect(Collectors.toSet());
-        return collect;
+    static {
+        InputStream resourceAsStream = ImportListAutoDetective.class.getResourceAsStream("/imports-template.properties");
+        if (resourceAsStream != null) {
+            try {
+                importsTemplate.load(new InputStreamReader(resourceAsStream, StandardCharsets.UTF_8));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 
@@ -49,7 +39,7 @@ public class ImportListAutoDetective {
      *
      * @return
      */
-    public Map<String, String> readFileImportList(File file) {
+    public static Map<String, String> readFileImportList(File file) {
 
         Map<String, String> result = new HashMap<>();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
@@ -83,11 +73,11 @@ public class ImportListAutoDetective {
      * @param rootPath
      * @return
      */
-    public Map<String, String> readPathFilesImportList(String rootPath) {
+    public static Map<String, String> readPathFilesImportList(String rootPath) {
 
         Map<String, String> result = new HashMap<>();
 
-        List<File> fileList = filePathAutoDetective.detectRealFileList(rootPath, ".java");
+        List<File> fileList = FilePathAutoDetective.detectRealFileList(rootPath, ".java");
         for (File file : fileList) {
             String absolutePath = file.getAbsolutePath();
             if (absolutePath.contains("target") || absolutePath.contains(".mvn")) {
@@ -115,7 +105,7 @@ public class ImportListAutoDetective {
      * @param fileName
      * @return
      */
-    public Set<String> getImportClasses(Set<String> clazzSet, String rootPath, String fileName) {
+    public static Set<String> getImportClasses(Set<String> clazzSet, String rootPath, String fileName) {
 
         Set<String> result = new HashSet<>();
 
@@ -144,28 +134,6 @@ public class ImportListAutoDetective {
         }
 
         return result;
-    }
-
-
-    /**
-     * 获取导入模板的项目表
-     *
-     * @return
-     */
-    public static Properties getImportTemplateItems() {
-
-        Properties properties = new Properties();
-
-        InputStream resourceAsStream = ImportListAutoDetective.class.getResourceAsStream("/imports-template.properties");
-        if (resourceAsStream == null) {
-            return properties;
-        }
-        try {
-            properties.load(new InputStreamReader(resourceAsStream, StandardCharsets.UTF_8));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return properties;
     }
 
 

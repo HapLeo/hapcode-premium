@@ -4,7 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import com.github.hapcode.cmd.CodeGenCmd;
 import com.github.hapcode.cmd.TemplateCmd;
 import com.github.hapcode.core.CodeGenerator;
-import com.github.hapcode.core.GenParams;
+import com.github.hapcode.core.OneTemplateParam;
 import com.github.hapcode.core.Templates.ListTemplates;
 import com.github.hapcode.db.model.TableInfo;
 import com.github.hapcode.db.service.ITableInfoService;
@@ -12,9 +12,7 @@ import com.github.hapcode.service.ICodeGenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author wuyulin
@@ -33,19 +31,22 @@ public class CodeServiceImpl implements ICodeGenService {
     public void codGen(CodeGenCmd codeGenCmd) {
 
         for (String tableName : codeGenCmd.getTableNames()) {
+
             TableInfo table = tableInfoService.listColumns(tableName);
             Map<String, Object> content = new HashMap<>();
             content.put("table", table);
+            Set<OneTemplateParam> modelTemplates = new HashSet<>();
+
             for (TemplateCmd template : codeGenCmd.getTemplates()) {
 
-                GenParams genParams = new GenParams();
-                genParams.setRootPath(codeGenCmd.getRootPath());
-                genParams.setModelName(StrUtil.upperFirst(StrUtil.toCamelCase(tableName)));
-                genParams.setTemplateName(template.getTemplateName());
-                genParams.setTags(template.getTags());
-                genParams.setContent(content);
-                codeGenerator.execute(genParams);
+                OneTemplateParam oneTemplateParam = new OneTemplateParam();
+                modelTemplates.add(oneTemplateParam);
+                oneTemplateParam.setModelName(StrUtil.upperFirst(StrUtil.toCamelCase(tableName)));
+                oneTemplateParam.setTemplateName(template.getTemplateName());
+                oneTemplateParam.setTags(template.getTags());
+                oneTemplateParam.setContent(content);
             }
+            codeGenerator.executeOneModelTemplates(codeGenCmd.getRootPath(), modelTemplates);
         }
 
     }

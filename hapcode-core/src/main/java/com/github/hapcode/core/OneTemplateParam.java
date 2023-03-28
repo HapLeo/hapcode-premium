@@ -2,7 +2,6 @@ package com.github.hapcode.core;
 
 import lombok.Data;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -11,13 +10,7 @@ import java.util.Map;
  * @date 2022/12/2
  */
 @Data
-public class GenParams {
-
-    /**
-     * 项目根目录
-     */
-    private String rootPath;
-
+public class OneTemplateParam {
 
     /**
      * 模型名称

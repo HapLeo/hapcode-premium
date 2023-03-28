@@ -1,10 +1,11 @@
 package com.github.hapcode.core.detective;
 
 import com.github.hapcode.core.util.FileUtil;
-import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -16,13 +17,22 @@ import java.util.stream.Collectors;
 public class FilePathAutoDetective {
 
     /**
+     * 黑名单目录
+     */
+    private static Set<String> execludePaths = new HashSet<>();
+
+    static {
+        execludePaths.add(File.separator + "src" + File.separator + "test");
+    }
+
+    /**
      * 侦测rootPath路径下包含所有tags的一个目录（src/main下的java目录）
      *
      * @param rootPath
      * @param tags
      * @return
      */
-    public File detectPath(String rootPath, String... tags) {
+    public static File detectPath(String rootPath, String... tags) {
 
         List<File> fileList = FileUtil.listDirectory(rootPath);
         return fileList.stream().filter(item -> match(item, tags)).findFirst().orElse(null);
@@ -35,7 +45,7 @@ public class FilePathAutoDetective {
      * @param tags
      * @return
      */
-    public File detectRealFile(String rootPath, String... tags) {
+    public static File detectRealFile(String rootPath, String... tags) {
 
         List<File> fileList = FileUtil.listRealFile(rootPath);
         return fileList.stream().filter(item -> match(item, tags)).findFirst().orElse(null);
@@ -48,7 +58,7 @@ public class FilePathAutoDetective {
      * @param tags
      * @return
      */
-    public List<File> detectRealFileList(String rootPath, String... tags) {
+    public static List<File> detectRealFileList(String rootPath, String... tags) {
 
         List<File> fileList = FileUtil.listRealFile(rootPath);
         return fileList.stream().filter(item -> match(item, tags)).collect(Collectors.toList());
@@ -62,7 +72,14 @@ public class FilePathAutoDetective {
      * @param tags
      * @return
      */
-    public boolean match(File file, String... tags) {
+    public static boolean match(File file, String... tags) {
+
+        String absolutePath = file.getAbsolutePath();
+        for (String execludePath : execludePaths) {
+            if (absolutePath.contains(execludePath)) {
+                return false;
+            }
+        }
         for (String tag : tags) {
             if (!file.getAbsolutePath().contains(tag)) {
                 return false;
@@ -78,7 +95,7 @@ public class FilePathAutoDetective {
      * @param file
      * @return
      */
-    public String calClassPackage(File file) {
+    public static String calClassPackage(File file) {
 
         String absolutePath = file.getAbsolutePath();
         if (!absolutePath.endsWith(".java")) {
@@ -89,9 +106,9 @@ public class FilePathAutoDetective {
             clazzName = clazzName.substring(1);
         }
 
-        try{
+        try {
             return clazzName.substring(0, clazzName.lastIndexOf("."));
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(absolutePath);
             e.printStackTrace();
         }
