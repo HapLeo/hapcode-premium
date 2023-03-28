@@ -2,6 +2,9 @@ package com.github.hapcode.core;
 
 import lombok.Data;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * @author wuyulin
  * @description
@@ -25,7 +28,18 @@ public class GenParams {
     /**
      * 模板名称
      */
-    private String templatePath;
+    private String templateName;
+
+    /**
+     * 模版中需要填充的内容
+     */
+    private Map<String, Object> content;
+
+
+    /**
+     * 标签数组
+     */
+    private String[] tags;
 
 
 }

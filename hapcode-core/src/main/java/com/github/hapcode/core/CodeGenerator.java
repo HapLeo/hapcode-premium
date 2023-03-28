@@ -12,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -30,15 +31,14 @@ public class CodeGenerator {
     /**
      * 执行生成方法
      *
-     * @param rootPath
-     * @param modelName
-     * @param templateName
-     * @param tableContent
-     * @param tags
      */
-    public void execute(String rootPath, String modelName, String templateName, final Map<String, Object> tableContent, String... tags) {
+    public void execute(GenParams genParams) {
 
-        Map<String, Object> content = new HashMap<>(tableContent);
+        Map<String, Object> content = new HashMap<>(genParams.getContent());
+        String templateName = genParams.getTemplateName();
+        String modelName = genParams.getModelName();
+        String rootPath = genParams.getRootPath();
+        String[] tags = genParams.getTags();
 
         String templatePath = "/templates/" + templateName;
 
