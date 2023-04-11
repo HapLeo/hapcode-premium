@@ -5,6 +5,7 @@ import com.github.hapcode.db.JavaTypeConverter;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * @author wuyulin
@@ -52,6 +53,9 @@ public class TableColumn implements Serializable {
      */
     public void repair() {
 
+        if (Objects.equals(field.toLowerCase(), "is_deleted")) {
+            field = "deleted";
+        }
         // 通过field转换并赋值到propertyName
         if (field != null) this.propertyName = StrUtil.lowerFirst(StrUtil.toCamelCase(field.toLowerCase()));
         if (type != null) javaType = JavaTypeConverter.convert(type);

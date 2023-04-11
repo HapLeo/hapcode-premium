@@ -4,6 +4,6 @@ spring:
   application:
     name: my-code-generator
   datasource:
-    url: jdbc:mysql://localhost:3306/homebox_mall_order?useUnicode=true&characterEncoding=UTF-8&useAffectedRows=true&allowMultiQueries=true&serverTimezone=Asia/Shanghai
-    username: root
-    password: 1234
+    url: jdbc:mysql://aiwo-test.mysql.rds.aliyuncs.com:3306/aiwo_aiot_order?useUnicode=true&characterEncoding=UTF-8&useAffectedRows=true&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+    username: aiwo_test
+    password: X19gU8B%8R5$YUpqVo!*lF

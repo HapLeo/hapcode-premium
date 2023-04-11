@@ -1,0 +1,30 @@
+package @{content.packageName};
+
+<% for(import in content.imports!){ %>
+import @{import};
+<% } %>
+
+/**
+ * @author @{content.author!}
+ * @desc @{content.table.comment!}VO
+ * @date @{date(),"yyyy-MM-dd"}
+ */
+@ApiModel("@{content.table.comment!}VO")
+@Data
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+public class @{content.modelName}Vo {
+
+<% for(item in content.table.fields!){ %>
+    <%if(item.propertyName == "deleted"){ %>
+
+    <%}else{ %>
+
+    @ApiModelProperty(value = "@{item.comment!}")
+    private @{item.javaType} @{item.propertyName};
+    <%}%>
+<% } %>
+
+
+
+}

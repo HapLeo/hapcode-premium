@@ -6,9 +6,10 @@ import @{import};
 
 /**
  * @author @{content.author!}
- * @desc {content.table.comment!}
+ * @desc @{content.table.comment!}
  * @date @{date(),"yyyy-MM-dd"}
  */
+@ApiModel("@{content.table.comment!}")
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
