@@ -10,7 +10,7 @@ import @{import};
  * @date @{date(),"yyyy-MM-dd"}
  */
 @Service
-public class @{content.modelName}ServiceImpl extends ServiceImpl<@{content.modelName}Dao, @{content.modelName}> implements I@{content.modelName}Service {
+public class @{content.modelName}ServiceImpl extends ServiceImpl<@{content.modelName}Mapper, @{content.modelName}> implements I@{content.modelName}Service {
 
 
 }
