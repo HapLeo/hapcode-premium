@@ -10,6 +10,6 @@ import @{import};
  * @date @{date(),"yyyy-MM-dd"}
  */
 @Mapper
-public interface @{content.modelName}Dao extends BaseMapper<@{content.modelName}> {
+public interface @{content.modelName}Mapper extends BaseMapper<@{content.modelName}> {
 
 }

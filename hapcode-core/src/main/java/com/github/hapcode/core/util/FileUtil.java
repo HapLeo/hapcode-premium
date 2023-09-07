@@ -8,8 +8,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -41,7 +41,7 @@ public class FileUtil {
     public static List<File> listDirectory(String rootPath) {
         List<File> fileList = listFile(rootPath);
         fileList = fileList.stream().filter(File::isDirectory).collect(Collectors.toList());
-        fileList.sort((o1, o2) -> o1.getAbsolutePath().length() > o2.getAbsolutePath().length() ? -1 : 1);
+        fileList.sort(Comparator.comparingInt(o -> o.getAbsolutePath().length()));
         fileList = fileList.stream().filter(file -> {
             String absolutePath = file.getAbsolutePath();
             for (String execludePath : FilePathAutoDetective.execludePaths) {
