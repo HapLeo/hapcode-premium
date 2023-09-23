@@ -13,4 +13,11 @@ import @{import};
 public class @{content.modelName}ServiceImpl extends ServiceImpl<@{content.modelName}Mapper, @{content.modelName}> implements I@{content.modelName}Service {
 
 
+    @Override
+    public Pagin<@{content.modelName}> listPage() {
+
+        Page<@{content.modelName}> page = page(new Page<>(1, 10));
+        return MyBeanUtils.copyPage(page, @{content.modelName}.class);
+    }
+
 }

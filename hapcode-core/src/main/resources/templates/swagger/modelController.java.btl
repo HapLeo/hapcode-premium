@@ -33,6 +33,18 @@ public class @{content.modelName}Controller {
         return Result.successWithData(service.getById(id));
     }
 
+    /**
+     * 分页查询列表
+     *
+     * @return
+     */
+    @ApiOperation("分页查询列表")
+    @GetMapping("/listPage")
+    public Result<Pagin<@{content.modelName}>> listPage() {
+
+        return Result.successWithData(service.listPage());
+    }
+
 
     /**
      * 根据ID删除
@@ -44,7 +56,7 @@ public class @{content.modelName}Controller {
     @PostMapping("/delById")
     public Result delById(@RequestParam Long id) {
 
-        service.updateById(new @{content.modelName}().setId(id).setDeleted(1));
+        service.updateById(new @{content.modelName}().setId(id).setDel(1));
         return Result.success();
     }
 

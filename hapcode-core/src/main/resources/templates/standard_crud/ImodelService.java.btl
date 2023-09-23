@@ -12,4 +12,11 @@ import @{import};
 public interface I@{content.modelName}Service extends IService<@{content.modelName}> {
 
 
+    /**
+     * 分页查询列表
+     *
+     * @return
+     */
+    Pagin<@{content.modelName}> listPage();
+
 }

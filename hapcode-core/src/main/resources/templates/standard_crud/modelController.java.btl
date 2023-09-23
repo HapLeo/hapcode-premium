@@ -33,6 +33,19 @@ public class @{content.modelName}Controller {
 
 
     /**
+     * 分页查询列表
+     *
+     * @return
+     */
+    @ApiOperation("分页查询列表")
+    @GetMapping("/listPage")
+    public Result<Pagin<@{content.modelName}>> listPage() {
+
+        return Result.successWithData(service.listPage());
+    }
+
+
+    /**
      * 根据ID删除
      *
      * @param id
