@@ -46,6 +46,45 @@
         if (oldPath != null && oldPath !== '') {
             $("#rootPath").val(oldPath);
         }
+
+        $("#rootPath").blur(function () {
+            $.ajax({
+                type: 'get',
+                url: 'http://localhost:8080/cmdTemp/readCmdTemp',
+                data: {
+                    "rootPath": $("#rootPath").val()
+                },
+                success: function (resp) {
+                    console.log(resp)
+                    if (resp != null && resp != '') {
+                        var templates = resp.templates;
+                        if (templates == undefined) {
+                            return;
+                        }
+                        if (templates.length == 0) {
+                            return;
+                        }
+
+                        $("input[name='tags']").each(function (index, item) {
+                            var template = templates[index];
+                            if (template != undefined) {
+                                if (templates[index] != undefined) {
+                                    var template = templates[index];
+                                    console.log(template)
+                                    if (template != undefined) {
+                                        var tags = template.tags;
+                                        console.log(tags)
+                                        var tag = tags[index];
+                                        $(item).val(tag);
+                                    }
+                                }
+                            }
+                        });
+                    }
+                },
+            });
+        });
+
         $("#submit").click(function () {
             var rootPath = $("#rootPath").val();
             // var tableName = $("#tableName").val();
@@ -125,7 +164,7 @@
                 }
                 for (let i = 0; i < resp.length; i++) {
                     var template = resp[i];
-                    var tagHtml = '&nbsp;&nbsp;&nbsp;&nbsp;<input style="width: auto;" name="tags" placeholder="tags"/>';
+                    var tagHtml = '&nbsp;&nbsp;&nbsp;&nbsp;<input style="width: 900px;" name="tags" placeholder="tags"/>';
                     $("#templateBox").append('<div><input style="text-align:left" class="templateName" type="checkbox" name="templateName" value="' + template + '"/>' + template + tagHtml + "</br></div>");
                 }
             }

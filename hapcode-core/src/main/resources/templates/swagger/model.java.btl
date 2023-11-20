@@ -13,7 +13,7 @@ import @{import};
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class @{content.modelName} extends Model<@{content.modelName}>{
+public class @{content.modelName} {
 
 <% for(item in content.table.fields!){ %>
     <%if(item.key == "PRI"){ %>
