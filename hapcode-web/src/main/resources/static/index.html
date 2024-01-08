@@ -55,9 +55,9 @@
                     "rootPath": $("#rootPath").val()
                 },
                 success: function (resp) {
-                    console.log(resp)
                     if (resp != null && resp != '') {
                         var templates = resp.templates;
+                        console.log(templates)
                         if (templates == undefined) {
                             return;
                         }
@@ -65,20 +65,14 @@
                             return;
                         }
 
-                        $("input[name='tags']").each(function (index, item) {
-                            var template = templates[index];
-                            if (template != undefined) {
-                                if (templates[index] != undefined) {
-                                    var template = templates[index];
-                                    console.log(template)
-                                    if (template != undefined) {
-                                        var tags = template.tags;
-                                        console.log(tags)
-                                        var tag = tags[index];
-                                        $(item).val(tag);
-                                    }
+                        $(".templateName").each(function (index, item) {
+                            var templateName = $(item).val();
+                            for (let i = 0; i < templates.length; i++) {
+                                if (templateName == templates[i].templateName) {
+                                    $(item).parent().find("input[name='tags']").val(templates[i].tags);
                                 }
                             }
+
                         });
                     }
                 },
@@ -98,13 +92,11 @@
             var templates = [];
             localStorage.setItem("oldPath", rootPath);
             $(".templateName").each(function (index, item) {
-                console.log(item);
                 var checked = $(item).prop('checked');
                 if (checked) {
                     var template = {};
                     template.templateName = $(item).val();
                     var tags = $(item).parent().find("input[name='tags']").val();
-                    console.log(tags);
                     if (tags == null || tags == '') {
                         tags = [];
                     } else {
@@ -145,7 +137,6 @@
                     var name = item.Name;
                     var comment = item.Comment;
                     var show = name + "-" + comment;
-                    console.log(show);
                     $("#tableName").append('<div><input style="text-align:left" type="checkbox" class="tableName" value="' + name + '"/> ' + show + '</br></div>');
                 }
             },

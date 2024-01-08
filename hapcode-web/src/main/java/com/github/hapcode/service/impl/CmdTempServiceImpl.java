@@ -18,22 +18,20 @@ public class CmdTempServiceImpl implements CmdTempService {
     @Override
     public void storeCmdTemp(CodeGenCmd codeGenCmd) {
 
+        Properties properties = new Properties();
+        //File file = File.createTempFile("hapcode-cmd-temp", ".properties");
+        String tempdir = "/Users/wuyulin/Desktop/";
+        File file = new File(tempdir);
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+        System.out.println(file.getAbsolutePath());
+        File tempFile = new File(file.getAbsolutePath() + "/hapcode-cmd-temp.properties");
+        try (FileWriter fileWriter = new FileWriter(tempFile); FileReader fileReader = new FileReader(tempFile);) {
 
-        try {
-            Properties properties = new Properties();
-            //File file = File.createTempFile("hapcode-cmd-temp", ".properties");
-            String tempdir = System.getProperty("java.io.tmpdir");
-            File file = new File(tempdir);
-            if (!file.exists()) {
-                file.mkdirs();
-            }
-            System.out.println(file.getAbsolutePath());
-            File tempFile = new File(file.getAbsolutePath() + "hapcode-cmd-temp.properties");
-            if (!tempFile.exists()){
+            if (!tempFile.exists()) {
                 tempFile.createNewFile();
             }
-            FileWriter fileWriter = new FileWriter(tempFile);
-            FileReader fileReader = new FileReader(tempFile);
             properties.load(fileReader);
             properties.put(codeGenCmd.getRootPath(), JSON.toJSONString(codeGenCmd));
             properties.store(fileWriter, "");
@@ -46,15 +44,14 @@ public class CmdTempServiceImpl implements CmdTempService {
 
     @Override
     public CodeGenCmd readCmdTemp(String rootPath) {
-
-        try {
-            Properties properties = new Properties();
-            String tempdir = System.getProperty("java.io.tmpdir");
-            File file = new File(tempdir);
-            if (!file.exists()) {
-                return null;
-            }
-            FileReader fileReader = new FileReader(file.getAbsolutePath() + "hapcode-cmd-temp.properties");
+        Properties properties = new Properties();
+        //String tempdir = System.getProperty("java.io.tmpdir");
+        String tempdir = "/Users/wuyulin/Desktop/";
+        File file = new File(tempdir);
+        if (!file.exists()) {
+            return null;
+        }
+        try (FileReader fileReader = new FileReader(file.getAbsolutePath() + "/hapcode-cmd-temp.properties")) {
             properties.load(fileReader);
             String str = String.valueOf(properties.get(rootPath));
             if (ObjectUtil.isNotEmpty(str)) {
