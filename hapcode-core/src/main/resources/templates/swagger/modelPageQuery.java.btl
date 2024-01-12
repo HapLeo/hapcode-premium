@@ -16,7 +16,7 @@ import @{import};
 public class @{content.modelName}PageQuery extends PageQuery {
 
 <% for(item in content.table.fields!){ %>
-    <%if(item.propertyName == "del" || item.propertyName == "deleted" || item.propertyName == "createTime" || item.propertyName == "updateTime" || item.propertyName == "operatorId" || item.propertyName == "remark"){ %>
+    <%if(item.propertyName == "id" || item.propertyName == "del" || item.propertyName == "deleted" || item.propertyName == "createTime" || item.propertyName == "updateTime" || item.propertyName == "operatorId" || item.propertyName == "remark"){ %>
     <%}else{ %>
 
     @ApiModelProperty(value = "@{item.comment!}")
