@@ -6,18 +6,17 @@ import @{import};
 
 /**
  * @author @{content.author!}
- * @desc @{content.table.comment!}VO
+ * @desc @{content.table.comment!}
  * @date @{date(),"yyyy-MM-dd"}
  */
-@ApiModel("@{content.table.comment!}VO")
+@ApiModel("@{content.table.comment!}PageQuery")
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class @{content.modelName}Vo {
+public class @{content.modelName}PageQuery extends PageQuery {
 
 <% for(item in content.table.fields!){ %>
-    <%if(item.propertyName == "deleted"){ %>
-
+    <%if(item.propertyName == "del" || item.propertyName == "deleted" || item.propertyName == "createTime" || item.propertyName == "updateTime" || item.propertyName == "operatorId" || item.propertyName == "remark"){ %>
     <%}else{ %>
 
     @ApiModelProperty(value = "@{item.comment!}")

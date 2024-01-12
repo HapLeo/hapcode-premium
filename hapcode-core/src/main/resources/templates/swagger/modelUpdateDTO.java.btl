@@ -1,0 +1,30 @@
+package @{content.packageName};
+
+<% for(import in content.imports!){ %>
+import @{import};
+<% } %>
+
+/**
+ * @author @{content.author!}
+ * @desc @{content.table.comment!}
+ * @date @{date(),"yyyy-MM-dd"}
+ */
+@ApiModel("@{content.table.comment!}UpdateDTO")
+@Data
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+public class @{content.modelName}UpdateDTO {
+
+<% for(item in content.table.fields!){ %>
+    <%if(item.propertyName == "del" || item.propertyName == "deleted" || item.propertyName == "createTime" || item.propertyName == "updateTime" || item.propertyName == "operatorId" || item.propertyName == "remark"){ %>
+    <%}else{ %>
+
+    @ApiModelProperty(value = "@{item.comment!}")
+    @NotNull(message = "@{item.comment!}不能为空")
+    private @{item.javaType} @{item.propertyName};
+    <%}%>
+<% } %>
+
+
+
+}

@@ -13,10 +13,24 @@ public interface I@{content.modelName}Service extends IService<@{content.modelNa
 
 
     /**
+     * 新增
+     *
+     * @param addDto
+     */
+    void add(@{content.modelName}AddDTO addDto);
+
+    /**
+     * 修改
+     *
+     * @param updateDto
+     */
+    void update(@{content.modelName}UpdateDTO updateDto);
+
+    /**
      * 分页查询列表
      *
      * @return
      */
-    Pagin<@{content.modelName}> listPage();
+    Pagin<@{content.modelName}VO> listPage(@{content.modelName}PageQuery pageQuery);
 
 }

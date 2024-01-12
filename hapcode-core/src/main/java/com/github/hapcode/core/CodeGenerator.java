@@ -15,10 +15,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author wuyulin
@@ -86,6 +84,27 @@ public class CodeGenerator {
         log.info("--------------- 生成文件到目录：{}", serviceFile);
         String pkg = FilePathAutoDetective.calClassPackage(serviceFile);
         content.put("packageName", pkg);
+
+        /**
+         * 如果为Mapper.xml，需要为其提供Mapper.java的包名和model的包名
+         */
+        if (fileName.endsWith("Mapper.xml")) {
+
+            List<File> files = FileUtil.listRealFile(rootPath);
+            if (files == null || files.size() == 0) {
+                log.error("未识别到{}对应的Mapper.java文件！", fileName);
+            }
+
+            // 获取Mapper.java文件包名
+            File mapperClzFile = files.stream().filter(f -> f.getAbsolutePath().endsWith(fileName.replace("xml","java"))).collect(Collectors.toList()).get(0);
+            String mapperJavaPkg = FilePathAutoDetective.calClassPackage(mapperClzFile);
+            content.put("mapperJavaPkg", mapperJavaPkg);
+
+            // 获取ModelVO.java文件包名
+            File modelVOClzFile = files.stream().filter(f -> f.getAbsolutePath().endsWith(modelName + "VO.java")).collect(Collectors.toList()).get(0);
+            String modelVOJavaPkg = FilePathAutoDetective.calClassPackage(modelVOClzFile);
+            content.put("modelVOJavaPkg", modelVOJavaPkg);
+        }
 
         // 重新生成模板内容
         String newContent = render(content, templatePath);

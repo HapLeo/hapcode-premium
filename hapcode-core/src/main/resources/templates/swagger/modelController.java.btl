@@ -19,32 +19,33 @@ public class @{content.modelName}Controller {
     private I@{content.modelName}Service service;
 
 
-
     /**
-     * 根据ID查询
+     * 新增
      *
-     * @param id
+     * @param addDto
      * @return
      */
-    @ApiOperation("根据id查询")
-    @GetMapping("/getById")
-    public Result<@{content.modelName}> getById(@RequestParam Long id) {
+    @ApiOperation("新增")
+    @PostMapping("/add")
+    public Result add(@RequestBody @Valid @{content.modelName}AddDTO addDto) {
 
-        return Result.successWithData(service.getById(id));
+        service.add(addDto);
+        return Result.success();
     }
 
     /**
-     * 分页查询列表
+     * 更新
      *
+     * @param updateDTO
      * @return
      */
-    @ApiOperation("分页查询列表")
-    @GetMapping("/listPage")
-    public Result<Pagin<@{content.modelName}>> listPage() {
+    @ApiOperation("更新")
+    @PostMapping("/update")
+    public Result update(@RequestBody @Valid @{content.modelName}UpdateDTO updateDTO) {
 
-        return Result.successWithData(service.listPage());
+        service.update(updateDTO);
+        return Result.success();
     }
-
 
     /**
      * 根据ID删除
@@ -61,19 +62,37 @@ public class @{content.modelName}Controller {
     }
 
 
+
     /**
-     * 根据ID更新
+     * 根据ID查询
      *
-     * @param @{content.modelNameLowerFirst}
+     * @param id
      * @return
      */
-    @ApiOperation("根据id更新")
-    @PostMapping("/updateById")
-    public Result updateById(@RequestBody @{content.modelName} @{content.modelNameLowerFirst}) {
+    @ApiOperation("根据id查询")
+    @GetMapping("/getById")
+    public Result<@{content.modelName}VO> getById(@RequestParam Long id) {
 
-        service.updateById(@{content.modelNameLowerFirst});
-        return Result.success();
+        return Result.successWithData(MyBeanUtils.copyBean(service.getById(id), @{content.modelName}VO.class));
     }
+
+    /**
+     * 分页查询列表
+     * @param pageQuery
+     * @return
+     */
+    @ApiOperation("分页查询列表")
+    @GetMapping("/listPage")
+    public Result<Pagin<@{content.modelName}VO>> listPage(@{content.modelName}PageQuery pageQuery) {
+
+        return Result.successWithData(service.listPage(pageQuery));
+    }
+
+
+
+
+
+
 
 
 

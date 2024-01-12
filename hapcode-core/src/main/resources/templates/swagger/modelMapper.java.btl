@@ -11,4 +11,7 @@ import @{import};
  */
 public interface @{content.modelName}Mapper extends BaseMapper<@{content.modelName}> {
 
+
+    List<ActivityShowConfigVO> listPage(@Param("page") Page page, @Param("pageQuery") @{content.modelName}PageQuery pageQuery);
+
 }

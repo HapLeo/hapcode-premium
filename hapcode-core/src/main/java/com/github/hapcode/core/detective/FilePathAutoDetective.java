@@ -1,7 +1,6 @@
 package com.github.hapcode.core.detective;
 
 import com.github.hapcode.core.util.FileUtil;
-import com.github.hapcode.core.util.TagUtil;
 
 import java.io.File;
 import java.util.Arrays;
@@ -25,7 +24,9 @@ public class FilePathAutoDetective {
 
     static {
         execludePaths.add(File.separator + "src" + File.separator + "test");
-        execludePaths.add(File.separator + "target" + File.separator + "classes");
+        execludePaths.add(File.separator + "target");
+        execludePaths.add(File.separator + ".git");
+        execludePaths.add(File.separator + ".idea");
     }
 
     /**

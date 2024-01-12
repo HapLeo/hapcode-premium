@@ -14,10 +14,26 @@ public class @{content.modelName}ServiceImpl extends ServiceImpl<@{content.model
 
 
     @Override
-    public Pagin<@{content.modelName}> listPage() {
+    public void add(@{content.modelName}AddDTO addDto) {
 
-        Page<@{content.modelName}> page = page(new Page<>(1, 10));
-        return MyBeanUtils.copyPage(page, @{content.modelName}.class);
+        @{content.modelName} @{content.modelNameLowerFirst} = MyBeanUtils.copyBean(addDto,@{content.modelName}.class);
+        save(@{content.modelNameLowerFirst});
+    }
+
+    @Override
+    public void update(@{content.modelName}UpdateDTO updateDto) {
+
+        @{content.modelName} @{content.modelNameLowerFirst} = MyBeanUtils.copyBean(updateDto,@{content.modelName}.class);
+        updateById(@{content.modelNameLowerFirst});
+    }
+
+    @Override
+    public Pagin<@{content.modelName}VO> listPage(@{content.modelName}PageQuery pageQuery) {
+
+        Page<@{content.modelName}VO> page = new Page<>(pageQuery.getCurrPage(), pageQuery.getPageSize());
+        List<@{content.modelName}VO> list = baseMapper.listPage(page, pageQuery);
+        page.setRecords(list);
+        return MyBeanUtils.copyPage(page, @{content.modelName}VO.class);
     }
 
 }
