@@ -20,11 +20,19 @@ public interface I@{content.modelName}Service extends IService<@{content.modelNa
     void add(@{content.modelName}AddDTO addDto);
 
     /**
-     * 修改
+     * 编辑
      *
      * @param updateDto
      */
     void update(@{content.modelName}UpdateDTO updateDto);
+
+    /**
+     * 详情
+     *
+     * @param id
+     * @return
+     */
+    @{content.modelName} detail(Long id);
 
     /**
      * 分页查询列表

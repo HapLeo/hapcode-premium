@@ -34,12 +34,12 @@ public class @{content.modelName}Controller {
     }
 
     /**
-     * 更新
+     * 编辑
      *
      * @param updateDTO
      * @return
      */
-    @ApiOperation("更新")
+    @ApiOperation("编辑")
     @PostMapping("/update")
     public Result update(@RequestBody @Valid @{content.modelName}UpdateDTO updateDTO) {
 
@@ -48,14 +48,14 @@ public class @{content.modelName}Controller {
     }
 
     /**
-     * 根据ID删除
+     * 删除
      *
      * @param id
      * @return
      */
-    @ApiOperation("根据id删除")
-    @PostMapping("/delById")
-    public Result delById(@RequestParam Long id) {
+    @ApiOperation("删除")
+    @PostMapping("/delete")
+    public Result delete(@RequestParam Long id) {
 
         service.updateById(new @{content.modelName}().setId(id).setDel(1));
         return Result.success();
@@ -64,16 +64,16 @@ public class @{content.modelName}Controller {
 
 
     /**
-     * 根据ID查询
+     * 详情
      *
      * @param id
      * @return
      */
-    @ApiOperation("根据id查询")
-    @GetMapping("/getById")
-    public Result<@{content.modelName}VO> getById(@RequestParam Long id) {
+    @ApiOperation("详情")
+    @GetMapping("/detail")
+    public Result<@{content.modelName}VO> detail(@RequestParam Long id) {
 
-        return Result.successWithData(MyBeanUtils.copyBean(service.getById(id), @{content.modelName}VO.class));
+        return Result.successWithData(MyBeanUtils.copyBean(service.detail(id), @{content.modelName}VO.class));
     }
 
     /**

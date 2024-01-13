@@ -28,6 +28,14 @@ public class @{content.modelName}ServiceImpl extends ServiceImpl<@{content.model
     }
 
     @Override
+    public @{content.modelName} detail(Long id) {
+
+        @{content.modelName} detail = getById(id);
+        Asserts.mustTrue(detail != null && detail.getDel() == 0, new DefaultClientException("记录不存在"));
+        return detail;
+    }
+
+    @Override
     public Pagin<@{content.modelName}VO> listPage(@{content.modelName}PageQuery pageQuery) {
 
         Page<@{content.modelName}VO> page = new Page<>(pageQuery.getCurrPage(), pageQuery.getPageSize());
