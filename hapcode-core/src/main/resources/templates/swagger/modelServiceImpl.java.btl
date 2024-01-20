@@ -9,8 +9,9 @@ import @{import};
  * @author @{content.author}
  * @date @{date(),"yyyy-MM-dd"}
  */
+@Slf4j
 @Service
-public class @{content.modelName}ServiceImpl extends ServiceImpl<@{content.modelName}Mapper, @{content.modelName}> implements I@{content.modelName}Service {
+public class @{content.modelName}ServiceImpl extends ServiceImpl<@{content.modelName}Mapper, @{content.modelName}> implements @{content.modelName}Service {
 
 
     @Override
@@ -36,7 +37,7 @@ public class @{content.modelName}ServiceImpl extends ServiceImpl<@{content.model
     }
 
     @Override
-    public Pagin<@{content.modelName}VO> listPage(@{content.modelName}PageQuery pageQuery) {
+    public Pagin<@{content.modelName}VO> list(@{content.modelName}PageQuery pageQuery) {
 
         Page<@{content.modelName}VO> page = new Page<>(pageQuery.getCurrPage(), pageQuery.getPageSize());
         List<@{content.modelName}VO> list = baseMapper.listPage(page, pageQuery);

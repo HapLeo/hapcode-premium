@@ -9,7 +9,7 @@ import @{import};
  * @desc @{content.table.comment!} 服务接口
  * @date @{date(),"yyyy-MM-dd"}
  */
-public interface I@{content.modelName}Service extends IService<@{content.modelName}> {
+public interface @{content.modelName}Service extends IService<@{content.modelName}> {
 
 
     /**
@@ -39,6 +39,6 @@ public interface I@{content.modelName}Service extends IService<@{content.modelNa
      *
      * @return
      */
-    Pagin<@{content.modelName}VO> listPage(@{content.modelName}PageQuery pageQuery);
+    Pagin<@{content.modelName}VO> list(@{content.modelName}PageQuery pageQuery);
 
 }

@@ -9,6 +9,7 @@ import @{import};
  * @desc @{content.table.comment!} 控制器
  * @date @{date(),"yyyy-MM-dd"}
  */
+@Slf4j
 @Api(tags="@{content.table.comment!}控制器")
 @RestController
 @RequestMapping("/@{content.modelNameLowerFirst}")
@@ -16,7 +17,7 @@ public class @{content.modelName}Controller {
 
 
     @Autowired
-    private I@{content.modelName}Service service;
+    private @{content.modelName}Service service;
 
 
     /**
@@ -77,15 +78,15 @@ public class @{content.modelName}Controller {
     }
 
     /**
-     * 分页查询列表
+     * 查询列表
      * @param pageQuery
      * @return
      */
-    @ApiOperation("分页查询列表")
-    @GetMapping("/listPage")
-    public Result<Pagin<@{content.modelName}VO>> listPage(@{content.modelName}PageQuery pageQuery) {
+    @ApiOperation("查询列表")
+    @GetMapping("/list")
+    public Result<Pagin<@{content.modelName}VO>> list(@{content.modelName}PageQuery pageQuery) {
 
-        return Result.successWithData(service.listPage(pageQuery));
+        return Result.successWithData(service.list(pageQuery));
     }
 
 
