@@ -32,7 +32,7 @@ public interface @{content.modelName}Service extends IService<@{content.modelNam
      * @param id
      * @return
      */
-    @{content.modelName} detail(Long id);
+    @{content.modelName}VO detail(Long id);
 
     /**
      * 分页查询列表

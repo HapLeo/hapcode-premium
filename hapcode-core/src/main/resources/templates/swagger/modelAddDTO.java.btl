@@ -17,7 +17,7 @@ public class @{content.modelName}AddDTO {
 
 <% for(item in content.table.fields!){ %>
     <%if(item.key == "PRI"){ %>
-    <%}else if(item.propertyName == "del" || item.propertyName == "deleted" || item.propertyName == "createTime" || item.propertyName == "updateTime" || item.propertyName == "operatorId" || item.propertyName == "remark"){ %>
+    <%}else if(item.propertyName == "del" || item.propertyName == "deleted" || item.propertyName == "createTime" || item.propertyName == "updateTime" || item.propertyName == "operatorId" || item.propertyName == "operatorName" || item.propertyName == "remark"){ %>
     <%}else{ %>
 
     @ApiModelProperty(value = "@{item.comment!}")

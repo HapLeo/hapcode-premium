@@ -18,6 +18,11 @@ public class CmdTempServiceImpl implements CmdTempService {
     @Override
     public void storeCmdTemp(CodeGenCmd codeGenCmd) {
 
+        CodeGenCmd codeGenCmd1 = readCmdTemp(codeGenCmd.getRootPath());
+        if (codeGenCmd1 != null) {
+            return;
+        }
+
         Properties properties = new Properties();
         //File file = File.createTempFile("hapcode-cmd-temp", ".properties");
         String tempdir = "/Users/wuyulin/Desktop/";
