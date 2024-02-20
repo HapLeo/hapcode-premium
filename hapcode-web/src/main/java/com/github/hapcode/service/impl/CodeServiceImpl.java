@@ -35,6 +35,8 @@ public class CodeServiceImpl implements ICodeGenService {
             TableInfo table = tableInfoService.listColumns(tableName);
             Map<String, Object> content = new HashMap<>();
             content.put("table", table);
+            String controllerPath = table.getName().replaceAll("_", "/");
+            content.put("controllerPath", controllerPath);
             Set<OneTemplateParam> modelTemplates = new HashSet<>();
 
             for (TemplateCmd template : codeGenCmd.getTemplates()) {

@@ -33,7 +33,7 @@ public class @{content.modelName}ServiceImpl extends ServiceImpl<@{content.model
 
         @{content.modelName} detail = getById(id);
         Asserts.mustTrue(detail != null && detail.getDel() == 0, new DefaultClientException("记录不存在"));
-        return detail;
+        return MyBeanUtils.copyBean(detail, @{content.modelName}VO.class);
     }
 
     @Override

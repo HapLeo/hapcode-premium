@@ -6,13 +6,13 @@ import @{import};
 
 /**
  * @author @{content.author!}
- * @desc @{content.table.comment!} 控制器
+ * @desc @{content.table.comment!}
  * @date @{date(),"yyyy-MM-dd"}
  */
 @Slf4j
-@Api(tags="@{content.table.comment!}控制器")
+@Api(tags="@{content.table.comment!}")
 @RestController
-@RequestMapping("/@{content.modelNameLowerFirst}")
+@RequestMapping("@{content.controllerPath}")
 public class @{content.modelName}Controller {
 
 
