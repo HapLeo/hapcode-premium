@@ -17,7 +17,7 @@ public class @{content.modelName}ServiceImpl extends ServiceImpl<@{content.model
     @Override
     public void add(@{content.modelName}AddCmd addCmd) {
 
-        @{content.modelName} @{content.modelNameLowerFirst} = MyBeanUtils.copyBean(addDto,@{content.modelName}.class);
+        @{content.modelName} @{content.modelNameLowerFirst} = MyBeanUtils.copyBean(addCmd,@{content.modelName}.class);
         save(@{content.modelNameLowerFirst});
     }
 
