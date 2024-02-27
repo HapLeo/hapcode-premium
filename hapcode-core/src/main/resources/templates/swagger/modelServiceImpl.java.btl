@@ -15,17 +15,23 @@ public class @{content.modelName}ServiceImpl extends ServiceImpl<@{content.model
 
 
     @Override
-    public void add(@{content.modelName}AddDTO addDto) {
+    public void add(@{content.modelName}AddCmd addCmd) {
 
         @{content.modelName} @{content.modelNameLowerFirst} = MyBeanUtils.copyBean(addDto,@{content.modelName}.class);
         save(@{content.modelNameLowerFirst});
     }
 
     @Override
-    public void update(@{content.modelName}UpdateDTO updateDto) {
+    public void update(@{content.modelName}UpdateCmd updateCmd) {
 
-        @{content.modelName} @{content.modelNameLowerFirst} = MyBeanUtils.copyBean(updateDto,@{content.modelName}.class);
+        @{content.modelName} @{content.modelNameLowerFirst} = MyBeanUtils.copyBean(updateCmd,@{content.modelName}.class);
         updateById(@{content.modelNameLowerFirst});
+    }
+
+    @Override
+    public void delete(Long id) {
+
+        updateById(new @{content.modelName}().setDel(1).setId(id));
     }
 
     @Override

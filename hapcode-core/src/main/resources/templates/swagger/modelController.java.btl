@@ -28,23 +28,23 @@ public class @{content.modelName}Controller {
      */
     @ApiOperation("新增")
     @PostMapping("/add")
-    public Result add(@RequestBody @Valid @{content.modelName}AddDTO addDto) {
+    public Result add(@RequestBody @Valid @{content.modelName}AddCmd addCmd) {
 
-        service.add(addDto);
+        service.add(addCmd);
         return Result.success();
     }
 
     /**
      * 编辑
      *
-     * @param updateDTO
+     * @param updateCmd
      * @return
      */
     @ApiOperation("编辑")
     @PostMapping("/update")
-    public Result update(@RequestBody @Valid @{content.modelName}UpdateDTO updateDTO) {
+    public Result update(@RequestBody @Valid @{content.modelName}UpdateCmd updateCmd) {
 
-        service.update(updateDTO);
+        service.update(updateCmd);
         return Result.success();
     }
 
@@ -58,7 +58,7 @@ public class @{content.modelName}Controller {
     @PostMapping("/delete")
     public Result delete(@RequestParam Long id) {
 
-        service.updateById(new @{content.modelName}().setId(id).setDel(1));
+        service.delete(id);
         return Result.success();
     }
 

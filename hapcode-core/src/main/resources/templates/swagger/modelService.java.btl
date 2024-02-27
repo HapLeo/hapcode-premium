@@ -15,16 +15,22 @@ public interface @{content.modelName}Service extends IService<@{content.modelNam
     /**
      * 新增
      *
-     * @param addDto
+     * @param addCmd
      */
-    void add(@{content.modelName}AddDTO addDto);
+    void add(@{content.modelName}AddCmd addCmd);
 
     /**
      * 编辑
      *
-     * @param updateDto
+     * @param updateCmd
      */
-    void update(@{content.modelName}UpdateDTO updateDto);
+    void update(@{content.modelName}UpdateCmd updateCmd);
+
+    /**
+     * 删除
+     * @param id
+     */
+    void delete(Long id);
 
     /**
      * 详情
