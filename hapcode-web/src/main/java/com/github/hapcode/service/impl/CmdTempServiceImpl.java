@@ -64,7 +64,7 @@ public class CmdTempServiceImpl implements CmdTempService {
             }
             return null;
         } catch (Throwable throwable) {
-            throw new RuntimeException("创建临时文件异常：", throwable.getCause());
+            throw new RuntimeException("创建临时文件异常：", throwable);
         }
 
     }
