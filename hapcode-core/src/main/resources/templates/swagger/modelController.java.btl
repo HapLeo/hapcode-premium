@@ -55,8 +55,8 @@ public class @{content.modelName}Controller {
      * @return
      */
     @ApiOperation("删除")
-    @PostMapping("/delete")
-    public Result delete(@RequestParam Long id) {
+    @PostMapping("/delete/{id}")
+    public Result delete(@PathVariable Long id) {
 
         service.delete(id);
         return Result.success();
