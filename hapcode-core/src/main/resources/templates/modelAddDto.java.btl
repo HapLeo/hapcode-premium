@@ -1,0 +1,30 @@
+package @{content.packageName};
+
+<% for(import in content.imports!){ %>
+import @{import};
+<% } %>
+
+/**
+ * @author @{content.author!}
+ * @desc @{content.table.comment!}
+ * @date @{date(),"yyyy-MM-dd"}
+ */
+@ApiModel("@{content.table.comment!}AddDto")
+@Data
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+public class @{content.modelName}AddDto {
+
+<% for(item in content.table.fields!){ %>
+    <%if(item.key == "PRI"){ %>
+    <%}else if(item.propertyName == "del" || item.propertyName == "deleted" || item.propertyName == "createTime" || item.propertyName == "updateTime" || item.propertyName == "createUser" || item.propertyName == "createTime" || item.propertyName == "updateUser" || item.propertyName == "updateTime" || item.propertyName == "remark"){ %>
+    <%}else{ %>
+
+    @ApiModelProperty(value = "@{item.comment!}")
+    private @{item.javaType} @{item.propertyName};
+    <%}%>
+<% } %>
+
+
+
+}

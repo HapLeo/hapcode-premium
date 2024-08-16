@@ -1,6 +1,7 @@
 package com.github.hapcode.core.detective;
 
 import cn.hutool.core.util.ObjectUtil;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -12,6 +13,7 @@ import java.util.*;
  * <p>扫描一个类中的所有引用的类名并自动查找对应的全限定名列表</p>
  * @date 2022/12/1
  */
+@Slf4j
 public class ImportListAutoDetective {
 
 
@@ -80,19 +82,30 @@ public class ImportListAutoDetective {
         List<File> fileList = FilePathAutoDetective.detectRealFileList(rootPath, ".java");
         for (File file : fileList) {
             String absolutePath = file.getAbsolutePath();
-            if (absolutePath.contains("target") || absolutePath.contains(".mvn")) {
-                continue;
-            }
-            // 读取每个文件的全限定名
-            String clazzName = file.getAbsolutePath().replaceAll(File.separator, ".").split(".java")[1];
-            if (clazzName.startsWith(".")) {
-                clazzName = clazzName.substring(1);
-            }
-            result.put(file.getName().split("\\.")[0], clazzName);
+            try {
+                if (absolutePath.contains("target") || absolutePath.contains(".mvn") || !absolutePath.endsWith(".java")) {
+                    continue;
+                }
+                //log.info("absolutePath:{}", absolutePath);
+                // 读取每个文件的全限定名
+                String[] split = file.getAbsolutePath().replace(File.separator, ".").split(".java");
+                //log.info("split:{}", split);
+                if (split.length < 2){
+                    continue;
+                }
+                String clazzName = split[1].trim();
+                if (clazzName.startsWith(".")) {
+                    clazzName = clazzName.substring(1);
+                }
+                result.put(file.getName().split("\\.")[0], clazzName);
 
-            // 读取每个文件中的import列表
-            Map<String, String> oneFileImports = readFileImportList(file);
-            result.putAll(oneFileImports);
+                // 读取每个文件中的import列表
+                Map<String, String> oneFileImports = readFileImportList(file);
+                result.putAll(oneFileImports);
+            } catch (Exception e) {
+                System.out.println("absolutePath" + absolutePath);
+                e.printStackTrace();
+            }
         }
         return result;
     }

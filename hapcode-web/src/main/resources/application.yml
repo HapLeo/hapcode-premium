@@ -9,6 +9,7 @@ spring:
 #    password: X19gU8B%8R5$YUpqVo!*lF
 
   datasource:
-    url: jdbc:mysql://aiwo-test.mysql.rds.aliyuncs.com:3306/aiwo_product_manual?useUnicode=true&characterEncoding=UTF-8&useAffectedRows=true&allowMultiQueries=true&serverTimezone=Asia/Shanghai
-    username: aiwo_test
-    password: X19gU8B%8R5$YUpqVo!*lF
+    url: jdbc:p6spy:mysql://jumpserver.lecangs.com:33061/loctek_230217?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
+    username: 7f77370d-f251-4666-ab3e-42ca847320bd
+    password: 5FjSBdhZ4ztOuZ72
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver

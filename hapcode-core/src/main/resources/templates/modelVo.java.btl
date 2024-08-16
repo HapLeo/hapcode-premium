@@ -1,0 +1,36 @@
+package @{content.packageName};
+
+<% for(import in content.imports!){ %>
+import @{import};
+<% } %>
+
+/**
+ * @author @{content.author!}
+ * @desc @{content.table.comment!}VO
+ * @date @{date(),"yyyy-MM-dd"}
+ */
+@ApiModel("@{content.table.comment!}VO")
+@Data
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+public class @{content.modelName}Vo implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+<% for(item in content.table.fields!){ %>
+    <%if(item.propertyName == "del" || item.propertyName == "deleted" || item.propertyName == "createUser" || item.propertyName == "updateUser" || item.propertyName == "remark"){%>
+    <%}else if(item.propertyName == "createTime" || item.propertyName == "updateTime"){%>
+
+    @ApiModelProperty(value = "@{item.comment!}")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private @{item.javaType} @{item.propertyName};
+    <%}else{%>
+
+    @ApiModelProperty(value = "@{item.comment!}")
+    private @{item.javaType} @{item.propertyName};
+    <%}%>
+<% } %>
+
+
+
+}

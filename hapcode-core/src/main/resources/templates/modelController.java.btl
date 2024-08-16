@@ -1,0 +1,100 @@
+package @{content.packageName};
+
+<% for(import in content.imports!){ %>
+import @{import};
+<% } %>
+
+/**
+ * @author @{content.author!}
+ * @desc @{content.table.comment!}Controller
+ * @date @{date(),"yyyy-MM-dd"}
+ */
+@Slf4j
+@Api(tags="@{content.table.comment!}Controller")
+@RestController
+@RequestMapping("@{content.controllerPath}")
+public class @{content.modelName}Controller {
+
+
+    @DubboReference(check = false)
+    private @{content.modelName}Api api;
+
+
+    /**
+     * 新增
+     *
+     * @param addDto
+     * @return
+     */
+    @ApiOperation("新增")
+    @PostMapping("/add")
+    public Boolean add(@RequestBody @{content.modelName}AddDto addDto) {
+
+        api.add(addDto);
+        return Boolean.TRUE;
+    }
+
+    /**
+     * 编辑
+     *
+     * @param updateDto
+     * @return
+     */
+    @ApiOperation("编辑")
+    @PostMapping("/update")
+    public Boolean update(@RequestBody @{content.modelName}UpdateDto updateDto) {
+
+        api.update(updateDto);
+        return Boolean.TRUE;
+    }
+
+    /**
+     * 删除
+     *
+     * @param id
+     * @return
+     */
+    @ApiOperation("删除")
+    @PostMapping("/delete/{id}")
+    public Boolean delete(@PathVariable Integer id) {
+
+        api.delete(id);
+        return Boolean.TRUE;
+    }
+
+
+
+    /**
+     * 详情
+     *
+     * @param id
+     * @return
+     */
+    @ApiOperation("详情")
+    @GetMapping("/detail")
+    public @{content.modelName}Vo detail(@RequestParam Integer id) {
+
+        return api.detail(id);
+    }
+
+    /**
+     * 查询列表
+     * @param pageQuery
+     * @return
+     */
+    @ApiOperation("查询列表")
+    @GetMapping("/list")
+    public ReturnPage<@{content.modelName}Vo> list(@{content.modelName}PageQuery pageQuery) {
+
+        return api.list(pageQuery);
+    }
+
+
+
+
+
+
+
+
+
+}

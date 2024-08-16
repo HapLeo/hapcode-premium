@@ -1,0 +1,50 @@
+package @{content.packageName};
+
+<% for(import in content.imports!){ %>
+import @{import};
+<% } %>
+
+/**
+ * @author @{content.author}
+ * @desc @{content.table.comment!} 服务接口
+ * @date @{date(),"yyyy-MM-dd"}
+ */
+public interface @{content.modelName}Service extends IService<@{content.modelName}> {
+
+
+    /**
+     * 新增
+     *
+     * @param addDto
+     */
+    void add(@{content.modelName}AddDto addDto);
+
+    /**
+     * 编辑
+     *
+     * @param updateDto
+     */
+    void update(@{content.modelName}UpdateDto updateDto);
+
+    /**
+     * 删除
+     * @param id
+     */
+    void delete(Integer id);
+
+    /**
+     * 详情
+     *
+     * @param id
+     * @return
+     */
+    @{content.modelName}Vo detail(Integer id);
+
+    /**
+     * 分页查询列表
+     *
+     * @return
+     */
+    ReturnPage<@{content.modelName}Vo> list(@{content.modelName}PageQuery pageQuery);
+
+}

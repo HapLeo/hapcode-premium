@@ -1,0 +1,42 @@
+package @{content.packageName};
+
+<% for(import in content.imports!){ %>
+import @{import};
+<% } %>
+
+/**
+ * @author @{content.author!}
+ * @desc @{content.table.comment!}
+ * @date @{date(),"yyyy-MM-dd"}
+ */
+@ApiModel("@{content.table.comment!}PageQuery")
+@Data
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+public class @{content.modelName}PageQuery implements Serializable {
+
+    private static final long serialVersionUID = -1L;
+
+    @ApiModelProperty(value = "当前页数")
+    private Integer pageNum = 1;
+
+
+    @ApiModelProperty(value = "每页记录数")
+    private Integer pageSize = 10;
+
+    @ApiModelProperty(value = "总记录数（传入则查询时不会再查总数）")
+    public Long total;
+
+<% for(item in content.table.fields!){ %>
+    <%if(item.key == "PRI"){ %>
+    <%}else if(item.propertyName == "del" || item.propertyName == "deleted" || item.propertyName == "createTime" || item.propertyName == "updateTime" || item.propertyName == "create_user" || item.propertyName == "create_time" || item.propertyName == "update_user" || item.propertyName == "update_time" || item.propertyName == "remark"){ %>
+    <%}else{ %>
+
+    @ApiModelProperty(value = "@{item.comment!}")
+    private @{item.javaType} @{item.propertyName};
+    <%}%>
+<% } %>
+
+
+
+}

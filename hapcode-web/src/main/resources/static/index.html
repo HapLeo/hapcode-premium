@@ -14,9 +14,9 @@
             </td>
         </tr>
         <tr>
-            <td><label>tableName:</label></td>
+            <td><label>tableNames:</label></td>
             <td>
-                <div id="tableName"></div>
+                <input style="text-align:left" type="text" id="tableNames"/>
             </td>
         </tr>
         <tr>
@@ -74,21 +74,27 @@
                             }
 
                         });
+                        var tableNames = resp.tableNames;
+                        console.log(tableNames)
+                        if (tableNames != null) {
+                            var tableNameStr = "";
+                            $(tableNames).each(function (index, item) {
+
+                                tableNameStr = tableNameStr + item + ",";
+                            });
+                            console.log(tableNameStr)
+                            var tbNameShow = tableNameStr.substring(0, tableNameStr.length - 1);
+                            $('#tableNames').val(tbNameShow);
+                        }
                     }
                 },
             });
         });
 
         $("#submit").click(function () {
+            $("#msg").html("");
             var rootPath = $("#rootPath").val();
-            // var tableName = $("#tableName").val();
-            var tableNames = [];
-            $(".tableName").each(function (index, item) {
-                var checked = $(item).prop('checked');
-                if (checked) {
-                    tableNames.push($(item).val());
-                }
-            });
+            var tableNames = $("#tableNames").val().split(",");
             var templates = [];
             localStorage.setItem("oldPath", rootPath);
             $(".templateName").each(function (index, item) {
@@ -116,34 +122,12 @@
                 contentType: "application/json;charset=utf-8",
                 url: 'http://localhost:8080/codeGen',
                 data: JSON.stringify(obj),
-                success: function (resp) {
-                },
                 complete: function (resp) {
                     $("#msg").html(JSON.stringify(resp));
-                    setInterval(function () {
-                        $("#msg").html("");
-                    }, 3000);
                 }
             });
         });
 
-        $.ajax({
-            type: 'get',
-            contentType: "application/json;charset=utf-8",
-            url: 'http://localhost:8080/listTables',
-            success: function (resp) {
-                for (let i = 0; i < resp.length; i++) {
-                    var item = resp[i];
-                    var name = item.Name;
-                    var comment = item.Comment;
-                    var show = name + "-" + comment;
-                    $("#tableName").append('<div><input style="text-align:left" type="checkbox" class="tableName" value="' + name + '"/> ' + show + '</br></div>');
-                }
-            },
-            failure: function (resp) {
-                alert(resp);
-            }
-        });
         $.ajax({
             type: 'get',
             contentType: "application/json;charset=utf-8",

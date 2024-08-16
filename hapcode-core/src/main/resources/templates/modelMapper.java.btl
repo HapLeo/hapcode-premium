@@ -1,0 +1,17 @@
+package @{content.packageName};
+
+<% for(import in content.imports!){ %>
+import @{import};
+<% } %>
+
+/**
+ * @desc @{content.table.comment!} 映射器
+ * @author @{content.author}
+ * @date @{date(),"yyyy-MM-dd"}
+ */
+public interface @{content.modelName}Mapper extends BaseMapper<@{content.modelName}> {
+
+
+    List<@{content.modelName}Vo> list(@Param("page") Page page, @Param("pageQuery") @{content.modelName}PageQuery pageQuery);
+
+}

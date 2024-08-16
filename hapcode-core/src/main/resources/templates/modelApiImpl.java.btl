@@ -1,0 +1,50 @@
+package @{content.packageName};
+
+<% for(import in content.imports!){ %>
+import @{import};
+<% } %>
+
+/**
+ * @desc @{content.table.comment!} Api实现类
+ * @author @{content.author}
+ * @date @{date(),"yyyy-MM-dd"}
+ */
+@Slf4j
+@Service
+public class @{content.modelName}ApiImpl implements @{content.modelName}Api {
+
+
+    @Resource
+    private @{content.modelName}Service service;
+
+    @Override
+    public void add(@{content.modelName}AddDto addDto) {
+
+        service.add(addDto);
+    }
+
+    @Override
+    public void update(@{content.modelName}UpdateDto updateDto) {
+
+        service.update(updateDto);
+    }
+
+    @Override
+    public void delete(Integer id) {
+
+        service.delete(id);
+    }
+
+    @Override
+    public @{content.modelName}Vo detail(Integer id) {
+
+        return service.detail(id);
+    }
+
+    @Override
+    public ReturnPage<@{content.modelName}Vo> list(@{content.modelName}PageQuery pageQuery) {
+
+        return service.list(pageQuery);
+    }
+
+}

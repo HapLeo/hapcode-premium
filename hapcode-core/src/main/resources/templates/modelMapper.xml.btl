@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="@{content.mapperJavaPkg!}.@{content.modelName}Mapper">
+
+    <select id="list" resultType="@{content.modelVOJavaPkg!}.@{content.modelName}Vo">
+        select *
+        from @{content.table.name}
+        where del = 0
+        order by id desc
+    </select>
+
+</mapper>

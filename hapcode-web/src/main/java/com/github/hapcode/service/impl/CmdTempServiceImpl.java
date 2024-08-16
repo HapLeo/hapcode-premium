@@ -15,18 +15,19 @@ import java.util.Properties;
 public class CmdTempServiceImpl implements CmdTempService {
 
 
+    public static final String TEMP_DIR = System.getProperty("java.io.tmpdir");
+
     @Override
     public void storeCmdTemp(CodeGenCmd codeGenCmd) {
 
-        CodeGenCmd codeGenCmd1 = readCmdTemp(codeGenCmd.getRootPath());
-        if (codeGenCmd1 != null) {
-            return;
-        }
+//        CodeGenCmd codeGenCmd1 = readCmdTemp(codeGenCmd.getRootPath());
+//        if (codeGenCmd1 != null) {
+//            return;
+//        }
 
         Properties properties = new Properties();
         //File file = File.createTempFile("hapcode-cmd-temp", ".properties");
-        String tempdir = "/Users/wuyulin/Desktop/";
-        File file = new File(tempdir);
+        File file = new File(TEMP_DIR);
         if (!file.exists()) {
             file.mkdirs();
         }
@@ -51,12 +52,17 @@ public class CmdTempServiceImpl implements CmdTempService {
     public CodeGenCmd readCmdTemp(String rootPath) {
         Properties properties = new Properties();
         //String tempdir = System.getProperty("java.io.tmpdir");
-        String tempdir = "/Users/wuyulin/Desktop/";
-        File file = new File(tempdir);
+        File file = new File(TEMP_DIR);
         if (!file.exists()) {
             return null;
         }
-        try (FileReader fileReader = new FileReader(file.getAbsolutePath() + "/hapcode-cmd-temp.properties")) {
+        String fileName = file.getAbsolutePath() + "/hapcode-cmd-temp.properties";
+        File propertyFile = new File(fileName);
+        if (!propertyFile.exists()) {
+            return null;
+        }
+        try (FileReader fileReader = new FileReader(propertyFile)) {
+
             properties.load(fileReader);
             String str = String.valueOf(properties.get(rootPath));
             if (ObjectUtil.isNotEmpty(str)) {
