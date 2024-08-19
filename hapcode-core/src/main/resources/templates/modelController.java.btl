@@ -72,7 +72,7 @@ public class @{content.modelName}Controller {
      */
     @ApiOperation("详情")
     @GetMapping("/detail/{id}")
-    public @{content.modelName}Vo detail(@RequestParam Integer id) {
+    public @{content.modelName}Vo detail(@PathVariable Integer id) {
 
         return api.detail(id);
     }

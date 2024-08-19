@@ -18,20 +18,23 @@ public class @{content.modelName}ServiceImpl extends ServiceImpl<@{content.model
     @Override
     public void add(@{content.modelName}AddDto addDto) {
 
-
-
+        @{content.modelName} item = new @{content.modelName}();
+        BeanUtils.copyProperties(addDto, item);
+        save(item);
     }
 
     @Override
     public void update(@{content.modelName}UpdateDto updateDto) {
 
-
+        @{content.modelName} item = new @{content.modelName}();
+        BeanUtils.copyProperties(updateDto, item);
+        updateById(item);
     }
 
     @Override
     public void delete(Integer id) {
 
-        updateById(new CrmContractTemplate().setDeleted(1).setId(id));
+        updateById(new @{content.modelName}().setDeleted(1).setId(id));
     }
 
     @Override
