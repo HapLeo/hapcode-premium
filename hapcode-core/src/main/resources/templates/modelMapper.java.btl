@@ -9,6 +9,7 @@ import @{import};
  * @author @{content.author}
  * @date @{date(),"yyyy-MM-dd"}
  */
+@Mapper
 public interface @{content.modelName}Mapper extends BaseMapper<@{content.modelName}> {
 
 

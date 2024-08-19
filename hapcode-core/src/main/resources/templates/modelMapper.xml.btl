@@ -5,7 +5,7 @@
     <select id="list" resultType="@{content.modelVOJavaPkg!}.@{content.modelName}Vo">
         select *
         from @{content.table.name}
-        where del = 0
+        where deleted = 0
         order by id desc
     </select>
 

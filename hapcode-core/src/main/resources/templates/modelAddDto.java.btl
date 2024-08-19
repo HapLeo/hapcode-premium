@@ -13,7 +13,10 @@ import @{import};
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class @{content.modelName}AddDto {
+public class @{content.modelName}AddDto implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
 
 <% for(item in content.table.fields!){ %>
     <%if(item.key == "PRI"){ %>
@@ -21,6 +24,7 @@ public class @{content.modelName}AddDto {
     <%}else{ %>
 
     @ApiModelProperty(value = "@{item.comment!}")
+    @NotNull(message = "@{item.comment!}不能为空")
     private @{item.javaType} @{item.propertyName};
     <%}%>
 <% } %>

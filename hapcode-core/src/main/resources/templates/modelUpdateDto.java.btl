@@ -13,7 +13,9 @@ import @{import};
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class @{content.modelName}UpdateDto {
+public class @{content.modelName}UpdateDto implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
 <% for(item in content.table.fields!){ %>
     <%if(item.propertyName == "del" || item.propertyName == "deleted" || item.propertyName == "createTime" || item.propertyName == "updateTime" || item.propertyName == "createUser" || item.propertyName == "createTime" || item.propertyName == "updateUser" || item.propertyName == "updateTime" || item.propertyName == "remark"){ %>
@@ -21,6 +23,7 @@ public class @{content.modelName}UpdateDto {
     <%}else{ %>
 
     @ApiModelProperty(value = "@{item.comment!}")
+    @NotNull(message = "@{item.comment!}不能为空")
     private @{item.javaType} @{item.propertyName};
     <%}%>
 <% } %>

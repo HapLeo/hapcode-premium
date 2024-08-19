@@ -10,7 +10,7 @@ import @{import};
  * @date @{date(),"yyyy-MM-dd"}
  */
 @Slf4j
-@Service
+@DubboService
 public class @{content.modelName}ServiceImpl extends ServiceImpl<@{content.modelName}Mapper, @{content.modelName}> implements @{content.modelName}Service {
 
 
