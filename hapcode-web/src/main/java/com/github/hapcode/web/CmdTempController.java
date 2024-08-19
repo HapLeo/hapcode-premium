@@ -17,8 +17,8 @@ public class CmdTempController {
 
 
     @GetMapping("/readCmdTemp")
-    public CodeGenCmd readCmdTemp(@RequestParam String rootPath) {
+    public CodeGenCmd readCmdTemp(@RequestParam String rootPath, @RequestParam String moduleName) {
 
-        return cmdTempService.readCmdTemp(rootPath);
+        return cmdTempService.readCmdTemp(rootPath, moduleName);
     }
 }

@@ -10,7 +10,16 @@
     <table>
         <tr>
             <td><label>rootPath:</label></td>
-            <td><input id="rootPath"/>
+            <td><input id="rootPath"/></td>
+        </tr>
+        <tr>
+            <td><label>模块名称：</label></td>
+            <td><input id="moduleName"/></td>
+        </tr>
+        <tr>
+            <td><label>自动填充：</label></td>
+            <td>
+                <button id='autoFill'>自动填充</button>
             </td>
         </tr>
         <tr>
@@ -47,12 +56,13 @@
             $("#rootPath").val(oldPath);
         }
 
-        $("#rootPath").blur(function () {
+        $("#autoFill").click(function () {
             $.ajax({
                 type: 'get',
                 url: 'http://localhost:8080/cmdTemp/readCmdTemp',
                 data: {
-                    "rootPath": $("#rootPath").val()
+                    "rootPath": $("#rootPath").val(),
+                    "moduleName": $("#moduleName").val()
                 },
                 success: function (resp) {
                     if (resp != null && resp != '') {
@@ -94,6 +104,7 @@
         $("#submit").click(function () {
             $("#msg").html("");
             var rootPath = $("#rootPath").val();
+            var moduleName = $("#moduleName").val();
             var tableNames = $("#tableNames").val().split(",");
             var templates = [];
             localStorage.setItem("oldPath", rootPath);
@@ -115,6 +126,7 @@
 
             var obj = {};
             obj.rootPath = rootPath;
+            obj.moduleName = moduleName;
             obj.tableNames = tableNames;
             obj.templates = templates;
             $.ajax({
@@ -139,12 +151,18 @@
                 }
                 for (let i = 0; i < resp.length; i++) {
                     var template = resp[i];
-                    var tagHtml = '&nbsp;&nbsp;&nbsp;&nbsp;<input style="width: 900px;" name="tags" placeholder="tags"/>';
-                    $("#templateBox").append('<div><input style="text-align:left" class="templateName" type="checkbox" name="templateName" value="' + template + '"/>' + template + tagHtml + "</br></div>");
+                    var tagId = "tag" + i;
+                    var tagHtml = '&nbsp;&nbsp;&nbsp;&nbsp;<input id="' + tagId + '" class="tags" style="width: 900px;" name="tags" placeholder="tags"/>';
+                    var tempId = "template" + i;
+                    $("#templateBox").append('<div id=' + tempId + '><input style="text-align:left" class="templateName" type="checkbox" name="templateName" value="' + template + '"/>' + template + tagHtml + "</br></div>");
                 }
             }
         });
+
+
     });
+
+
 </script>
 <style>
     input, select {

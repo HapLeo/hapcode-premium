@@ -39,7 +39,7 @@ public class CmdTempServiceImpl implements CmdTempService {
                 tempFile.createNewFile();
             }
             properties.load(fileReader);
-            properties.put(codeGenCmd.getRootPath(), JSON.toJSONString(codeGenCmd));
+            properties.put(codeGenCmd.getRootPath() + "&" + codeGenCmd.getModuleName(), JSON.toJSONString(codeGenCmd));
             properties.store(fileWriter, "");
             fileWriter.flush();
         } catch (Throwable throwable) {
@@ -49,7 +49,7 @@ public class CmdTempServiceImpl implements CmdTempService {
     }
 
     @Override
-    public CodeGenCmd readCmdTemp(String rootPath) {
+    public CodeGenCmd readCmdTemp(String rootPath, String moduleName) {
         Properties properties = new Properties();
         //String tempdir = System.getProperty("java.io.tmpdir");
         File file = new File(TEMP_DIR);
@@ -64,7 +64,8 @@ public class CmdTempServiceImpl implements CmdTempService {
         try (FileReader fileReader = new FileReader(propertyFile)) {
 
             properties.load(fileReader);
-            String str = String.valueOf(properties.get(rootPath));
+            String key = rootPath + "&" + moduleName;
+            String str = String.valueOf(properties.get(key));
             if (ObjectUtil.isNotEmpty(str)) {
                 return JSON.parseObject(str, CodeGenCmd.class);
             }

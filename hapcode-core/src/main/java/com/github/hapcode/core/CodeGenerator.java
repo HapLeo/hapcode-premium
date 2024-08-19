@@ -101,9 +101,13 @@ public class CodeGenerator {
             content.put("mapperJavaPkg", mapperJavaPkg);
 
             // 获取ModelVO.java文件包名
-            File modelVOClzFile = files.stream().filter(f -> f.getAbsolutePath().endsWith(modelName + "VO.java")).collect(Collectors.toList()).get(0);
-            String modelVOJavaPkg = FilePathAutoDetective.calClassPackage(modelVOClzFile);
-            content.put("modelVOJavaPkg", modelVOJavaPkg);
+            List<File> collect = files.stream().filter(f -> f.getAbsolutePath().endsWith(modelName + "Vo.java")).collect(Collectors.toList());
+            if (!collect.isEmpty()){
+                File modelVOClzFile = collect.get(0);
+                String modelVOJavaPkg = FilePathAutoDetective.calClassPackage(modelVOClzFile);
+                content.put("modelVOJavaPkg", modelVOJavaPkg);
+            }
+
         }
 
         // 重新生成模板内容

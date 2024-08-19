@@ -22,6 +22,7 @@ public interface CmdTempService {
      * 读取命令模板
      *
      * @param rootPath
+     * @param moduleName
      */
-    CodeGenCmd readCmdTemp(String rootPath);
+    CodeGenCmd readCmdTemp(String rootPath, String moduleName);
 }

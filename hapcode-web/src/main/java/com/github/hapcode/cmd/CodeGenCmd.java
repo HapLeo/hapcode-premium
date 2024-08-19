@@ -12,6 +12,8 @@ public class CodeGenCmd {
 
     private String rootPath;
 
+    private String moduleName;
+
     private String[] tableNames;
 
     private TemplateCmd[] templates;
