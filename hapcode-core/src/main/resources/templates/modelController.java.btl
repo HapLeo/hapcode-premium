@@ -83,8 +83,8 @@ public class @{content.modelName}Controller {
      * @return
      */
     @ApiOperation("查询列表")
-    @GetMapping("/list")
-    public ReturnPage<@{content.modelName}Vo> list(@{content.modelName}PageQuery pageQuery) {
+    @PostMapping("/list")
+    public ReturnPage<@{content.modelName}Vo> list(@RequestBody @{content.modelName}PageQuery pageQuery) {
 
         return api.list(pageQuery);
     }
