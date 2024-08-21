@@ -26,6 +26,7 @@ public class JavaTypeConverter {
 
         types.put("date", "LocalDate");
         types.put("datetime", "LocalDateTime");
+        types.put("timestamp", "LocalDateTime");
 
         types.put("boolean", "Boolean");
 
